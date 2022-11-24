@@ -3,7 +3,7 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-const {get_product_service} = require("../services/get_products_home_service");
+const {get_product_service} = require("../services/get_products_service");
 
 
 app.get("/get-home-products", urlencodedParser, async function (request, response) {
