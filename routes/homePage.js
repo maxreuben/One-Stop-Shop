@@ -6,12 +6,16 @@ const { loginService } = require("../services/loginService");
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 // const signupService = require("../services/signupService").signupService;
+const { get_product_service } = require("../services/get_products_service");
 
-app.get("/", urlencodedParser, function (request, response) {
+app.get("/", urlencodedParser, async function (request, response) {
   data = request.body;
   // console.log(request);
+  let res = await get_product_service();
 
-  response.render("home");
+  console.log("PRODUCTS", res.Clothing[0]);
+
+  response.render("home", { products: res });
 });
 
 // app.post("/signin", urlencodedParser, async function (request, response) {
