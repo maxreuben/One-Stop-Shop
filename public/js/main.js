@@ -52,3 +52,68 @@ Array.from(inputs).map((input) => {
     });
   });
 });
+
+const signInButton1 = document.getElementById("login");
+signInButton1.addEventListener("click", () => {
+  let username = document.getElementById("Signin_email").value;
+  let password = document.getElementById("Signin_password").value;
+  
+  if (username == "") {
+    alert("Username must be filled out");
+    return false;
+  }
+  if (password == "") {
+    alert("Password must be filled out");
+    return false;
+  }
+
+  console.log(username, password);
+  const data = { username, password };
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      emailId: username,
+      password: password,
+    }),
+  };
+  fetch("http://localhost:5001/signin", options)
+    .then(function (response) {
+      console.log(response);
+
+      response.json().then(function (value) {
+        // console.log("INSIDE");
+        console.log(value);
+        console.log(value.userObject.firstName);
+        // let c_name = value.userObejct.firstName;
+
+        if(value.status != 200)
+        {
+          alert('failure')
+        }
+        else{
+          // alert('success')
+          let c_username = document.getElementById("Signin_email");
+          let c_password = document.getElementById("Signin_password");
+          
+          
+          today = new Date();
+          var expire = new Date();
+          expire.setTime(today.getTime() + 3600000*24*15);
+        
+          // document.cookie = "name="+c_name+";path=/" + ";expires="+expire.toUTCString();
+          document.cookie = "email="+c_username.value+";path=/" + ";expires="+expire.toUTCString();
+          document.cookie = "password="+encodeURI(c_password.value)+";path=/" + ";expires="+expire.toUTCString();
+          
+          //location.href = 'http://localhost:5001/';
+          
+        }
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  console.log("hello");
+})
