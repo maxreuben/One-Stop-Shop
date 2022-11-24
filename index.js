@@ -5,12 +5,12 @@ var multer = require("multer");
 var forms = multer();
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, ".env") });
-var cookieParser = require('cookie-parser');
+var cookieParser = require("cookie-parser");
 
 var engines = require("consolidate");
 app.set("views", __dirname + "/views");
-app.engine("html", engines.mustache);
-app.set("view engine", "html");
+// app.engine("html", engines.mustache);
+app.set("view engine", "ejs");
 app.use(express.static("public"));
 const cors = require("cors");
 app.use(cors());
@@ -58,9 +58,6 @@ app.use(searchproduct);
 
 const checkout = require("./routes/checkout");
 app.use(checkout);
-
-const NavigationBar = require("./routes/Navigation");
-app.use(NavigationBar)
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));

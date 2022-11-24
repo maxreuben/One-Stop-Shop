@@ -1,20 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script>
-    function loadHeader(){
-
-      function loadHTML(){
-        fetch('/NavigationBar')
-        .then(response=> response.text())
-        .then(text=> document.getElementById('header').innerHTML = text);
-      }
-
-      loadHTML();
-
-    };
-
-
-    </script>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -36,15 +21,12 @@
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
     <!-- ====== Custom CSS ====== -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <title>Fashion Shop</title>
   </head>
-  <body onload="loadHeader()">
-    <header>
-      <div id="header"></div>
-      <object data="NavigationBar.html"></object>
-      <!-- <include src="./NavigationBar.html"></include> --> 
-    </header>
+  <body>
+    <%- include('header.ejs') %>
+
     <!-- ====== Collection ====== -->
     <section class="section collection">
       <div class="title">
@@ -251,73 +233,7 @@
     </section>
 
     <!-- ====== Footer ====== -->
-    <footer class="footer">
-      <div class="row container">
-        <div class="col">
-          <div class="logo d-flex">
-            <img src="./images/logo.svg" alt="logo" />
-          </div>
-          <p>
-            Lorem ispum is a placeholder text <br />
-            commonly used as a free text.
-          </p>
-          <div class="icons d-flex">
-            <div class="icon d-flex">
-              <i class="bx bxl-facebook"></i>
-            </div>
-            <div class="icon d-flex"><i class="bx bxl-twitter"></i></div>
-            <div class="icon d-flex"><i class="bx bxl-instagram"></i></div>
-            <div class="icon d-flex"><i class="bx bxl-youtube"></i></div>
-          </div>
-          <p class="color">
-            Copyrights 2021 <br />
-            @Iamabdulqadeer01
-          </p>
-        </div>
-        <div class="col">
-          <div>
-            <h4>Product</h4>
-            <a href="">Download</a>
-            <a href="">Pricing</a>
-            <a href="">Locations</a>
-            <a href="">Server</a>
-            <a href="">Countries</a>
-            <a href="">Blog</a>
-          </div>
-          <div>
-            <h4>Category</h4>
-            <a href="">Men</a>
-            <a href="">Women</a>
-            <a href="">Kids</a>
-            <a href="">Best Seller</a>
-            <a href="">New Arrivals</a>
-          </div>
-          <div>
-            <h4>My Account</h4>
-            <a href="">My Account</a>
-            <a href="">Discount</a>
-            <a href="">Returns</a>
-            <a href="">Order History</a>
-            <a href="">Order Tracking</a>
-          </div>
-          <div>
-            <h4>Contact Us</h4>
-            <div class="d-flex">
-              <div class="icon"><i class="bx bxs-map"></i></div>
-              <span>123 Street Trafford, London, UK</span>
-            </div>
-            <div class="d-flex">
-              <div class="icon"><i class="bx bxs-envelope"></i></div>
-              <span>info@sitename.com</span>
-            </div>
-            <div class="d-flex">
-              <div class="icon"><i class="bx bxs-phone"></i></div>
-              <span>+456 789 789 001</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+  <%- include('footer.ejs') %>
 
     <!-- ====== Login and Signup Form ====== -->
     <div class="user-form">
@@ -426,8 +342,8 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- ====== Custom Script ====== -->
-    <script src="./js/product.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="js/product.js"></script>
+    <script src="js/main.js"></script>
     
     
   </body>

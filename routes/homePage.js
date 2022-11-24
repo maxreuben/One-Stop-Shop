@@ -11,10 +11,7 @@ app.get("/", urlencodedParser, function (request, response) {
   data = request.body;
   // console.log(request);
 
-
-  response.render("home.html")
-
-
+  response.render("home");
 });
 
 // app.post("/signin", urlencodedParser, async function (request, response) {
@@ -28,10 +25,8 @@ app.get("/", urlencodedParser, function (request, response) {
 //     console.log("POST TEST");
 //     console.log(username, password);
 
-
 //     // response.status(200);
 //     response.send(checkUser);
-
 
 // });
 
