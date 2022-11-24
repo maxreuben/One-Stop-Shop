@@ -47,8 +47,8 @@ app.use(addDataRoute);
 const gethomedata = require("./routes/home");
 app.use(gethomedata);
 
-const productPageroute = require("./routes/productPage");
-app.use(productPageroute);
+const homePageRoute = require("./routes/homePage");
+app.use(homePageRoute);
 
 const getloggeduser = require("./routes/current_user_details");
 app.use(getloggeduser);

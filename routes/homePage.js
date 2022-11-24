@@ -7,12 +7,12 @@ const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 // const signupService = require("../services/signupService").signupService;
 
-app.get("/productPage", urlencodedParser, function (request, response) {
+app.get("/", urlencodedParser, function (request, response) {
   data = request.body;
   // console.log(request);
 
 
-  response.render("productPage.html")
+  response.render("home.html")
 
 
 });
