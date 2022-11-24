@@ -59,6 +59,9 @@ app.use(searchproduct);
 const checkout = require("./routes/checkout");
 app.use(checkout);
 
+const NavigationBar = require("./routes/Navigation");
+app.use(NavigationBar)
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
