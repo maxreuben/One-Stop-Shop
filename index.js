@@ -59,6 +59,9 @@ app.use(searchproduct);
 const checkout = require("./routes/checkout");
 app.use(checkout);
 
+const profile = require("./routes/profile");
+app.use(profile);
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
