@@ -27,6 +27,7 @@ const userForm = document.querySelector(".user-form");
 
 [".user-icon", ".user-link"].forEach((p) => {
   document.querySelector(p).onclick = () => {
+    
     if (cookies.email.length === 0)
     {
       userForm.classList.add("show");
