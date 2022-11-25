@@ -19,6 +19,7 @@ async function signupService(data) {
     emailId: data.emailId,
     password: encryptedPassword,
     role: data.role,
+    phoneNumber: data.phoneNumber,
   })
     .then(function (item) {
       console.log("ITEM", item);

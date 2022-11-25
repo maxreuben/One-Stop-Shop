@@ -34,6 +34,9 @@ const User = sequelize.define("User", {
     type: Sequelize.STRING,
   },
 
+  phoneNumber: {
+    type: Sequelize.STRING,
+  },
 });
 
 User.sync();

@@ -8,11 +8,15 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/profile.js"></script>
 </head>
+<header>
+<%- include('header.ejs') %>
+</header>
 <body>
+  
 <div class="container">
     <div class="main-body">
     
-          <%- include('header.ejs') %>
+          
           <!-- /Breadcrumb -->
     
           <div class="row gutters-sm">
@@ -79,7 +83,7 @@
                       <h6 class="mb-0">Phone</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" id="p_phone">
+                      <input type="text" id="p_phone" value= <%= userDetails['phoneNumber'] %>>
                     </div>
                   </div>
                   <hr>
