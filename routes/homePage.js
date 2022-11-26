@@ -15,7 +15,7 @@ app.get("/", urlencodedParser, async function (request, response) {
 
   console.log("PRODUCTS", res.Clothing[0]);
 
-  response.render("home", { products: res });
+  response.render("home", { productList: res });
 });
 
 // app.post("/signin", urlencodedParser, async function (request, response) {

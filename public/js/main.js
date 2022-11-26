@@ -1,5 +1,14 @@
 /* ========== Navigation =========== */
 const navList = document.querySelector(".nav-list");
+let cookies = document.cookie
+  .split(';')
+  .map(cookie => cookie.split('='))
+  .reduce((accumulator, [key, value]) => ({ ...accumulator, [key.trim()]: decodeURIComponent(value) }), {});
+
+  console.log(cookies.email);
+  // cookies.email = '';
+  // document.getElementById("user_name").innerHTML = cookies.email;
+
 
 document.querySelector(".hamburger").onclick = () => {
   navList.classList.add("show");
@@ -18,8 +27,16 @@ const userForm = document.querySelector(".user-form");
 
 [".user-icon", ".user-link"].forEach((p) => {
   document.querySelector(p).onclick = () => {
-    userForm.classList.add("show");
-    navList.classList.remove("show");
+    
+    if (cookies.email.length === 0)
+    {
+      userForm.classList.add("show");
+      navList.classList.remove("show");
+    }
+    else{
+      location.href = 'http://localhost:5001/profile'
+    }
+    
   };
 });
 
