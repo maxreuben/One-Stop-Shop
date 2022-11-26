@@ -7,8 +7,6 @@ const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 var cookieParser = require("cookie-parser");
 
-const { Test } = require("./models/test");
-
 var engines = require("consolidate");
 app.set("views", __dirname + "/views");
 // app.engine("html", engines.mustache);
