@@ -1,14 +1,19 @@
 /* ========== Navigation =========== */
 const navList = document.querySelector(".nav-list");
 let cookies = document.cookie
-  .split(';')
-  .map(cookie => cookie.split('='))
-  .reduce((accumulator, [key, value]) => ({ ...accumulator, [key.trim()]: decodeURIComponent(value) }), {});
+  .split(";")
+  .map((cookie) => cookie.split("="))
+  .reduce(
+    (accumulator, [key, value]) => ({
+      ...accumulator,
+      [key.trim()]: decodeURIComponent(value),
+    }),
+    {}
+  );
 
-  console.log(cookies.email);
-  // cookies.email = '';
-  // document.getElementById("user_name").innerHTML = cookies.email;
-
+console.log(cookies.email);
+// cookies.email = '';
+// document.getElementById("user_name").innerHTML = cookies.email;
 
 document.querySelector(".hamburger").onclick = () => {
   navList.classList.add("show");
@@ -27,16 +32,12 @@ const userForm = document.querySelector(".user-form");
 
 [".user-icon", ".user-link"].forEach((p) => {
   document.querySelector(p).onclick = () => {
-    
-    if (cookies.email.length === 0)
-    {
+    if (cookies.email == undefined || cookies.email.length === 0) {
       userForm.classList.add("show");
       navList.classList.remove("show");
+    } else {
+      location.href = "http://localhost:5001/profile";
     }
-    else{
-      location.href = 'http://localhost:5001/profile'
-    }
-    
   };
 });
 
@@ -74,7 +75,7 @@ const signInButton1 = document.getElementById("login");
 signInButton1.addEventListener("click", () => {
   let username = document.getElementById("Signin_email").value;
   let password = document.getElementById("Signin_password").value;
-  
+
   if (username == "") {
     alert("Username must be filled out");
     return false;
@@ -106,26 +107,32 @@ signInButton1.addEventListener("click", () => {
         console.log(value.userObject.firstName);
         // let c_name = value.userObejct.firstName;
 
-        if(value.status != 200)
-        {
-          alert('failure')
-        }
-        else{
+        if (value.status != 200) {
+          alert("failure");
+        } else {
           // alert('success')
           let c_username = document.getElementById("Signin_email");
           let c_password = document.getElementById("Signin_password");
-          
-          
+
           today = new Date();
           var expire = new Date();
-          expire.setTime(today.getTime() + 3600000*24*15);
-        
+          expire.setTime(today.getTime() + 3600000 * 24 * 15);
+
           // document.cookie = "name="+c_name+";path=/" + ";expires="+expire.toUTCString();
-          document.cookie = "email="+c_username.value+";path=/" + ";expires="+expire.toUTCString();
-          document.cookie = "password="+encodeURI(c_password.value)+";path=/" + ";expires="+expire.toUTCString();
-          
+          document.cookie =
+            "email=" +
+            c_username.value +
+            ";path=/" +
+            ";expires=" +
+            expire.toUTCString();
+          document.cookie =
+            "password=" +
+            encodeURI(c_password.value) +
+            ";path=/" +
+            ";expires=" +
+            expire.toUTCString();
+
           //location.href = 'http://localhost:5001/';
-          
         }
       });
     })
@@ -133,4 +140,4 @@ signInButton1.addEventListener("click", () => {
       console.log(error);
     });
   console.log("hello");
-})
+});
