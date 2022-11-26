@@ -44,17 +44,14 @@ app.use(modifyuserroute);
 const addDataRoute = require("./routes/addDataToDatabase");
 app.use(addDataRoute);
 
-const gethomedata = require("./routes/home");
-app.use(gethomedata);
-
 const homePageRoute = require("./routes/homePage");
 app.use(homePageRoute);
 
 const getloggeduser = require("./routes/current_user_details");
 app.use(getloggeduser);
 
-const searchproduct = require("./routes/search_product");
-app.use(searchproduct);
+const search = require("./routes/search");
+app.use(search);
 
 const checkout = require("./routes/checkout");
 app.use(checkout);

@@ -22,6 +22,7 @@
     />
     <!-- ====== Custom CSS ====== -->
     <link rel="stylesheet" href="css/styles.css" />
+    <script src="/js/home.js"></script>
     <title>Fashion Shop</title>
   </head>
   <body>
@@ -34,10 +35,10 @@
         <h2>Our Top Collection</h2>
       </div>
       <div class="filters d-flex">
-        <div onclick= <%= showJewellery %> data-filter="Jewellery">Jewellery</div>
-        <div onclick= <%= showFurniture %> data-filter="Furniture">Furniture</div>
-        <div onclick= <%= showClothing %> data-filter="Clothing">Clothing</div>
-        <div onclick= <%= showFootwear %> data-filter="Footwear">Footwear</div>
+        <% categories %>
+        <% for (const category of categories) { %>
+          <div onclick="getProductsInCategory('<%= category %>')"><%= category %></div>
+        <% } %>
       </div>
 
       
@@ -46,9 +47,9 @@
         <div class="swiper mySwiper">
           <div class="swiper-wrapper" id="products">
             <div class="swiper-slide">
-              <!-- <div class="product">
+              <div class="product">
                 <div class="top d-flex">
-                  <img src="./images/product-1.png" alt="" />
+                  <img src="/images/product-1.png" alt="" />
                   <div class="icon d-flex">
                     <i class="bx bxs-heart"></i>
                   </div>
@@ -66,7 +67,7 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
               
             </div>
           </div>
@@ -119,30 +120,6 @@
       </div>
 
       <div class="products container">
-        <!-- <div class="product">
-          <div class="top d-flex">
-            <img src="./images/product-1.png" alt="" />
-            <div class="icon d-flex">
-              <i class="bx bxs-heart"></i>
-            </div>
-          </div>
-          <div class="bottom">
-            <div class="d-flex">
-              <h4>Nike Air Men’s Hoodie - Imported Hoodie Red</h4>
-              <a href="" class="btn cart-btn">Add to Cart</a>
-            </div>
-            <div class="d-flex">
-              <div class="price">$150</div>
-              <div class="rating">
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
 
       <div class="button d-flex">
@@ -158,56 +135,5 @@
     <!-- ====== Custom Script ====== -->
     <!-- <script src="js/product.js"></script> -->
     <script src="js/main.js"></script>
-    <script>
-// const allProducts = <%= productList %>     
-    </script>
-
-
-    <script>
-      
-      function getClickedProducts(item) {
-        console.log(item);
-        let allProducts = '<%= productList %>'
-        // let products = <%= productList %>
-
-        var html = ""
-        for(var i = 0; i < allProducts.length; i++){
-
-          console.log(allProducts[i])
-
-          if(allProducts[i].category === item){
-            html = html + `<div class="swiper-slide">
-              <div class="product">
-                <div class="top d-flex">
-                  <img src=${product.image[0]} alt="" />
-                  <div class="icon d-flex">
-                    <i class="bx bxs-heart"></i>
-                  </div>
-                </div>
-                <div class="bottom">
-                  <h4>${product.name}</h4>
-                  <div class="d-flex">
-                    <div class="price">$${product.retailPrice}</div>
-                    <div class="rating">
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>`
-
-            html += " ";
-          }
-        }
-        console.log(allProducts)
-
-        document.getElementById('products').innerHTML = html
-      }
-    </script>
-    
   </body>
 </html>
