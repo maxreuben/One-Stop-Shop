@@ -62,6 +62,9 @@ app.use(checkout);
 const profile = require("./routes/profile");
 app.use(profile);
 
+const productPage = require("./routes/productPage");
+app.use(productPage);
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
