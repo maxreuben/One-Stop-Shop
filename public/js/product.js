@@ -1,10 +1,10 @@
 /* ========== Products Slider =========== */
-const swiper = new Swiper('.mySwiper', {
+const swiper = new Swiper(".mySwiper", {
   grabCursor: true,
   slidesPerView: 1,
   spaceBetween: 70,
   pagination: {
-    el: '.custom-pagination',
+    el: ".custom-pagination",
     clickable: true,
   },
   breakpoints: {
@@ -21,13 +21,13 @@ const swiper = new Swiper('.mySwiper', {
 
 const getProducts = async () => {
   try {
-    const results = await fetch('http://localhost:5001/get-home-products');
+    const results = await fetch("http://localhost:5001/get-home-products");
     const data = await results.json();
     console.log(data);
-  
+
     const clothing = data.Clothing;
     const furniture = data.Furniture;
-  
+
     const footwear = data.Footwear;
     const jewel = data.Jewellery;
     const clofur = clothing.concat(furniture);
@@ -40,11 +40,11 @@ const getProducts = async () => {
   }
 };
 
-const ProductsWrapper = document.getElementById('products');
+const ProductsWrapper = document.getElementById("products");
 
-window.addEventListener('DOMContentLoaded', async function () {
+window.addEventListener("DOMContentLoaded", async function () {
   let products = await getProducts();
-  products = products.filter((product) => product.category === 'Jewellery');
+  products = products.filter((product) => product.category === "Jewellery");
   console.log(products);
   displayProductItems(products);
   loadData();
@@ -80,23 +80,24 @@ const displayProductItems = (items) => {
                   `
   );
 
-  displayProduct = displayProduct.join('');
+  displayProduct = displayProduct.join("");
+  console.log("DISPLAY PRODUCt", ProductsWrapper);
   ProductsWrapper.innerHTML = displayProduct;
 };
 
 /* ========== Filter Products =========== */
-const filters = [...document.querySelectorAll('.filters div')];
+const filters = [...document.querySelectorAll(".filters div")];
 
 filters.forEach((filter) => {
-  filters[2].classList.add('active');
-  filter.addEventListener('click', async (e) => {
-    const id = e.target.getAttribute('data-filter');
+  filters[2].classList.add("active");
+  filter.addEventListener("click", async (e) => {
+    const id = e.target.getAttribute("data-filter");
     const target = e.target;
     const products = await getProducts();
     filters.forEach((btn) => {
-      btn.classList.remove('active');
+      btn.classList.remove("active");
     });
-    target.classList.add('active');
+    target.classList.add("active");
 
     let menuCategory = products.filter((product) => {
       if (product.category === id) {
@@ -111,8 +112,8 @@ filters.forEach((filter) => {
 
 /* ========== Categories Products =========== */
 
-const categoriesProducts = document.querySelector('.categories .products');
-const loadmore = document.querySelector('.loadmore');
+const categoriesProducts = document.querySelector(".categories .products");
+const loadmore = document.querySelector(".loadmore");
 
 let currentIndex = 0;
 async function loadData() {
@@ -120,14 +121,14 @@ async function loadData() {
   let products = await getProducts();
   if (currentIndex >= products.length) {
     loadmore.disabled = true;
-    loadmore.innerText = 'No More Products';
+    loadmore.innerText = "No More Products";
     return;
   }
 
   for (var i = 0; i < maxResult; i++) {
     const product = products[i + currentIndex];
     categoriesProducts.insertAdjacentHTML(
-      'beforeend',
+      "beforeend",
       `<div class="product">
           <div class="top d-flex">
             <img src=${product.url} alt="" />
@@ -158,4 +159,4 @@ async function loadData() {
   currentIndex += maxResult;
 }
 
-loadmore.addEventListener('click', loadData);
+loadmore.addEventListener("click", loadData);

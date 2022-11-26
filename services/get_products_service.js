@@ -10,33 +10,33 @@ async function get_product_service() {
       category: "Clothing",
     },
   });
-  response["Clothing"] = await clothing;
 
-  let Furniture = await Product.findAll({
+  let furniture = await Product.findAll({
     limit: 10,
     where: {
       category: "Furniture",
     },
   });
-  response["Furniture"] = await Furniture;
 
-  let Footwear = await Product.findAll({
+  let footwear = await Product.findAll({
     limit: 10,
     where: {
       category: "Footwear",
     },
   });
-  response["Footwear"] = await Footwear;
 
-  let Jewellery = await Product.findAll({
+  let jewel = await Product.findAll({
     limit: 10,
     where: {
       category: "Jewellery",
     },
   });
-  response["Jewellery"] = await Jewellery;
 
-  return await response;
+  const clofur = clothing.concat(furniture);
+  const foojel = footwear.concat(jewel);
+  const products = clofur.concat(foojel);
+
+  return await products;
 }
 
 module.exports = { get_product_service };

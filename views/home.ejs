@@ -34,10 +34,10 @@
         <h2>Our Top Collection</h2>
       </div>
       <div class="filters d-flex">
-        <div data-filter="Jewellery">Jewellery</div>
-        <div data-filter="Accessories">Accessories</div>
-        <div data-filter="Dresses">Dresses</div>
-        <div data-filter="Footwear">Footwear</div>
+        <div onclick= <%= clickedProducts %> data-filter="Jewellery">Jewellery</div>
+        <div onclick= <%= clickedProducts %> data-filter="Accessories">Accessories</div>
+        <div onclick= <%= clickedProducts %> data-filter="Dresses">Dresses</div>
+        <div onclick= <%= clickedProducts %> data-filter="Footwear">Footwear</div>
       </div>
 
       
@@ -158,6 +158,13 @@
     <!-- ====== Custom Script ====== -->
     <!-- <script src="js/product.js"></script> -->
     <script src="js/main.js"></script>
+
+
+    <script>
+      function getClickedProducts() {
+        console.log("I am in the click handler 1!");
+      }
+    </script>
     
   </body>
 </html>

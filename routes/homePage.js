@@ -13,9 +13,12 @@ app.get("/", urlencodedParser, async function (request, response) {
   // console.log(request);
   let res = await get_product_service();
 
-  console.log("PRODUCTS", res.Clothing[0]);
+  console.log("PRODUCTS", res);
 
-  response.render("home", { productList: res });
+  response.render("home", {
+    productList: res,
+    clickedProducts: "getClickedProducts();",
+  });
 });
 
 // app.post("/signin", urlencodedParser, async function (request, response) {
