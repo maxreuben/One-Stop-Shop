@@ -141,7 +141,6 @@ signInButton1.addEventListener("click", () => {
     .catch(function (error) {
       console.log(error);
     });
-  console.log("hello");
 });
 
 signUpButton1.addEventListener("click", () => {
