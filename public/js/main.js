@@ -54,6 +54,8 @@ Array.from(inputs).map((input) => {
 });
 
 const signInButton1 = document.getElementById("login");
+const signUpButton1 = document.getElementById("signup");
+
 signInButton1.addEventListener("click", () => {
   let username = document.getElementById("Signin_email").value;
   let password = document.getElementById("Signin_password").value;
@@ -117,3 +119,66 @@ signInButton1.addEventListener("click", () => {
     });
   console.log("hello");
 })
+
+signUpButton1.addEventListener("click", () => {
+  let fname = document.getElementById("Signin_Fname").value;
+  let lname = document.getElementById("Signin_Lname").value;
+  let email = document.getElementById("Signin_Email").value;
+  let password = document.getElementById("Signin_Password").value;
+
+  if (fname == "") {
+    alert("First Name must be filled out");
+    return false;
+  }
+  if (lname == "") {
+    alert("Last Name must be filled out");
+    return false;
+  }
+  if (email == "") {
+    alert("Email Name must be filled out");
+    return false;
+  }
+  if (password == "") {
+    alert("Password must be filled out");
+    return false;
+  }
+
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if(!email.match(mailformat))
+  {
+    alert("Please enter valid email")
+    return false;
+  }
+
+  if(password.length < 10 )
+  {
+    alert("Password should be 10 Digit long")
+    return false;
+  }
+
+
+  // console.log('test')
+  const data = { fname, lname, email, password };
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      firstName: fname,
+      lastName: lname,
+      emailId: email,
+      password: password,
+    }),
+  };
+  fetch("http://localhost:5001/signup", options)
+    .then(function (response) {
+      
+      let json = response.json();
+      console.log(json);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  
+});
