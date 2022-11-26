@@ -13,10 +13,10 @@ app.get("/", urlencodedParser, async function (request, response) {
   // console.log(request);
   let res = await get_product_service();
 
-  // console.log("PRODUCTS", res);
+  console.log("PRODUCTS", res);
 
   response.render("home", {
-    productList: res,
+    productList: JSON.stringify(res),
     showJewellery: "getClickedProducts('Jewellery');",
     showFurniture: "getClickedProducts('Furniture');",
     showClothing: "getClickedProducts('Clothing');",

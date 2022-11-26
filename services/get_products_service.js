@@ -9,6 +9,7 @@ async function get_product_service() {
     where: {
       category: "Clothing",
     },
+    raw: true,
   });
 
   let furniture = await Product.findAll({
@@ -16,6 +17,7 @@ async function get_product_service() {
     where: {
       category: "Furniture",
     },
+    raw: true,
   });
 
   let footwear = await Product.findAll({
@@ -23,6 +25,7 @@ async function get_product_service() {
     where: {
       category: "Footwear",
     },
+    raw: true,
   });
 
   let jewel = await Product.findAll({
@@ -30,6 +33,7 @@ async function get_product_service() {
     where: {
       category: "Jewellery",
     },
+    raw: true,
   });
 
   const clofur = clothing.concat(furniture);
