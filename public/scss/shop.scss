@@ -1,0 +1,30 @@
+#search {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  flex-wrap: nowrap;
+
+  #search-bar-wrapper {
+    #search-bar {
+      position: relative;
+      border: 1px solid var(--default-color);
+      color: var(--default-color);
+      padding: 10px;
+      border-radius: 40px;
+    }
+
+    #filter-button {
+      position: relative;
+      left: -2.2em;
+      top: 2px;
+
+      // all for effect
+      padding: 5px;
+      border-radius: 40px;
+      &:hover {
+        cursor: pointer;
+        background-color: var(--grey-color);
+      }
+    }
+  }
+}

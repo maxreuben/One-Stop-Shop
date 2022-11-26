@@ -4,6 +4,7 @@ const { Op } = require("sequelize");
 /**
  * @typedef {Object} SearchParams
  * @property {string} [searchQuery] - the search string to look for
+ * @property {string} [productId] - Op.eq
  * @property {number} [priceMinimum]
  * @property {number} [priceMaximum]
  * @property {number} [reviewMinimum]
@@ -25,6 +26,7 @@ async function searchProducts(params = {}) {
     ...(val !== undefined && val !== null && { [field]: { [op]: val } }),
   });
   const where = {
+    ...opIfDefined("id", Op.eq, params.productId),
     ...opIfDefined("discountedPrice", Op.gte, params.priceMinimum),
     ...opIfDefined("discountedPrice", Op.lte, params.priceMaximum),
     ...opIfDefined("rating", Op.gte, params.reviewMinimum),
