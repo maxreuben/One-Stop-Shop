@@ -21,9 +21,19 @@ const swiper = new Swiper('.mySwiper', {
 
 const getProducts = async () => {
   try {
-    const results = await fetch('./data/products.json');
+    const results = await fetch('http://localhost:5001/get-home-products');
     const data = await results.json();
-    const products = data.products;
+    console.log(data);
+  
+    const clothing = data.Clothing;
+    const furniture = data.Furniture;
+  
+    const footwear = data.Footwear;
+    const jewel = data.Jewellery;
+    const clofur = clothing.concat(furniture);
+    const foojel = footwear.concat(jewel);
+    const products = clofur.concat(foojel);
+    console.log(products);
     return products;
   } catch (err) {
     console.log(err);
@@ -34,7 +44,8 @@ const ProductsWrapper = document.getElementById('products');
 
 window.addEventListener('DOMContentLoaded', async function () {
   let products = await getProducts();
-  products = products.filter((product) => product.category === 'Dresses');
+  products = products.filter((product) => product.category === 'Jewellery');
+  console.log(products);
   displayProductItems(products);
   loadData();
 });
@@ -46,15 +57,15 @@ const displayProductItems = (items) => {
                 <div class="swiper-slide">
               <div class="product">
                 <div class="top d-flex">
-                  <img src=${product.url} alt="" />
+                  <img src=${product.image[0]} alt="" />
                   <div class="icon d-flex">
                     <i class="bx bxs-heart"></i>
                   </div>
                 </div>
                 <div class="bottom">
-                  <h4>${product.title}</h4>
+                  <h4>${product.name}</h4>
                   <div class="d-flex">
-                    <div class="price">$${product.price}</div>
+                    <div class="price">$${product.retailPrice}</div>
                     <div class="rating">
                       <i class="bx bxs-star"></i>
                       <i class="bx bxs-star"></i>
