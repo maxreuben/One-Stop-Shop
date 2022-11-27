@@ -62,6 +62,9 @@ app.use(profile);
 const productPage = require("./routes/productPage");
 app.use(productPage);
 
+const contactPage = require("./routes/contact");
+app.use(contactPage);
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
