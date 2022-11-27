@@ -27,8 +27,8 @@ async function searchProducts(params = {}) {
   });
   const where = {
     ...opIfDefined("id", Op.eq, params.productId),
-    ...opIfDefined("discountedPrice", Op.gte, params.priceMinimum),
-    ...opIfDefined("discountedPrice", Op.lte, params.priceMaximum),
+    ...opIfDefined("retailPrice", Op.gte, params.priceMinimum),
+    ...opIfDefined("retailPrice", Op.lte, params.priceMaximum),
     ...opIfDefined("rating", Op.gte, params.reviewMinimum),
     ...opIfDefined("category", Op.eq, params.category),
     ...opIfDefined(
