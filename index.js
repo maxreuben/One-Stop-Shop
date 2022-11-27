@@ -65,6 +65,9 @@ app.use(productPage);
 const contactPage = require("./routes/contact");
 app.use(contactPage);
 
+const orderHistory = require("./routes/orderHistory");
+app.use(orderHistory);
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
