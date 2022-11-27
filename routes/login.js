@@ -27,15 +27,15 @@ app.post("/signin", urlencodedParser, async function (request, response) {
 
   if (checkUser.status === 200) {
     // session = request.session;
-    response.cookie('emailId', checkUser.userObject.emailId); 
+    response.cookie("emailId", checkUser.userObject.emailId);
     // .userId = checkUser.userObject.id;
     // request.session.emailId = checkUser.userObject.emailId;
     // console.log(request.session);
 
-    console.log("Cookie Response",response.cookie);
+    console.log("Cookie Response", response.cookie);
   }
 
-  // response.status(200);
+  response.status(200);
   response.send(checkUser);
 });
 

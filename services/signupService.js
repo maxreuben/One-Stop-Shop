@@ -32,13 +32,9 @@ async function signupService(data) {
     })
     .catch(function (error) {
       console.log("ERROR", error);
-      console.log(user);
       responseData = { message: "Error", status: 501, error: error.errors };
       //   return "test";
     });
-
-  await user;
-
   console.log(user);
 
   return responseData;

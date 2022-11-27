@@ -135,7 +135,7 @@ signInButton1.addEventListener("click", () => {
             ";expires=" +
             expire.toUTCString();
 
-          location.href = 'http://localhost:5001/';
+          location.href = "/";
         }
       });
     })
@@ -192,7 +192,7 @@ signUpButton1.addEventListener("click", () => {
       password: password,
     }),
   };
-  fetch("http://localhost:5001/signup", options)
+  fetch("/signup", options)
     .then(function (response) {
       let json = response.json();
       console.log(json);
