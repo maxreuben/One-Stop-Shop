@@ -100,7 +100,7 @@ function whereClause(params) {
       ...[opIfDefined("rating", Op.gte, params.reviewMinimum)],
       ...[opIfDefined("brand", Op.eq, params.brand)],
       ...[opIfDefined("category", Op.eq, params.category)],
-      ...[opIfDefined("name", Op.like, searchQuery)],
+      ...[opIfDefined("name", Op.iLike, searchQuery)],
     ],
   };
 }
