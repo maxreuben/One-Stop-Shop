@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<%- include('header.ejs') %>
+<script src="/js/shop.js"></script>
+<link rel="stylesheet" href="/scss/shop.css"/>
+<body>
+<div class="container">
+    <div class="whitespace"></div>
+    <div id="search">
+        <div id="search-bar-wrapper" class="icon-input-wrapper">
+            <input id="search-bar" placeholder="Search" type="search"/>
+            <i class="bx bx-search icon-button"></i>
+        </div>
+    </div>
+    <div class="page-nav">
+        <i class="bx bxs-chevron-left icon-button"></i>
+        <div class="page-nav-pages">
+        </div>
+        <i class="bx bxs-chevron-right icon-button"></i>
+    </div>
+    <div id="product-count"></div>
+    <div id="filter-section" class="">
+        <div id="price-filter" class="filter-button-group">
+            <h3>Price</h3>
+            <div class="filter-button" onclick="setPriceFilter(this, 0, 100)">Less than $100</div>
+            <div class="filter-button" onclick="setPriceFilter(this, 100, 250)">$100 to $250</div>
+            <div class="filter-button" onclick="setPriceFilter(this, 250, 500)">$250 to $500</div>
+            <div class="filter-button" onclick="setPriceFilter(this, 500, 1000)">$500 to $1000</div>
+            <div class="filter-button" onclick="setPriceFilter(this, 1000, null)">$1000 or more</div>
+        </div>
+        <div id="rating-filter" class="filter-button-group">
+            <h3>Rating</h3>
+            <% for(let i = 1; i <= 4; i++) { %>
+                <div class="filter-button" onclick="setRatingFilter(this, <%= i %>)">
+                    <% for(let j = 0; j < i; j++) { %>
+                        <i class="bx bxs-star"></i>
+                    <% } %>
+                    & up
+                </div>
+            <% } %>
+        </div>
+        <div id="sort-selector" class="filter-button-group">
+            <h3>Sort By</h3>
+            <div class="filter-button" onclick="setOrderBy(this, 'retailPrice')">
+                Price
+                <i class="bx bxs-chevron-down"></i>
+            </div>
+            <div class="filter-button" onclick="setOrderBy(this, 'rating')">
+                Rating
+                <i class="bx bxs-chevron-down"></i>
+            </div>
+            <div class="filter-button" onclick="setOrderBy(this, 'name')">
+                Title
+                <i class="bx bxs-chevron-down"></i>
+            </div>
+        </div>
+        <div id="brand-filter" class="filter-button-group">
+            <h3>Top Brands</h3>
+        </div>
+        <div id="category-filter" class="filter-button-group">
+            <h3>Top Categories</h3>
+        </div>
+    </div>
+    <div id="products"></div>
+    <div id="bottom-page-nav" class="page-nav">
+        <i class="bx bxs-chevron-left icon-button"></i>
+        <div class="page-nav-pages">
+        </div>
+        <i class="bx bxs-chevron-right icon-button"></i>
+    </div>
+</div>
+</body>
+<script src="/js/shop.js"></script>
+<%- include('footer.ejs') %>
+</html>

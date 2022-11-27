@@ -59,8 +59,11 @@ app.use(checkout);
 const profile = require("./routes/profile");
 app.use(profile);
 
-const productPage = require("./routes/productPage");
-app.use(productPage);
+const product = require("./routes/product");
+app.use(product);
+
+const shop = require("./routes/shop");
+app.use(shop);
 
 const contactPage = require("./routes/contact");
 app.use(contactPage);

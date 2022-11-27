@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<%- include('header.ejs') %>
+<script src="/js/product.js"></script>
+<script src="/components/gallery-carousel.js"></script>
+<link rel="stylesheet" href="/scss/product.css"/>
+<link rel="stylesheet" href="/scss/gallery-carousel.css"/>
+<body>
+<div class="container">
+    <div id="product">
+        <div class="gallery-carousel-wrapper">
+            <div class="gallery-carousel-viewport">
+                <img src="<%= productDetails.image[0] %>"
+                     alt="Gallery viewport"/>
+            </div>
+            <div class="gallery-carousel-controls">
+                <i class="bx bxs-chevron-left gallery-carousel-control-left" onclick="prevCarouselImage()"></i>
+                <i class="bx bxs-chevron-right gallery-carousel-control-right" onclick="nextCarouselImage()"></i>
+            </div>
+            <div class="gallery-carousel-gallery">
+                <% for(let i = 0; i < productDetails.image.length; i++) { %>
+                    <div class="<%= i === 0 ? 'active' : '' %>" onclick="transitionCarousel(getActiveDiv(), this)">
+                        <img src="<%= productDetails.image[i] %>" alt="Image <%= i + 1 %>"/>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        <div id="product-details">
+            <h2 id="product-title"><%= productDetails.name %></h2>
+            <h3 id="product-price">
+                $<%= parseInt(productDetails.retailPrice).toLocaleString() %>.00
+            </h3>
+            <div id="product-rating">
+                <% if(productDetails.rating) { %>
+                    <% for(let i = 1; i <= 5; i++) { %>
+                        <%
+                            let starClass;
+                            if (i <= productDetails.rating) {
+                                starClass = "bxs-star";
+                            } else if (i === Math.ceil(productDetails.rating)) {
+                                starClass = "bxs-star-half";
+                            } else {
+                                starClass = "bx-star";
+                            }
+                        %>
+                        <i class="bx <%= starClass %>"></i>
+                    <% } %>
+                <% } %>
+            </div>
+            <div id="product-description">
+                <div class="content hide-content"><p><%= productDetails.description %></p></div>
+                <p class="content-button" onclick="showDescription()">Show More...</p>
+                <p class="content-button hide" onclick="hideDescription()">Hide...</p>
+            </div>
+            <div id="product-add-to-cart">
+                <div class="quantity-selector">
+                    <i class="bx bx-minus-circle" onclick="adjustQuantity(-1)"></i>
+                    <span class="quantity">
+                        1
+                    </span>
+                    <i class="bx bx-plus-circle" onclick="adjustQuantity(1)"></i>
+                </div>
+                <div class="add-to-cart-button" onclick="addToCart()">
+                    Add to Cart
+                </div>
+            </div>
+        </div>
+        <div id="product-specifications">
+            <h2 class="title">Specifications</h2>
+            <div class="specifications">
+                <% for(const {key, value} of productDetails.specification.product_specification) { %>
+                    <div>
+                        <% if(key){ %>
+                            <span><%= key %></span>
+                        <% } %>
+                    </div>
+                    <div><span><%= value %></span></div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<%- include('footer.ejs') %>
+</html>
