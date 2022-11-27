@@ -45,7 +45,7 @@ window.onload = function () {
         phoneNumber: p_Phone,
       }),
     };
-    fetch("http://localhost:5001/modifyUser", options)
+    fetch("/modifyUser", options)
       .then(function (response) {
         let json = response.json();
         console.log(json);
