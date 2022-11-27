@@ -13,7 +13,7 @@ app.get("/product/:productId", async (request, response) => {
   try {
     const product = await getProduct(productId);
     console.log(JSON.stringify(product));
-    response.render("product", { productDetails: product });
+    response.render("product", { productDetails: { ...product, rating: 2.5 } });
   } catch (e) {
     console.error(e);
     response.statusCode = 404;

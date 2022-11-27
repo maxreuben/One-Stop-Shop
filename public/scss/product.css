@@ -84,8 +84,8 @@ body > .container {
 }
 #product #product-specifications .specifications {
   display: grid;
-  grid-template-columns: fit-content(100%) auto;
-  column-gap: 0.2em;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0.5em;
   row-gap: 1em;
 }
 #product #product-specifications .specifications div {
