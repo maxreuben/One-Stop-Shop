@@ -13,7 +13,7 @@ const { Op, fn } = require("sequelize");
  *
  * @property {string} [category]
  * @property {string} [brand]
- *
+
  * @property {number} [page] - the number of pages to skip. Starts at 1
  * @property {number} [pageSize] - AKA limit
  * @property {boolean} [raw] - default is true
@@ -31,6 +31,19 @@ const { Op, fn } = require("sequelize");
  * @property {number} count
  * @property {Product[]} products
  */
+
+/**
+ * Gets a product by productId, or throws an exception if not found
+ * @param {string} productId
+ * @return {Promise<Product>}
+ */
+async function getProduct(productId) {
+  const { products } = await searchProducts({ productId });
+  if (!products || products.length !== 1) {
+    throw new Error("Product not found");
+  }
+  return products[0];
+}
 
 /**
  * Returns a list of products given search parameters
@@ -105,4 +118,4 @@ function whereClause(params) {
   };
 }
 
-module.exports = { searchProducts, getTopOccurrences };
+module.exports = { getProduct, searchProducts, getTopOccurrences };

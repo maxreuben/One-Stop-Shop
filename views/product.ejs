@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<%- include('header.ejs') %>
+<script src="/js/product.js"></script>
+<script src="/components/gallery-carousel.js"></script>
+<link rel="stylesheet" href="/scss/product.css"/>
+<link rel="stylesheet" href="/scss/gallery-carousel.css"/>
+<body>
+<div class="container">
+    <div id="product">
+        <div class="gallery-carousel-wrapper">
+            <div class="gallery-carousel-viewport">
+                <!--<i class="bx bxs-chevron-left gallery-carousel-control-left"></i>-->
+                <img src="http://img6a.flixcart.com/image/tv-out-cable/high-speed-with-ethernet/v/f/m/c-e-high-speed-hdmi-extension-cable-male-female-20-feet-supports-1100x1100-imaegyuzm4arwu4z.jpeg"
+                     alt="Product Image"/>
+                <!--<i class="bx bxs-chevron-right gallery-carousel-control-right"></i>-->
+            </div>
+            <div class="gallery-carousel-controls">
+                <i class="bx bxs-chevron-left gallery-carousel-control-left" onclick="prevCarouselImage()"></i>
+                <i class="bx bxs-chevron-right gallery-carousel-control-right" onclick="nextCarouselImage()"></i>
+            </div>
+            <div class="gallery-carousel-gallery">
+                <div class="active" onclick="transitionCarousel(getActiveDiv(), this)">
+                    <img src="http://img6a.flixcart.com/image/tv-out-cable/high-speed-with-ethernet/v/f/m/c-e-high-speed-hdmi-extension-cable-male-female-20-feet-supports-1100x1100-imaegyuzm4arwu4z.jpeg"
+                         alt="Image 1"/>
+                </div>
+                <div onclick="transitionCarousel(getActiveDiv(), this)">
+                    <img src="http://img6a.flixcart.com/image/tv-out-cable/high-speed-with-ethernet/v/f/m/c-e-high-speed-hdmi-extension-cable-male-female-20-feet-supports-original-imaegyuzm4arwu4z.jpeg"
+                         alt="Image 2"/>
+                </div>
+                <div onclick="transitionCarousel(getActiveDiv(), this)">
+                    <img src="http://img5a.flixcart.com/image/tv-out-cable/high-speed-with-ethernet-hdmi-cable/f/4/h/c-e-high-speed-hdmi-extension-cable-male-female-50-feet-supports-original-imaegyuzgesqsg32.jpeg"
+                         alt="Image 3"/>
+                </div>
+            </div>
+        </div>
+        <div id="product-details">
+            <h2 id="product-title">C&E TV-out Cable High Speed HDMI Extension Cable Male - Female - 20 Feet, Supports
+                Ethernet Latest Specification Cable</h2>
+            <h3 id="product-price">
+                $23,000.00
+            </h3>
+            <div id="product-rating">
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star-half"></i>
+                <i class="bx bx-star"></i>
+            </div>
+            <div id="product-description">
+                <div class="content hide-content"><p>Key Features of C&E TV-out Cable High Speed HDMI Extension Cable
+                        Male - Female -
+                        20 Feet, Supports
+                        Ethernet Latest Specification Cable Category 2 Certified - High-Speed 18.2 gbps / 340 MHz
+                        (Supports
+                        up to 240hz Refresh Rates and 48-Bit Deep Color) Supports all new HDMI advanced features such as
+                        3D,
+                        Audio Return Channel, Ethernet, up to 7.1 Dolby√Ç¬Æ TrueHD and DTS-HD Master AudioTM. Fully
+                        compatible with all blu ray players, Xbox 360, PS3. Supports resolution 720p, 1080i, 1080p and
+                        beyond Full Shield and Gold Plated Connectors for Better Image / Sound Quality/ Stable signal
+                        transmit and more durable HDMI Male to Female Connection Backward compatible to all previous
+                        versions,C&E TV-out Cable High Speed HDMI Extension Cable Male - Female - 20 Feet, Supports
+                        Ethernet
+                        Latest Specification Cable (Black, For TV, 6.096 m) Price: Rs. 999 Overview: The HDMI cable is
+                        the
+                        newest and best digital video connection on the market. HDMI is the only cable that can transfer
+                        uncompressed high-definition</p></div>
+                <p class="content-button" onclick="showDescription()">Show More...</p>
+                <p class="content-button hide" onclick="hideDescription()">Hide...</p>
+            </div>
+            <div id="product-add-to-cart">
+                <div class="quantity-selector">
+                    <i class="bx bx-minus-circle" onclick="adjustQuantity(-1)"></i>
+                    <span class="quantity">
+                        1
+                    </span>
+                    <i class="bx bx-plus-circle" onclick="adjustQuantity(1)"></i>
+                </div>
+                <div class="add-to-cart-button" onclick="addToCart()">
+                    Add to Cart
+                </div>
+            </div>
+        </div>
+        <div id="product-specifications">
+            <h2 class="title">Specifications</h2>
+            <div class="specifications">
+                <div>
+                    <span>Interface</span>
+                </div>
+                <div>
+                    <span>HDMI</span>
+                </div>
+                <div>
+                    <span>Model</span>
+                </div>
+                <div>
+                    <span>ashdif</span>
+                </div>
+                <div>
+                    <span>Cable Length</span>
+                </div>
+                <div>
+                    <span>6.096 m</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<%- include('footer.ejs') %>
+</html>
