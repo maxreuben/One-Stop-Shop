@@ -1,6 +1,6 @@
 body > .container {
   display: grid;
-  grid-template-columns: min-content auto;
+  grid-template-columns: min-content min-content auto min-content;
 }
 
 #filter-section {
@@ -84,9 +84,43 @@ body > .container {
 }
 
 #products {
+  grid-column: 2/-1;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   padding: 0 2rem 2rem;
+}
+
+#product-count {
+  display: flex;
+  align-items: center;
+}
+
+#bottom-page-nav {
+  grid-column: 2/-1;
+}
+
+.page-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.page-nav .page-nav-pages {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.page-nav .page-nav-pages div {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+}
+.page-nav .page-nav-pages div.active {
+  background-color: var(--grey-color);
 }
 
 .product-card {

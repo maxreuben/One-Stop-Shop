@@ -113,6 +113,46 @@ async function loadDynamicFilters(column, filterGroupId, reset) {
 }
 
 /**
+ * Updated page navigation based on new count and current page.
+ * Uses the filters object for pageSize and current page
+ * @param count - the total count, used to calculate number of pages
+ * @return {Promise<void>}
+ */
+async function updatePageNav(count) {
+  const { page, pageSize } = filters;
+  const numPages = Math.ceil(count / pageSize);
+  const startPage = Math.max(1, page - 3);
+  const endPage = Math.min(numPages, page + 3);
+
+  // we have multiple navigations on the same page
+  const pageNavPages = document.getElementsByClassName("page-nav-pages");
+  for (const parent of pageNavPages) {
+    // delete all nav children and clear chevron actions
+    while (parent.firstChild) parent.firstChild.remove();
+    parent.previousElementSibling.onclick = () => {};
+    parent.nextElementSibling.onclick = () => {};
+
+    for (let i = startPage; i <= endPage; i++) {
+      const div = document.createElement("div");
+      div.className = "icon-button";
+      if (i === page) div.classList.add("active");
+      div.innerText = i.toString();
+      div.onclick = () => addFilter({ page: i });
+      parent.appendChild(div);
+
+      // set chevron actions
+      if (i === page - 1) parent.previousElementSibling.onclick = div.onclick;
+      if (i === page + 1) parent.nextElementSibling.onclick = div.onclick;
+    }
+  }
+
+  const fmt = (num) => num.toLocaleString();
+  document.getElementById("product-count").innerText = `Showing ${fmt(
+    (page - 1) * pageSize + 1
+  )}-${fmt(Math.min(count, pageSize * page))} of ${fmt(count)} products`;
+}
+
+/**
  * Updates the search page, skipping an update if need be to prevent infinite recursion
  * @param {string[]} [updatedFilters] - the filters that were just updated ('priceMinimum', etc.)
  * @return {Promise<void>}
@@ -124,9 +164,14 @@ async function updateProducts(updatedFilters) {
   if (!updatedFilters?.includes("brand"))
     await loadDynamicFilters("brand", "#brand-filter", true);
 
+  // reset page if need be
+  if (!updatedFilters?.includes("page") && filters.page !== 1) {
+    filters.page = 1;
+  }
+
   // update products using remaining filters (some may be removed loading dynamic filters)
   const resp = await fetch(`/search?${filters.getQueryString()}`);
-  const { products } = await resp.json();
+  const { products, count } = await resp.json();
   const productDiv = document.getElementById("products");
   while (productDiv.firstChild) {
     productDiv.removeChild(productDiv.firstChild);
@@ -134,6 +179,7 @@ async function updateProducts(updatedFilters) {
   products.forEach((prodObj) => {
     productDiv.appendChild(renderProductCard(prodObj));
   });
+  await updatePageNav(count);
 }
 
 async function addFilter(filterUpdate) {
@@ -143,7 +189,7 @@ async function addFilter(filterUpdate) {
       delete filters[key];
     }
   });
-  await updateProducts();
+  await updateProducts(Object.keys(filterUpdate));
 }
 
 function buttonsInGroup(parentId) {
