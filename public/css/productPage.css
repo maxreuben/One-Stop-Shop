@@ -76,3 +76,9 @@
 .social-list li a i {
     font-size: 2rem;
 }
+
+.input-box{
+
+    display: flex;
+
+}
