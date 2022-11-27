@@ -102,7 +102,7 @@ signInButton1.addEventListener("click", () => {
   };
   fetch("/signin", options)
     .then(function (response) {
-      console.log(response);
+      console.log("RESPONSE", response);
 
       response.json().then(function (value) {
         // console.log("INSIDE");
@@ -134,6 +134,8 @@ signInButton1.addEventListener("click", () => {
             ";path=/" +
             ";expires=" +
             expire.toUTCString();
+
+          location.href = 'http://localhost:5001/';
         }
       });
     })
