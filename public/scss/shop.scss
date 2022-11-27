@@ -9,6 +9,23 @@
   gap: 4rem;
 }
 
+#sort-selector > .filter-button{
+  display: flex;
+  justify-content: space-between;
+
+  i {
+    display: none;
+    transition: transform 0.2s ease-in-out;
+  }
+  &.up > i{
+    display: block;
+    transform: rotate(180deg);
+  }
+  &.down > i {
+    display: block;
+  }
+}
+
 .filter-button-group {
   width: 200px;
   display: flex;
@@ -26,6 +43,13 @@
       background: var(--gradient);
       color: var(--white-color);
       box-shadow: var(--box-shadow-2);
+    }
+    .down {
+      transform: rotate(180deg);
+      transition-duration: 0.25s;
+    }
+    .hidden {
+      display: none;
     }
   }
 }

@@ -9,6 +9,22 @@
   gap: 4rem;
 }
 
+#sort-selector > .filter-button {
+  display: flex;
+  justify-content: space-between;
+}
+#sort-selector > .filter-button i {
+  display: none;
+  transition: transform 0.2s ease-in-out;
+}
+#sort-selector > .filter-button.up > i {
+  display: block;
+  transform: rotate(180deg);
+}
+#sort-selector > .filter-button.down > i {
+  display: block;
+}
+
 .filter-button-group {
   width: 200px;
   display: flex;
@@ -26,6 +42,13 @@
   background: var(--gradient);
   color: var(--white-color);
   box-shadow: var(--box-shadow-2);
+}
+.filter-button-group .filter-button .down {
+  transform: rotate(180deg);
+  transition-duration: 0.25s;
+}
+.filter-button-group .filter-button .hidden {
+  display: none;
 }
 
 #search {

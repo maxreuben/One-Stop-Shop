@@ -42,6 +42,7 @@ function renderProductCard(product) {
 }
 
 let filters = {
+  priceMinimum: 0,
   pageSize: 50,
   page: 1,
 };
@@ -71,11 +72,12 @@ async function addFilter(filterUpdate) {
   await updateProducts();
 }
 
+function buttonsInGroup(parentId) {
+  return document.querySelectorAll(`${parentId} > .filter-button`);
+}
+
 function setActiveInGroup(parentId, el) {
-  const filterButtons = document.querySelectorAll(
-    `${parentId} > .filter-button`
-  );
-  filterButtons.forEach((button) => {
+  buttonsInGroup(parentId).forEach((button) => {
     button.classList.remove("active");
   });
   el.classList.add("active");
@@ -89,6 +91,25 @@ async function setPriceFilter(self, min, max) {
 async function setRatingFilter(self, minRating) {
   await addFilter({ reviewMinimum: minRating });
   setActiveInGroup("#rating-filter", self);
+}
+
+async function setOrderBy(self, orderBy) {
+  const ascending = filters.orderBy === orderBy && !filters.ascending;
+  await addFilter({
+    orderBy,
+    ascending,
+  });
+  setActiveInGroup("#sort-selector", self);
+  if (ascending) {
+    self.classList.add("up");
+    self.classList.remove("down");
+  } else {
+    buttonsInGroup("#sort-selector").forEach((e) => {
+      e.classList.remove("down");
+      e.classList.remove("up");
+    });
+    self.classList.add("down");
+  }
 }
 
 window.onload = async () => {

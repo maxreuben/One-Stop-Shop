@@ -3,8 +3,13 @@ const express = require("express");
 const router = express.Router();
 
 app.get("/search", async (request, response) => {
-  const products = await searchProducts({ ...request.query });
-  response.json(products);
+  try {
+    const products = await searchProducts({ ...request.query });
+    response.json(products);
+  } catch (e) {
+    console.error(e);
+    response.statusCode = 503;
+  }
 });
 
 module.exports = router;

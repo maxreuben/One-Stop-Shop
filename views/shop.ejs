@@ -16,7 +16,7 @@
     <div id="filter-section" class="">
         <div id="price-filter" class="filter-button-group">
             <h3>Price</h3>
-            <div class="filter-button" onclick="setPriceFilter(this, null, 100)">Less than $100</div>
+            <div class="filter-button" onclick="setPriceFilter(this, 0, 100)">Less than $100</div>
             <div class="filter-button" onclick="setPriceFilter(this, 100, 250)">$100 to $250</div>
             <div class="filter-button" onclick="setPriceFilter(this, 250, 500)">$250 to $500</div>
             <div class="filter-button" onclick="setPriceFilter(this, 500, 1000)">$500 to $1000</div>
@@ -32,6 +32,17 @@
                     & up
                 </div>
             <% } %>
+        </div>
+        <div id="sort-selector" class="filter-button-group">
+            <h3>Sort By</h3>
+            <div class="filter-button" onclick="setOrderBy(this, 'retailPrice')">
+                Price
+                <i class="bx bxs-chevron-down"></i>
+            </div>
+            <div class="filter-button" onclick="setOrderBy(this, 'rating')">
+                Rating
+                <i class="bx bxs-chevron-down"></i>
+            </div>
         </div>
         <div id="brand-filter">
             <h3>Brand</h3>
