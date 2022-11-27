@@ -12,7 +12,7 @@
       </div>
       <div class="filters d-flex">
         <% for (const category of categories) { %>
-          <div onclick="getProductsInCategory('<%= category %>')"><%= category %></div>
+          <div><%= category %></div>
         <% } %>
       </div>
 
@@ -88,74 +88,8 @@
     <!-- ====== Custom Script ====== -->
     <!-- <script src="js/product.js"></script> -->
     <script src="js/main.js"></script>
-    <script>
-// const allProducts = <%= productList %>     
-    </script>
 
 
-    <script>
-      String.prototype.escapeSpecialChars = function() {
-    return this.replace(/\\n/g, "\\n")
-               .replace(/\\'/g, "\\'")
-               .replace(/\\"/g, '\\"')
-               .replace(/\\&/g, "\\&")
-               .replace(/\\r/g, "\\r")
-               .replace(/\\t/g, "\\t")
-               .replace(/\\b/g, "\\b")
-               .replace(/\\f/g, "\\f");
-      };
-      function getClickedProducts(item) {
-        console.log(item);
-        // let allProducts = '<%= productList %>'
-        // allProducts = allProducts.replaceAll("&#34;" , "\"")
-        // products = products.replace("&#34;" , "\"")
-        
-        let products = '<%= productList %>'
-        products = products.replace("&#34;" , "\"")
-        .replace("/","//");
-        products = products.escapeSpecialChars();
 
-        let allProducts = JSON.parse(products);
-        console.log(allProducts)
-
-        var html = ""
-        for(var i = 0; i < allProducts.length; i++){
-
-          // console.log(allProducts[i])
-
-          if(allProducts[i].category === item){
-            html = html + `<div class="swiper-slide">
-              <div class="product">
-                <div class="top d-flex">
-                  <img src=${product.image[0]} alt="" />
-                  <div class="icon d-flex">
-                    <i class="bx bxs-heart"></i>
-                  </div>
-                </div>
-                <div class="bottom">
-                  <h4>${product.name}</h4>
-                  <div class="d-flex">
-                    <div class="price">$${product.retailPrice}</div>
-                    <div class="rating">
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>`
-
-            html += " ";
-          }
-        }
-        console.log(allProducts)
-
-        document.getElementById('products').innerHTML = html
-      }
-    </script>
-    
   </body>
 </html>
