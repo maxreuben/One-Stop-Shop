@@ -45,19 +45,93 @@ let filters = {
   priceMinimum: 0,
   pageSize: 50,
   page: 1,
+  getQueryString: (excludeArr) =>
+    Object.entries(filters)
+      .filter(
+        ([key, value]) =>
+          !["getQueryString", ...(excludeArr ?? [])].includes(key) &&
+          Boolean(value)
+      )
+      .map(
+        ([key, value]) =>
+          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+      )
+      .join("&"),
 };
 
-async function updateProducts() {
-  const queryString = Object.entries(filters)
-    .map(([key, value]) => `${key}=${value}`)
-    .join("&");
-  const resp = await fetch(`/search?${queryString}`);
-  const json = await resp.json();
+const columnOccurrenceCounts = {};
+
+/**
+ * Updates a column occurrence list, like brand or category
+ * @param {string} column - the column to get counts for
+ * @param {string} filterGroupId - the id of the parent to add the values to
+ * @param {boolean} [reset] - reset the count back to 5
+ * @return {Promise<void>}
+ */
+async function loadDynamicFilters(column, filterGroupId, reset) {
+  // increment count if loading more
+  const { [column]: currentCount } = columnOccurrenceCounts;
+  columnOccurrenceCounts[column] =
+    !currentCount || reset ? 5 : currentCount + 5;
+
+  // fetch new values
+  const response = await fetch(
+    `/topValues?column=${column}&count=${
+      columnOccurrenceCounts[column]
+    }&${filters.getQueryString([column])}`
+  );
+  const json = await response.json();
+
+  const parentDiv = document.querySelector(filterGroupId);
+  // remove old column values
+  while (parentDiv.children.length > 1) {
+    parentDiv.removeChild(parentDiv.children[1]);
+  }
+
+  // add new column values
+  for (let i = 0; i < json.length; i++) {
+    const { value, count } = json[i];
+    const div = document.createElement("div");
+    div.className = "filter-button";
+    // make sure button is active if necessary
+    if (filters[column] === value) {
+      div.className += " active";
+    }
+    div.onclick = async () => {
+      filters[column] = value;
+      setActiveInGroup(filterGroupId, div);
+      await updateProducts([column]);
+    };
+    div.innerHTML = `<span class="column-value">${value}</span> <span class="column-count">(${count})</span>`;
+    parentDiv.appendChild(div);
+  }
+
+  // remove filter if the option no longer exists
+  if (!json.find((val) => val.value === filters[column]) && filters[column]) {
+    delete filters[column];
+  }
+}
+
+/**
+ * Updates the search page, skipping an update if need be to prevent infinite recursion
+ * @param {string[]} [updatedFilters] - the filters that were just updated ('priceMinimum', etc.)
+ * @return {Promise<void>}
+ */
+async function updateProducts(updatedFilters) {
+  // update dynamic filters
+  if (!updatedFilters?.includes("category"))
+    await loadDynamicFilters("category", "#category-filter", true);
+  if (!updatedFilters?.includes("brand"))
+    await loadDynamicFilters("brand", "#brand-filter", true);
+
+  // update products using remaining filters (some may be removed loading dynamic filters)
+  const resp = await fetch(`/search?${filters.getQueryString()}`);
+  const { products } = await resp.json();
   const productDiv = document.getElementById("products");
   while (productDiv.firstChild) {
     productDiv.removeChild(productDiv.firstChild);
   }
-  json.forEach((prodObj) => {
+  products.forEach((prodObj) => {
     productDiv.appendChild(renderProductCard(prodObj));
   });
 }
@@ -84,21 +158,17 @@ function setActiveInGroup(parentId, el) {
 }
 
 async function setPriceFilter(self, min, max) {
-  await addFilter({ priceMinimum: min, priceMaximum: max });
   setActiveInGroup("#price-filter", self);
+  await addFilter({ priceMinimum: min, priceMaximum: max });
 }
 
 async function setRatingFilter(self, minRating) {
-  await addFilter({ reviewMinimum: minRating });
   setActiveInGroup("#rating-filter", self);
+  await addFilter({ reviewMinimum: minRating });
 }
 
 async function setOrderBy(self, orderBy) {
   const ascending = filters.orderBy === orderBy && !filters.ascending;
-  await addFilter({
-    orderBy,
-    ascending,
-  });
   setActiveInGroup("#sort-selector", self);
   if (ascending) {
     self.classList.add("up");
@@ -110,8 +180,25 @@ async function setOrderBy(self, orderBy) {
     });
     self.classList.add("down");
   }
+  await addFilter({
+    orderBy,
+    ascending,
+  });
+}
+
+async function setQuery() {
+  const searchBar = document.getElementById("search-bar");
+  await addFilter({ searchQuery: searchBar.value });
 }
 
 window.onload = async () => {
-  await updateProducts();
+  const searchBar = document.getElementById("search-bar");
+  await setQuery(); // if you reload the page, the search bar still has text in it, this will immediately instantiate the filters with the query string
+  searchBar.onkeydown = (e) => {
+    if (e.key === "Enter") {
+      setQuery();
+    }
+  };
+  const searchButton = document.querySelector("#search-bar-wrapper > i");
+  searchButton.onclick = setQuery;
 };

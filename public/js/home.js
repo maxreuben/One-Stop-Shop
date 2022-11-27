@@ -1,7 +1,7 @@
 async function getProductsInCategory(category) {
   let html = "";
   const resp = await fetch(`/search?pageSize=10&category=${category}`);
-  const products = await resp.json();
+  const { products } = await resp.json();
   for (const product of products) {
     if (product.category === category) {
       html += `<div class="swiper-slide">
