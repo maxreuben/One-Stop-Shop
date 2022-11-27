@@ -1,0 +1,122 @@
+body > .container {
+  display: flex;
+  justify-content: center;
+}
+
+#product {
+  display: grid;
+  grid-template-columns: min-content auto;
+  column-gap: 2em;
+  row-gap: 3em;
+  max-width: 1000px;
+
+  #product-details {
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+
+    #product-rating {
+      color: var(--primary-color);
+    }
+
+    #product-description {
+      .show-content {
+        line-height: 1em;
+        height: auto;
+      }
+
+      .hide-content {
+        overflow: hidden;
+        line-height: 1em;
+        height: 6em;
+      }
+
+      .content-button {
+        color: #cccccc;
+        cursor: pointer;
+      }
+
+      .hide {
+        display: none;
+      }
+    }
+
+    #product-add-to-cart {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .quantity-selector {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        .bx {
+          font-size: 35px;
+          color: var(--primary-color);
+          opacity: 75%;
+          cursor: pointer;
+        }
+
+        .quantity {
+          vertical-align: center;
+          text-align: center;
+          width: 40px;
+          height: 40px;
+          background-color: var(--grey-color);
+          padding: 10px;
+          border-radius: 50%;
+        }
+      }
+
+      .add-to-cart-button {
+        display: inline-block;
+        padding: 1.5rem 6rem;
+        border-radius: 1rem;
+        color: var(--white-color);
+        font-weight: 500;
+        font-size: 1.8rem;
+        background: var(--btn-gradient);
+        box-shadow: var(--box-shadow-1);
+        cursor: pointer;
+      }
+    }
+  }
+
+  #product-specifications {
+    padding-left: 5em;
+    padding-right: 5em;
+    grid-column: 1 / -1;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+      text-align: center;
+      padding-bottom: 1em;
+    }
+
+    .specifications {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 0.5em;
+      row-gap: 1em;
+
+      div {
+        display: flex;
+        align-items: center;
+
+        &:nth-child(odd) {
+          span {
+            padding: 0.4em;
+            border-radius: 400px;
+            border: 1px solid #cccccc;
+          }
+          justify-content: right;
+        }
+      }
+    }
+  }
+}

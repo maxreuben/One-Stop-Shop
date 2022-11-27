@@ -1,162 +1,40 @@
-/* ========== Products Slider =========== */
-const swiper = new Swiper(".mySwiper", {
-  grabCursor: true,
-  slidesPerView: 1,
-  spaceBetween: 70,
-  pagination: {
-    el: ".custom-pagination",
-    clickable: true,
-  },
-  breakpoints: {
-    567: {
-      slidesPerView: 2,
-    },
-    996: {
-      slidesPerView: 3,
-    },
-  },
-});
-
-/* ========== Fetch the Products =========== */
-
-const getProducts = async () => {
-  try {
-    const results = await fetch("http://localhost:5001/get-home-products");
-    const data = await results.json();
-    console.log(data);
-
-    const clothing = data.Clothing;
-    const furniture = data.Furniture;
-
-    const footwear = data.Footwear;
-    const jewel = data.Jewellery;
-    const clofur = clothing.concat(furniture);
-    const foojel = footwear.concat(jewel);
-    const products = clofur.concat(foojel);
-    console.log(products);
-    return products;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const ProductsWrapper = document.getElementById("products");
-
-window.addEventListener("DOMContentLoaded", async function () {
-  let products = await getProducts();
-  products = products.filter((product) => product.category === "Jewellery");
-  console.log(products);
-  displayProductItems(products);
-  loadData();
-});
-
-/* ========== Display Products =========== */
-const displayProductItems = (items) => {
-  let displayProduct = items.map(
-    (product) => `
-                <div class="swiper-slide">
-              <div class="product">
-                <div class="top d-flex">
-                  <img src=${product.image[0]} alt="" />
-                  <div class="icon d-flex">
-                    <i class="bx bxs-heart"></i>
-                  </div>
-                </div>
-                <div class="bottom">
-                  <h4>${product.name}</h4>
-                  <div class="d-flex">
-                    <div class="price">$${product.retailPrice}</div>
-                    <div class="rating">
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                      <i class="bx bxs-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-                  `
-  );
-
-  displayProduct = displayProduct.join("");
-  console.log("DISPLAY PRODUCt", ProductsWrapper);
-  ProductsWrapper.innerHTML = displayProduct;
-};
-
-/* ========== Filter Products =========== */
-const filters = [...document.querySelectorAll(".filters div")];
-
-filters.forEach((filter) => {
-  filters[2].classList.add("active");
-  filter.addEventListener("click", async (e) => {
-    const id = e.target.getAttribute("data-filter");
-    const target = e.target;
-    const products = await getProducts();
-    filters.forEach((btn) => {
-      btn.classList.remove("active");
-    });
-    target.classList.add("active");
-
-    let menuCategory = products.filter((product) => {
-      if (product.category === id) {
-        return product;
-      }
-    });
-
-    displayProductItems(menuCategory);
-    swiper.update();
-  });
-});
-
-/* ========== Categories Products =========== */
-
-const categoriesProducts = document.querySelector(".categories .products");
-const loadmore = document.querySelector(".loadmore");
-
-let currentIndex = 0;
-async function loadData() {
-  let maxResult = 8;
-  let products = await getProducts();
-  if (currentIndex >= products.length) {
-    loadmore.disabled = true;
-    loadmore.innerText = "No More Products";
-    return;
-  }
-
-  for (var i = 0; i < maxResult; i++) {
-    const product = products[i + currentIndex];
-    categoriesProducts.insertAdjacentHTML(
-      "beforeend",
-      `<div class="product">
-          <div class="top d-flex">
-            <img src=${product.url} alt="" />
-            <div class="icon d-flex">
-              <i class="bx bxs-heart"></i>
-            </div>
-          </div>
-          <div class="bottom">
-            <div class="d-flex">
-              <h4>${product.title}</h4>
-              <a href="" class="btn cart-btn">Add to Cart</a>
-            </div>
-            <div class="d-flex">
-              <div class="price">$${product.price}</div>
-              <div class="rating">
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-              </div>
-            </div>
-          </div>
-        </div>`
-    );
-  }
-
-  currentIndex += maxResult;
+function showDescription() {
+  const productDesc = document.getElementById("product-description");
+  productDesc.firstElementChild.classList.remove("hide-content");
+  productDesc.firstElementChild.classList.add("show-content");
+  productDesc.children[1].classList.add("hide");
+  productDesc.children[2].classList.remove("hide");
 }
 
-loadmore.addEventListener("click", loadData);
+function hideDescription() {
+  const productDesc = document.getElementById("product-description");
+  productDesc.firstElementChild.classList.add("hide-content");
+  productDesc.firstElementChild.classList.remove("show-content");
+  productDesc.children[1].classList.remove("hide");
+  productDesc.children[2].classList.add("hide");
+}
+
+/**
+ * Adjusts the quantity displayed by a relativeAmount
+ * @param {number} adjustAmount - the number to add to quantity
+ */
+function adjustQuantity(adjustAmount) {
+  const quantityEl = document.querySelector(
+    "#product-add-to-cart .quantity-selector .quantity"
+  );
+  const currQty = parseInt(quantityEl.innerHTML);
+  quantityEl.innerHTML = Math.max(1, currQty + adjustAmount).toString();
+}
+
+/**
+ * Adds the product to cart in the specified quantity
+ */
+async function addToCart() {
+  const quantityEl = document.querySelector(
+    "#product-add-to-cart .quantity-selector .quantity"
+  );
+  const qty = parseInt(quantityEl.innerHTML);
+  quantityEl.innerHTML = String(1);
+
+  console.log("Adding to cart");
+}

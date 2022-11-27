@@ -32,11 +32,12 @@ const userForm = document.querySelector(".user-form");
 
 [".user-icon", ".user-link"].forEach((p) => {
   document.querySelector(p).onclick = () => {
+    console.log("here");
     if (cookies.email == undefined || cookies.email.length === 0) {
       userForm.classList.add("show");
       navList.classList.remove("show");
     } else {
-      location.href = "http://localhost:5001/profile";
+      location.href = "/profile";
     }
   };
 });
@@ -56,16 +57,16 @@ spans.map((span) => {
 
 Array.from(inputs).map((input) => {
   icons.map((icon) => {
-    icon.innerHTML = `<img src="./images/eye.svg" alt="" />`;
+    icon.innerHTML = `<img src="/images/eye.svg" alt="" />`;
 
     icon.addEventListener("click", () => {
       const type = input.getAttribute("type");
       if (type === "password") {
         input.setAttribute("type", "text");
-        icon.innerHTML = `<img src="./images/hide.svg" alt="" />`;
+        icon.innerHTML = `<img src="/images/hide.svg" alt="" />`;
       } else if (type === "text") {
         input.setAttribute("type", "password");
-        icon.innerHTML = `<img src="./images/eye.svg" alt="" />`;
+        icon.innerHTML = `<img src="/images/eye.svg" alt="" />`;
       }
     });
   });
@@ -99,9 +100,9 @@ signInButton1.addEventListener("click", () => {
       password: password,
     }),
   };
-  fetch("http://localhost:5001/signin", options)
+  fetch("/signin", options)
     .then(function (response) {
-      console.log(response);
+      console.log("RESPONSE", response);
 
       response.json().then(function (value) {
         // console.log("INSIDE");
@@ -134,7 +135,7 @@ signInButton1.addEventListener("click", () => {
             ";expires=" +
             expire.toUTCString();
 
-          //location.href = 'http://localhost:5001/';
+          location.href = 'http://localhost:5001/';
         }
       });
     })
