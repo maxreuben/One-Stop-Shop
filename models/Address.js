@@ -34,10 +34,6 @@ const Address = sequelize.define("Address", {
     type: Sequelize.STRING,
   },
 
-  emailId: {
-    type: Sequelize.STRING,
-  },
-
   country: {
     type: Sequelize.INTEGER,
   },
@@ -49,6 +45,6 @@ const Address = sequelize.define("Address", {
 
 User.hasOne(Address);
 
-Address.sync();
+Address.sync({ alter: true });
 
 module.exports = { Address };

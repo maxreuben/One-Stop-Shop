@@ -14,10 +14,11 @@ async function loginService(username, password) {
     },
   });
 
-  console.log(user);
+  // console.log(user);
   if (user == null) response = { status: 404 };
   else {
     let passwordCompare = bcrypt.compareSync(password, user.password);
+    console.log("PASSWORD COMPARE", passwordCompare)
 
     if (passwordCompare) {
       //   session.userId = user.userId;

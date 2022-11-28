@@ -1,19 +1,30 @@
-// const { application } = require("express");
 const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const {
-  editPaymentMethodService,
-} = require("../services/editPaymentMethodService");
+  addPaymentMethodService,
+} = require("../services/addPaymentMethodsService");
+const {
+  get_payment_history,
+} = require("../services/getUserPaymentMethodsService");
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-// const signupService = require("../services/signupService").signupService;
 
-app.get("/addPaymentMethod", urlencodedParser, function (request, response) {
-  data = request.body;
-  // console.log(request);
+app.get("/managePayment", urlencodedParser, async function (request, response) {
+  let cookie = request.headers.cookie;
 
-  response.render("addPaymentMethod.html");
+  var output = {};
+  cookie.split(/\s*;\s*/).forEach(function (pair) {
+    pair = pair.split(/\s*=\s*/);
+    var name = decodeURIComponent(pair[0]);
+    var value = decodeURIComponent(pair.splice(1).join("="));
+    output[name] = value;
+  });
+
+  let emailId = output.emailId;
+
+  res = await get_payment_history(emailId);
+  response.render("managePayment", { PaymentsHistory: res });
 });
 
 app.post(
@@ -21,11 +32,20 @@ app.post(
   urlencodedParser,
   async function (request, response) {
     data = request.body;
-    data.userId = request.session.userId;
+    let cookie = request.headers.cookie;
 
-    let res = await editPaymentMethodService(data);
+    var output = {};
+    cookie.split(/\s*;\s*/).forEach(function (pair) {
+      pair = pair.split(/\s*=\s*/);
+      var name = decodeURIComponent(pair[0]);
+      var value = decodeURIComponent(pair.splice(1).join("="));
+      output[name] = value;
+    });
 
-    // response.status(200);
+    console.log(output);
+    data.emailId = output.emailId;
+
+    let res = await addPaymentMethodService(data, emailId);
     response.send(res);
   }
 );

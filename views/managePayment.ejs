@@ -1,0 +1,119 @@
+<head>
+
+    <meta charset="UTF-8">
+
+    <link rel="apple-touch-icon" type="image/png"
+        href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon"
+        href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon"
+        href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
+        color="#111">
+
+
+    <title>OneStop - All Payment Methods Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../public/css/paymentsHistory.css">
+
+    <script>
+        window.console = window.console || function (t) { };
+    </script>
+
+
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+
+
+</head>
+
+<%- include('header.ejs') %>
+
+    <div class="container-fluid px-0 bg-black">
+        <div class="container px-0">
+            <nav class="tanga-header navbar navbar-toggleable-sm justify-content-center">
+                <div class="navbar-collapse text-center">
+                    <a class="navbar-brand mr-4" href="#"></a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container mt-3 mt-md-5">
+        <h2 class="text-charcoal hidden-sm-down">Your Payment Methods</h2>
+        <h5 class="text-charcoal hidden-md-up">Your Payment Methods</h5>
+        <% for(let i=0; i < PaymentsHistory.length; i++) { %>
+            <div class="row">
+                <div class="col-12">
+                    <div class="list-group mb-5">
+                        <div class="list-group-item p-3 bg-snow" style="position: relative;">
+                            <div class="row w-100 no-gutters">
+                                <div class="col-6 col-md">
+                                    <h6 class="text-charcoal mb-0 w-100">Payment Method Number</h6>
+                                    <a href="" class="text-pebble mb-0 w-100 mb-2 mb-md-0">
+                                        <%= PaymentsHistory[i].id %>
+                                    </a>
+                                </div>
+                                <div class="col-6 col-md">
+                                    <h6 class="text-charcoal mb-0 w-100">Date</h6>
+                                    <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">
+                                        <%= PaymentsHistory[i].createdAt %>
+                                    </p>
+                                </div>
+                                <div class="col-6 col-md">
+                                    <h6 class="text-charcoal mb-0 w-100">Total</h6>
+                                    <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">
+                                        <%= PaymentsHistory[0].orderAmount %>
+                                    </p>
+                                </div>
+                                <!-- <div class="col-6 col-md"> 
+                <h6 class="text-charcoal mb-0 w-100">Shipped To</h6>
+                <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">Late M. Night</p> 
+              </div> -->
+                                <div class="col-12 col-md-3">
+                                    <a onclick="" class="btn btn-primary w-100">View Address</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    </div>
+
+    <div class="p-3 hidden-md-up"></div>
+    <div class="mobile-nav hidden-md-up">
+        <a href="">
+            <i class="fa fa-home"></i>
+            Deals
+        </a>
+        <a class="" href="">
+            <i class="fa fa-th-large"></i>
+            Categories
+        </a>
+        <a href="">
+            <i class="fa fa-search"></i>
+            Search
+        </a>
+        <a href="" class="active">
+            <i class="fa fa-shopping-cart"></i>
+            Cart
+        </a>
+        <a class="" href="">
+            <i class="fa fa-user"></i>
+            Account
+        </a>
+    </div>
+    <%- include('footer.ejs') %>

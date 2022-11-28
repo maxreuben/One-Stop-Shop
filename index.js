@@ -71,6 +71,12 @@ app.use(contactPage);
 const orderHistory = require("./routes/orderHistory");
 app.use(orderHistory);
 
+const addressHistory = require("./routes/addAddress");
+app.use(addressHistory);
+
+const paymentMethodsHistory = require("./routes/addPaymentMethod");
+app.use(paymentMethodsHistory);
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
