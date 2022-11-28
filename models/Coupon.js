@@ -2,10 +2,16 @@ const { sequelize } = require("./Connection");
 const Sequelize = require("sequelize");
 
 const Coupons = sequelize.define("Coupons", {
-  coupons: {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    unique: true,
+  },
+  coupon: {
     type: Sequelize.STRING,
   },
-  cuoponValue: {
+  couponValue: {
     type: Sequelize.INTEGER,
   },
 });

@@ -1,4 +1,5 @@
-const sequelize = require("./Connection").sequelize;
+const { sequelize } = require("./Connection");
+const Sequelize = require("sequelize");
 const { User } = require("./User");
 
 const Address = sequelize.define("Address", {
@@ -9,11 +10,18 @@ const Address = sequelize.define("Address", {
     unique: true,
   },
 
-  line1: {
+  firstName: {
     type: Sequelize.STRING,
   },
 
-  line2: {
+  lastName: {
+    type: Sequelize.STRING,
+  },
+
+  address: {
+    type: Sequelize.STRING,
+  },
+  phoneNumber: {
     type: Sequelize.STRING,
   },
 
@@ -23,6 +31,10 @@ const Address = sequelize.define("Address", {
   },
 
   state: {
+    type: Sequelize.STRING,
+  },
+
+  emailId: {
     type: Sequelize.STRING,
   },
 
