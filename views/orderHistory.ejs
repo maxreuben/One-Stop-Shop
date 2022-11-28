@@ -50,6 +50,7 @@
   <div class="container mt-3 mt-md-5">
     <h2 class="text-charcoal hidden-sm-down">Your Orders</h2>
     <h5 class="text-charcoal hidden-md-up">Your Orders</h5>
+    <% for(let i = 0; i < orderHistory.length; i++) { %>
     <div class="row">
       <div class="col-12">
         <div class="list-group mb-5">
@@ -57,20 +58,20 @@
             <div class="row w-100 no-gutters">
               <div class="col-6 col-md">
                 <h6 class="text-charcoal mb-0 w-100">Order Number</h6>
-                <a href="" class="text-pebble mb-0 w-100 mb-2 mb-md-0">#A915AFLE4FO</a>
+                <a href="" class="text-pebble mb-0 w-100 mb-2 mb-md-0"><%= orderHistory[i].id %></a>
               </div>
               <div class="col-6 col-md">
                 <h6 class="text-charcoal mb-0 w-100">Date</h6>
-                <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">Aug 5th, 2017</p>  
+                <p class="text-pebble mb-0 w-100 mb-2 mb-md-0"><%= orderHistory[i].createdAt %></p>  
               </div>
               <div class="col-6 col-md"> 
                 <h6 class="text-charcoal mb-0 w-100">Total</h6>
-                <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">$19.54</p> 
+                <p class="text-pebble mb-0 w-100 mb-2 mb-md-0"><%= orderHistory[0].orderAmount %></p> 
               </div>
-              <div class="col-6 col-md"> 
+              <!-- <div class="col-6 col-md"> 
                 <h6 class="text-charcoal mb-0 w-100">Shipped To</h6>
                 <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">Late M. Night</p> 
-              </div>
+              </div> -->
               <div class="col-12 col-md-3">
                 <a onclick="" class="btn btn-primary w-100">View Order</a>
               </div>
@@ -80,36 +81,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="list-group mb-5">
-          <div class="list-group-item p-3 bg-snow" style="position: relative;">
-            <div class="row w-100 no-gutters">
-              <div class="col-6 col-md">
-                <h6 class="text-charcoal mb-0 w-100">Order Number</h6>
-                <a href="" class="text-pebble mb-0 w-100 mb-2 mb-md-0">#A915A1U765O</a>
-              </div>
-              <div class="col-6 col-md">
-                <h6 class="text-charcoal mb-0 w-100">Date</h6>
-                <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">Jan 5th, 2017</p>  
-              </div>
-              <div class="col-6 col-md"> 
-                <h6 class="text-charcoal mb-0 w-100">Total</h6>
-                <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">$29.54</p> 
-              </div>
-              <div class="col-6 col-md"> 
-                <h6 class="text-charcoal mb-0 w-100">Shipped To</h6>
-                <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">Greg Chappel</p> 
-              </div>
-              <div class="col-12 col-md-3">
-                <a href="orderHistoryDetails.html" class="btn btn-primary w-100">View Order</a>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
+    <% } %>
   </div>
   
   <div class="p-3 hidden-md-up"></div>
