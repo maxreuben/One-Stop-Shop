@@ -72,8 +72,12 @@
               <span>Username</span>
             </div>
             <div class="input-container1">
-        
-                <input type="email" id="user_email" class = "input1" value= <%= email_value %>/>
+
+              <%if (email_value == "") {%>
+                <input type="email" id="user_email" class="input1" value="Enter your Email">
+                <%} else{%>
+                <input type="email" id="user_email" class = "input1" value= <%= email_value %>>
+                <%}%>
       
               
               
