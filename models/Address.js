@@ -45,6 +45,6 @@ const Address = sequelize.define("Address", {
 
 User.hasOne(Address);
 
-Address.sync({ alter: true });
+Address.sync();
 
 module.exports = { Address };
