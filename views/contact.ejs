@@ -83,13 +83,18 @@
               <label for="">Message</label>
               <span>Message</span>
             </div>
-            <input type="submit" id = "send" value="Send" class="btn" />
+            <input type="submit" id = "send" value="Send" class="btn" >
+            <a href = "/" input type="submit"  id ="gobackhome" value="Home" class="btn"; style ="text-decoration: none;">Home</a>
           </form>
         </div>
       </div>
     </div>
 
-    <script src="/js/contact.js"></script>
+    <script src="/js/contact.js">
+        document.getElementById("gobackhome").onclick = function () {
+      location.href = "/";
+    }
+    </script>
   </body>
     
 </html>
