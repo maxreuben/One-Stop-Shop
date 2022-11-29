@@ -8,21 +8,15 @@ const cons = require("consolidate");
 var cookieParser = require("cookie-parser");
 
 app.post("/sendMail", urlencodedParser, async function (request, response) {
-  let cookie = request.headers.cookie;
+  let toAddress = request.body.to;
+  let subject = request.body.subject;
+  let text = request.body.text;
 
-  var output = {};
-  cookie.split(/\s*;\s*/).forEach(function (pair) {
-    pair = pair.split(/\s*=\s*/);
-    var name = decodeURIComponent(pair[0]);
-    var value = decodeURIComponent(pair.splice(1).join("="));
-    output[name] = value;
-  });
+  console.log(toAddress, subject, text);
 
-  console.log(output);
+  let res = await sendMail(toAddress, subject, text);
 
-  let res = await sendMail(output.to, output.subject, output.text);
-
-  response.send("");
+  response.send({ status: 200 });
 });
 
 module.exports = router;
