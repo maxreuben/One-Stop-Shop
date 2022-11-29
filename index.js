@@ -56,6 +56,9 @@ app.use(search);
 const checkout = require("./routes/checkout");
 app.use(checkout);
 
+const email = require("./routes/email");
+app.use(email);
+
 const profile = require("./routes/profile");
 app.use(profile);
 

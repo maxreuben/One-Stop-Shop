@@ -13,6 +13,7 @@ console.log(cookies.email);
 newFunction();
 
 const inputs = document.querySelectorAll(".input");
+const inputs1 = document.querySelectorAll(".input1");
 
 function newFunction() {
     -0, 0 + 1, 18;;
@@ -30,6 +31,10 @@ function blurFunc() {
   }
 }
 
+inputs1.forEach((input) =>{
+  input.addEventListener("blur", blurFunc);
+});
+
 inputs.forEach((input) => {
   input.addEventListener("focus", focusFunc);
   input.addEventListener("blur", blurFunc);
@@ -39,6 +44,7 @@ window.onload = function () {
   
     Send.addEventListener("click", () => {
       const p_fname = document.getElementById("user_name").value;
+      const sub ="Customer Service";
      
       const p_Email = document.getElementById("user_email").value;
       const p_Phone = document.getElementById("user_phone").value;
@@ -54,5 +60,26 @@ window.onload = function () {
         alert("Message cannot be empty");
         return false;
       }
+      const data = { p_Email, sub, message};
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        to : p_Email,
+        subject : sub,
+        text: message,
+      }),
+    };
+    fetch("/email", options)
+      .then(function (response) {
+        let json = response.json();
+        console.log(json);
+        location.reload();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
       // console.log('test')
     })};
