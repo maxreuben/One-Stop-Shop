@@ -12,7 +12,7 @@
   </head>
 
   <body>
-        <%- include('header.ejs') %>
+   
     <div class="container">
       <span class="big-circle"></span>
       <img src="./image/shape.png" class="square" alt="" />
@@ -68,10 +68,10 @@
               <label for="">Username</label>
               <span>Username</span>
             </div>
-            <div class="input-container">
-              <input type="email" id="user_email" class="input" value= <%= userDetails['emailId'] %> />
-              <label for="">Email</label>
-              <span>Email</span>
+            <div class="input-container1">
+              <input type="email" id="user_email" class = "input1" value= <%= userDetails['emailId'] %> readonly/>
+              
+              
             </div>
             <div class="input-container">
               <input type="tel" id="user_phone" class="input" />
@@ -91,5 +91,5 @@
 
     <script src="/js/contact.js"></script>
   </body>
-    <%- include('footer.ejs') %>
+    
 </html>
