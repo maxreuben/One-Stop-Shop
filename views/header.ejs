@@ -21,7 +21,7 @@
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
     <!-- ====== Custom CSS ====== -->
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
     <title>Fashion Shop</title>
   </head>
   <body>
@@ -46,7 +46,13 @@
         </div>
 
         <div class="icons d-flex">
-          <div class="icon d-flex"><i class="bx bx-search"></i></div>
+          <!-- <div class="icon d-flex"><i class="bx bx-search"></i></div> -->
+          <div id="search">
+            <div id="search-bar-wrapper"  class="icon-input-wrapper">
+                <input id="search-bar" placeholder="Search" type="search"/>
+                <i class="bx bx-search icon-button" id="header-search" onclick="headerSearch()"></i>
+            </div>
+        </div>    
           <div class="icon user-icon d-flex">
             <i class="bx bx-user"></i>
           </div>
