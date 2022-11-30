@@ -7,7 +7,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.get("/", urlencodedParser, async function (request, response) {
   response.render("home", {
-    categories: ["Jewellery", "Furniture", "Clothing", "Footwear"],
+    categories: ["Jewellery", "Clothing", "Footwear","Mobiles & Accessories","Automotive"]
   });
 });
 
