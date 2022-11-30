@@ -8,7 +8,7 @@ const { Address } = require("../models/Address");
 async function addAddressService(data, emailId) {
   console.log(data);
 
-  let user = await User.findOne({
+  let user = await Address.findOne({
     where: {
       emailId: emailId,
     },
@@ -39,16 +39,22 @@ async function addAddressService(data, emailId) {
       });
   } else if (data.type == "Edit") {
     let responseData;
-    const address = await Address.update({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      address: data.address,
-      city: data.city,
-      state: data.state,
-      country: data.country,
-      zipcode: data.zipcode,
-      UserId: user.id,
-    })
+    const address = await Address.update(
+      {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        address: data.address,
+        city: data.city,
+        state: data.state,
+        country: data.country,
+        zipcode: data.zipcode,
+      },
+      {
+        where: {
+          id: addressId,
+        },
+      }
+    )
       .then(function (item) {
         responseData = {
           message: "Address Updated",

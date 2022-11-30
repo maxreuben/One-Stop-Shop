@@ -8,24 +8,27 @@ const {
 
 app.get("/contactus", urlencodedParser, async function (request, response) {
   let cookie = request.headers.cookie;
+  if (cookie == undefined) {
+    response.render("contact", { email_value: "" });
+  } else {
+    var output = {};
+    cookie.split(/\s*;\s*/).forEach(function (pair) {
+      pair = pair.split(/\s*=\s*/);
+      var name = decodeURIComponent(pair[0]);
+      var value = decodeURIComponent(pair.splice(1).join("="));
+      output[name] = value;
+    });
 
-  var output = {};
-  cookie.split(/\s*;\s*/).forEach(function (pair) {
-    pair = pair.split(/\s*=\s*/);
-    var name = decodeURIComponent(pair[0]);
-    var value = decodeURIComponent(pair.splice(1).join("="));
-    output[name] = value;
-  });
+    console.log(output);
 
-  console.log(output);
+    let emailId = output.emailId;
 
-  let emailId = output.emailId;
+    let res = await get_logged_user_service(emailId);
 
-  let res = await get_logged_user_service(emailId);
+    // userDetails
 
-  // userDetails
-
-  response.render("contact", { userDetails: res });
+    response.render("contact", { email_value: res["emailId"] });
+  }
 });
 
 module.exports = router;

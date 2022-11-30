@@ -36,16 +36,22 @@ async function addPaymentMethodService(data, emailId) {
   } else if (data.type == "Edit") {
     console.log("test", data.userId);
     let responseData;
-    const paymentMethod = await PaymentMethod.update({
-      cardNumber: data.cardNumber,
-      expiryDate: data.expiryDate,
-      cvv: data.cvv,
-      cardType: data.cardType,
-      UserId: data.userId,
-    })
+    const paymentMethod = await PaymentMethod.update(
+      {
+        cardNumber: data.cardNumber,
+        expiryDate: data.expiryDate,
+        cvv: data.cvv,
+        cardType: data.cardType,
+      },
+      {
+        where: {
+          id: paymentId,
+        },
+      }
+    )
       .then(function (item) {
         responseData = {
-          message: "Payment Method Created",
+          message: "Payment Method Updated",
           status: 200,
           error: "",
           userObject: item,

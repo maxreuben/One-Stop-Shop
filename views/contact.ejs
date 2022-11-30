@@ -6,6 +6,9 @@
     <title>Contact Form</title>
     <link rel="stylesheet" href="./css/contact.css" />
     <script
+  
+
+
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
@@ -69,7 +72,14 @@
               <span>Username</span>
             </div>
             <div class="input-container1">
-              <input type="email" id="user_email" class = "input1" value= <%= userDetails['emailId'] %> readonly/>
+
+              <%if (email_value == "") {%>
+                <input type="email" id="user_email" class="input1" value="Enter your Email">
+                <%} else{%>
+                <input type="email" id="user_email" class = "input1" value= <%= email_value %>>
+                <%}%>
+      
+              
               
               
             </div>
