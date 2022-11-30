@@ -80,6 +80,9 @@ app.use(addressHistory);
 const paymentMethodsHistory = require("./routes/addPaymentMethod");
 app.use(paymentMethodsHistory);
 
+const aboutus = require("./routes/aboutus");
+app.use(aboutus);
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

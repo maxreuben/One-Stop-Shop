@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('header.ejs') %>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #fccb9026;
+  color: rgb(11, 1, 1);
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: rgb(175, 9, 34);
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: rgb(255, 255, 255);
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+</style>
+</head>
+  <body>
+    <div class="about-section">
+        <h1>About Us</h1>
+        <p>Group 5 Project Software Engineering-Ecommerce Website-ONE STOP SHOP</p>
+      </div>
+      
+      <h2 style="text-align:center">Our Team</h2>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Kaashyap" style="width:100%">
+            <div class="container">
+              <h2>Sri Krishna Kaashyap</h2>
+              <!-- <p class="title">CEO & Founder</p> -->
+              <!-- <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>sm2599@scarletmail.rutgers.edu</p>
+              <!-- href='mailto:sm2599@scarletmail.rutgers.edu' -->
+              <p><a href='mailto:sm2599@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Nikhil" style="width:100%">
+            <div class="container">
+              <h2>Sri Gurudath Nikhil</h2>
+              <!-- <p class="title">Art Director</p> -->
+              <!-- <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>sn757@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:sn757@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Harshith" style="width:100%">
+            <div class="container">
+              <h2>Harshith Thonupunoori</h2>
+              <!-- <p class="title">Designer</p> -->
+              <!-- <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>ht354@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:ht354@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Abhilash" style="width:100%">
+            <div class="container">
+              <h2>Abhilash Kolluri</h2>
+              <!-- <p class="title">CEO & Founder</p> -->
+              <!-- <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>ak2048@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:ak2048@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Pruthviraj" style="width:100%">
+            <div class="container">
+              <h2>Pruthviraj Patil</h2>
+              <!-- <p class="title">Art Director</p> -->
+              <!-- <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>pp865@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:pp865@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Sachit" style="width:100%">
+            <div class="container">
+              <h2>Sachit Patel</h2>
+              <!-- <p class="title">Designer</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>sp2135@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:sp2135@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Srikar" style="width:100%">
+            <div class="container">
+              <h2>Srikar Gona</h2>
+              <!-- <p class="title">CEO & Founder</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>gs943@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:gs943@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Nithish" style="width:100%">
+            <div class="container">
+              <h2>Nithish Komuravelli </h2>
+              <!-- <p class="title">Art Director</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>nk793@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:nk793@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Tanvi" style="width:100%">
+            <div class="container">
+              <h2>Tanvi Sayyed </h2>
+              <!-- <p class="title">Designer</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>tas302@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:tas302@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Sandesh" style="width:100%">
+            <div class="container">
+              <h2>Sandesh Manglore</h2>
+              <!-- <p class="title">CEO & Founder</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>sm2606@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:sm2606@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Alec" style="width:100%">
+            <div class="container">
+              <h2>Alec Bakholdin</h2>
+              <!-- <p class="title">Art Director</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>amb672@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:amb672@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="card">
+            <img src="images/rutgers.png" alt="Reuben" style="width:100%">
+            <div class="container">
+              <h2>Reuben Varghese</h2>
+              <!-- <p class="title">Designer</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+              <p>rsv39@scarletmail.rutgers.edu</p>
+              <p><a href='mailto:rsv39@scarletmail.rutgers.edu'><button class="button"  >Contact</button></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- ====== Collection ====== -->
+    
+
+    <!-- ====== New Arrival ====== -->
+    
+    <!-- ====== Categories ====== -->
+    
+    <!-- ====== Footer ====== -->
+  <%- include('footer.ejs') %>
+
+    <!-- ====== SwiperJs ====== -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- ====== Custom Script ====== -->
+    <!-- <script src="js/product.js"></script> -->
+    <script src="main.js"></script>
+
+
+
+  </body>
+</html>
