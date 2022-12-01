@@ -83,6 +83,12 @@ app.use(paymentMethodsHistory);
 const aboutus = require("./routes/aboutus");
 app.use(aboutus);
 
+const editAddress = require("./routes/editAddress");
+app.use(editAddress);
+
+const addAddress = require("./routes/addAddressPage");
+app.use(addAddress);
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
