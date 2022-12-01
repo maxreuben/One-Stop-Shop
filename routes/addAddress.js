@@ -27,6 +27,10 @@ app.post("/add-address", urlencodedParser, async function (request, response) {
   data = request.body;
   let cookie = request.headers.cookie;
 
+  console.log("request -add address-", request.body);
+
+  console.log("request -cookie-", cookie);
+
   var output = {};
   cookie.split(/\s*;\s*/).forEach(function (pair) {
     pair = pair.split(/\s*=\s*/);
@@ -38,7 +42,7 @@ app.post("/add-address", urlencodedParser, async function (request, response) {
   console.log(output);
   data.emailId = output.emailId;
 
-  let res = await addAddressService(data, emailId);
+  let res = await addAddressService(data, output.emailId);
   response.send(res);
 });
 

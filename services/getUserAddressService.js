@@ -18,6 +18,8 @@ async function get_address_history(emailId) {
     },
   });
 
+  console.log("address --- ", address);
+
   return address;
 }
 

@@ -8,12 +8,15 @@ const { Address } = require("../models/Address");
 async function addAddressService(data, emailId) {
   console.log(data);
 
-  let user = await Address.findOne({
-    where: {
-      emailId: emailId,
-    },
-  });
+  
   if (data.type == "Add") {
+
+    let user = await User.findOne({
+      where: {
+        emailId: emailId,
+      },
+    });
+
     let responseData;
     const address = await Address.create({
       firstName: data.firstName,
@@ -51,7 +54,7 @@ async function addAddressService(data, emailId) {
       },
       {
         where: {
-          id: addressId,
+          id: data.addressId,
         },
       }
     )

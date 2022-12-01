@@ -51,7 +51,16 @@
         </div>
     </div>
     <div class="container mt-3 mt-md-5">
+        <div class="row">
+            
         <h2 class="text-charcoal hidden-sm-down">Your Addresses</h2>
+
+        <div class="col-12 col-md-3">
+            <a href="/addAddress" class="btn btn-primary w-100">Add Address</a>
+        </div>
+
+        </div>
+
         <h5 class="text-charcoal hidden-md-up">Your Addresses</h5>
         <% for(let i=0; i < AddressHistory.length; i++) { %>
             <div class="row">
@@ -60,29 +69,31 @@
                         <div class="list-group-item p-3 bg-snow" style="position: relative;">
                             <div class="row w-100 no-gutters">
                                 <div class="col-6 col-md">
-                                    <h6 class="text-charcoal mb-0 w-100">Address Number</h6>
+                                    <h6 class="text-charcoal mb-0 w-100">First Name</h6>
                                     <a href="" class="text-pebble mb-0 w-100 mb-2 mb-md-0">
-                                        <%= AddressHistory[i].id %>
+                                        <%= AddressHistory[i].firstName %>
                                     </a>
                                 </div>
                                 <div class="col-6 col-md">
-                                    <h6 class="text-charcoal mb-0 w-100">Date</h6>
-                                    <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">
-                                        <%= AddressHistory[i].createdAt %>
-                                    </p>
+                                    <h6 class="text-charcoal mb-0 w-100">Last Name</h6>
+                                    <a href="" class="text-pebble mb-0 w-100 mb-2 mb-md-0">
+                                        <%= AddressHistory[i].lastName %>
+                                    </a>
                                 </div>
                                 <div class="col-6 col-md">
-                                    <h6 class="text-charcoal mb-0 w-100">Total</h6>
-                                    <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">
-                                        <%= AddressHistory[0].orderAmount %>
-                                    </p>
+                                    <h6 class="text-charcoal mb-0 w-100">Address</h6>
+                                    <a href="" class="text-pebble mb-0 w-100 mb-2 mb-md-0">
+                                        <%= AddressHistory[i].address %>
+                                    </a>
                                 </div>
-                                <!-- <div class="col-6 col-md"> 
-                <h6 class="text-charcoal mb-0 w-100">Shipped To</h6>
-                <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">Late M. Night</p> 
-              </div> -->
+                                <div class="col-6 col-md">
+                                    <h6 class="text-charcoal mb-0 w-100">Phone Number</h6>
+                                    <a href="" class="text-pebble mb-0 w-100 mb-2 mb-md-0">
+                                        <%= AddressHistory[i].phoneNumber %>
+                                    </a>
+                                </div>
                                 <div class="col-12 col-md-3">
-                                    <a onclick="" class="btn btn-primary w-100">Edit Address</a>
+                                    <a href="/editAddress/<%= AddressHistory[i].id %>" class="btn btn-primary w-100">Edit Address</a>
                                 </div>
                             </div>
 
