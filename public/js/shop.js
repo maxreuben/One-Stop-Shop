@@ -239,26 +239,12 @@ async function setQuery() {
   await addFilter({ searchQuery: searchBar.value });
 }
 
-async function headerSearch() {
-    const searchBar = document.getElementById("search-bar");
-    console.log('val');
-    var val = searchBar.value;
-
-    today = new Date();
-    var expire = new Date();
-    expire.setTime(today.getTime() + 3600000 * 24 * 15);
-
-    // document.cookie = "search=" + searchBar.value +";path=/" + ";expires=" + expire.toUTCString();
-    window.location = 'http://localhost:5001/shop';
-    // console.log(cookies);
-    // document.getElementById("search-bar").value = cookies.search;
-    // document.getElementById("search-bar").click();
-
-}
 
 window.onload = async () => {
   
+
   const searchBar = document.getElementById("search-bar");
+  searchBar.value = localStorage.getItem('search');
   await setQuery(); // if you reload the page, the search bar still has text in it, this will immediately instantiate the filters with the query string
   searchBar.onkeydown = (e) => {
     if (e.key === "Enter") {
