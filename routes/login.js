@@ -12,7 +12,7 @@ app.get("/signin", urlencodedParser, function (request, response) {
   data = request.body;
   // console.log(request);
 
-  response.render("signin.html");
+  response.render("signin.ejs");
 });
 
 app.post("/signin", urlencodedParser, async function (request, response) {

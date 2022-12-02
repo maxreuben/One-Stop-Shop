@@ -1,6 +1,6 @@
-/* ========== Navigation =========== */
-const navList = document.querySelector(".nav-list");
-let cookies = document.cookie
+var navList = document.querySelector(".nav-list");
+
+var cookies = document.cookie
   .split(";")
   .map((cookie) => cookie.split("="))
   .reduce(
@@ -11,7 +11,28 @@ let cookies = document.cookie
     {}
   );
 
-console.log(cookies.email);
+// console.log(cookies.email);
+
+function getCookie(name) {
+  var dc = document.cookie;
+  var prefix = name + "=";
+  var begin = dc.indexOf("; " + prefix);
+  if (begin == -1) {
+      begin = dc.indexOf(prefix);
+      if (begin != 0) return null;
+  }
+  else
+  {
+      begin += 2;
+      var end = document.cookie.indexOf(";", begin);
+      if (end == -1) {
+      end = dc.length;
+      }
+  }
+  // because unescape has been deprecated, replaced with decodeURI
+  //return unescape(dc.substring(begin + prefix.length, end));
+  return decodeURI(dc.substring(begin + prefix.length, end));
+} 
 // cookies.email = '';
 // document.getElementById("user_name").innerHTML = cookies.email;
 
@@ -24,21 +45,25 @@ document.querySelector(".close").onclick = () => {
 };
 
 /* ========== User Form =========== */
-const formWrapper = document.querySelector(".form-wrapper");
-const inputs = document.querySelectorAll(".form-box input[type = 'password']");
-const icons = [...document.querySelectorAll(".form-icon")];
-const spans = [...document.querySelectorAll(".form-box .top span")];
-const userForm = document.querySelector(".user-form");
+var formWrapper = document.querySelector(".form-wrapper");
+var inputs = document.querySelectorAll(".form-box input[type = 'password']");
+var icons = [...document.querySelectorAll(".form-icon")];
+var spans = [...document.querySelectorAll(".form-box .top span")];
+var userForm = document.querySelector(".user-form");
 
 [".user-icon", ".user-link"].forEach((p) => {
   document.querySelector(p).onclick = () => {
     console.log("here");
-    if (cookies.email == undefined || cookies.email.length === 0) {
-      userForm.classList.add("show");
-      navList.classList.remove("show");
+    var myCookie = getCookie("emailId");
+    if (myCookie == null || cookies.emailId.length === 0) {
+      // userForm.classList.add("show");
+      // navList.classList.remove("show");
+      location.href = "/signin?#";
     } else {
       location.href = "/profile";
     }
+
+    
   };
 });
 
@@ -72,8 +97,8 @@ Array.from(inputs).map((input) => {
   });
 });
 
-const signInButton1 = document.getElementById("login");
-const signUpButton1 = document.getElementById("signup");
+var signInButton1 = document.getElementById("login");
+var signUpButton1 = document.getElementById("signup");
 
 signInButton1.addEventListener("click", () => {
   let username = document.getElementById("Signin_email").value;
@@ -81,10 +106,12 @@ signInButton1.addEventListener("click", () => {
 
   if (username == "") {
     alert("Username must be filled out");
+    console.log(username, password);
     return false;
   }
   if (password == "") {
     alert("Password must be filled out");
+    console.log(username, password);
     return false;
   }
 
@@ -100,8 +127,8 @@ signInButton1.addEventListener("click", () => {
       password: password,
     }),
   };
-  fetch("/signin", options)
-    .then(function (response) {
+  console.log('Fetching');
+  fetch("/signin", options).then(function (response) {
       console.log("RESPONSE", response);
 
       response.json().then(function (value) {
@@ -123,7 +150,7 @@ signInButton1.addEventListener("click", () => {
 
           // document.cookie = "name="+c_name+";path=/" + ";expires="+expire.toUTCString();
           document.cookie =
-            "email=" +
+            "emailId=" +
             c_username.value +
             ";path=/" +
             ";expires=" +
@@ -135,13 +162,16 @@ signInButton1.addEventListener("click", () => {
             ";expires=" +
             expire.toUTCString();
 
-          location.href = "/";
+          // location.href = "/";
+          location.reload();
         }
       });
     })
     .catch(function (error) {
       console.log(error);
     });
+  
+    console.log('Fetching2');
 });
 
 signUpButton1.addEventListener("click", () => {
