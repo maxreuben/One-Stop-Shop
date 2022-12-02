@@ -9,7 +9,7 @@ function getCookies(request) {
     output[name] = value;
   });
 
-  console.log(output);
+  // console.log(output);
 
   return output;
 }
