@@ -22,7 +22,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="../public/css/addressHistory.css">
+    <link rel="stylesheet" href="../public/css/manageAddress.css">
 
     <script>
         window.console = window.console || function (t) { };
@@ -50,8 +50,8 @@
             </nav>
         </div>
     </div>
-    <div class="container mt-3 mt-md-5">
-        <div class="row">
+
+    <div class="row" style="margin-left: 200px;">
             
         <h2 class="text-charcoal hidden-sm-down">Your Addresses</h2>
 
@@ -59,9 +59,13 @@
             <a href="/addAddress" class="btn btn-primary w-100">Add Address</a>
         </div>
 
-        </div>
+    </div>
+    
+    <div class="container mt-3 mt-md-5">
+       
 
-        <h5 class="text-charcoal hidden-md-up">Your Addresses</h5>
+        <!-- <h5 class="text-charcoal hidden-md-up">Your Addresses</h5> -->
+        <div class = "container vertical-scrollable">
         <% for(let i=0; i < AddressHistory.length; i++) { %>
             <div class="row">
                 <div class="col-12">
@@ -102,6 +106,7 @@
                 </div>
             </div>
             <% } %>
+        </div>
     </div>
 
     <div class="p-3 hidden-md-up"></div>

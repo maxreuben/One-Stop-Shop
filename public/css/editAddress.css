@@ -9,3 +9,12 @@
     font-weight: 400;
     color: hsl(52, 0%, 98%);
 }
+
+.vertical-scrollable>.row {
+    position: absolute;
+    top: 120px;
+    bottom: 100px;
+    left: 180px;
+    width: 50%;
+    overflow-y: scroll;
+}
