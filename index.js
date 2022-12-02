@@ -91,6 +91,9 @@ app.use(addAddress);
 const cart = require("./routes/cartRoutes");
 app.use(cart);
 
+const forgotPassword = require("./routes/forgotPassword");
+app.use(forgotPassword);
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
