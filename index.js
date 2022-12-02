@@ -15,6 +15,16 @@ app.use(express.static("public"));
 const cors = require("cors");
 app.use(cors());
 
+let os = require("os");
+
+if (os.platform() == "win32") {
+  process.env.WEBSITE_PASSWORD = process.env.WINDOWS_APP_PASSWORD;
+} else if (os.platform() == "darwin") {
+  process.env.WEBSITE_PASSWORD = process.env.MAC_APP_PASSWORD;
+} else {
+  process.env.WEBSITE_PASSWORD = process.env.OTHER_APP_PASSWORD;
+}
+
 // # SESSION MANAGEMENT
 // const oneDay = 1000 * 60 * 60 * 24;
 
