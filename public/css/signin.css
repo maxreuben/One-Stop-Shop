@@ -6,7 +6,6 @@
 }
 
 body {
-	background: #f6f5f7;
 	/* background: #f6f5f7; */
 	background: linear-gradient(135deg, #43cea2  , #185a9d);
 	display: flex;
