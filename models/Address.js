@@ -27,7 +27,6 @@ const Address = sequelize.define("Address", {
 
   city: {
     type: Sequelize.STRING,
-    unique: true,
   },
 
   state: {
@@ -35,7 +34,7 @@ const Address = sequelize.define("Address", {
   },
 
   country: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
   },
 
   zipcode: {

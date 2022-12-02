@@ -88,6 +88,8 @@ app.use(editAddress);
 
 const addAddress = require("./routes/addAddressPage");
 app.use(addAddress);
+const cart = require("./routes/cartRoutes");
+app.use(cart);
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
