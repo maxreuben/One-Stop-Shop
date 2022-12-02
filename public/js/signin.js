@@ -6,6 +6,7 @@ window.onload = function () {
 
   const container = document.getElementById("container");
 
+  
   signInButton1.addEventListener("click", () => {
     let username = document.getElementById("Signin_email").value;
     let password = document.getElementById("Signin_password").value;
@@ -141,3 +142,53 @@ window.onload = function () {
     container.classList.remove("right-panel-active");
   });
 };
+
+let pass = document.getElementById("Signin_Password");
+pass.addEventListener('input', () => {
+  var password_strength = document.getElementById("strength");
+
+  //TextBox left blank.
+  if (pass.value.length == 0) {
+    password_strength.innerHTML = "";
+    return;
+  }
+
+  //Regular Expressions.
+  var regex = new Array();
+  regex.push("[A-Z]"); //Uppercase Alphabet.
+  regex.push("[a-z]"); //Lowercase Alphabet.
+  regex.push("[0-9]"); //Digit.
+  regex.push("[$@$!%*#?&]"); //Special Character.
+
+  var passed = 0;
+
+  //Validate for each Regular Expression.
+  for (var i = 0; i < regex.length; i++) {
+    if (new RegExp(regex[i]).test(pass.value)) {
+      passed++;
+    }
+  }
+
+  //Display status.
+  var strength = "";
+  switch (passed) {
+    case 0:
+    case 1:
+    case 2:
+        
+    // strength = "<small class='progress-bar bg-danger' style='width: 40%'>Weak</small>";
+      password_strength.innerHTML = "hehe"
+      pass.style.borderColor = "#ff5925"
+      break;
+    case 3:
+      // strength = "<small class='progress-bar bg-warning' style='width: 60%'>Medium</small>";
+      break;
+    case 4:
+      // strength = "<small class='progress-bar bg-success' style='width: 100%'>Strong</small>";
+      break;
+
+  }
+  password_strength.innerHTML = strength;
+
+})
+

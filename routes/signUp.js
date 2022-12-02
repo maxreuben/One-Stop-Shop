@@ -8,7 +8,7 @@ const signupService = require("../services/signupService").signupService;
 
 app.get("/signup", urlencodedParser, function (request, response) {
   data = request.body;
-  response.render("signin.html");
+  response.render("signin.ejs");
 });
 
 app.post("/signup", urlencodedParser, function (request, response) {
