@@ -9,6 +9,8 @@ window.onload = function () {
     const a_paymentId = document.getElementById("a_paymentId").value;
     const a_type1 = document.getElementById("a_type1").value;
 
+    console.log(a_cardType);
+
     if (a_cardNumber == "") {
       alert("Card Number must be filled out");
       return false;
