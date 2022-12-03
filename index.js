@@ -92,6 +92,9 @@ app.use(cart);
 const forgotPassword = require("./routes/forgotPassword");
 app.use(forgotPassword);
 
+const resetPassword = require("./routes/resetPassword");
+app.use(resetPassword);
+
 const cartVar = require("./routes/cart");
 app.use(cartVar);
 const editPaymentMethod = require("./routes/editPaymentMethod");
