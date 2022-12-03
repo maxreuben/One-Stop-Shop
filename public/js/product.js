@@ -30,11 +30,34 @@ function adjustQuantity(adjustAmount) {
  * Adds the product to cart in the specified quantity
  */
 async function addToCart() {
-  const quantityEl = document.querySelector(
-    "#product-add-to-cart .quantity-selector .quantity"
-  );
-  const qty = parseInt(quantityEl.innerHTML);
-  quantityEl.innerHTML = String(1);
+  // const quantityEl = document.querySelector(
+  //   "#product-add-to-cart .quantity-selector .quantity"
+  // );
+  // const qty = parseInt(quantityEl.innerHTML);
+  // quantityEl.innerHTML = String(1);
 
   console.log("Adding to cart");
+  console.log(document.getElementById("quantity").innerText)
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      productId: document.getElementById("a_addressId").value,
+      quantity: document.getElementById("quantity").innerText,
+    }),
+  };
+  fetch("http://localhost:5001/addToCart", options)
+    .then(function (response) {
+      console.log(response);
+
+      response.json().then(function (value) {
+        
+        console.log(value);
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
