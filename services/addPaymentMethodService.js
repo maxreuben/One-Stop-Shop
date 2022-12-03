@@ -6,24 +6,23 @@ const { User } = require("../models/User");
 const { PaymentMethod } = require("../models/PaymentMethod");
 
 async function addPaymentMethodService(data, emailId) {
-  console.log(data);
-  let user = await User.findOne({
-    where: {
-      emailId: emailId,
-    },
-  });
   if (data.type == "Add") {
+    let user = await User.findOne({
+      where: {
+        emailId: emailId,
+      },
+    });
     let responseData;
     const paymentMethod = await PaymentMethod.create({
       cardNumber: data.cardNumber,
       expiryDate: data.expiryDate,
       cvv: data.cvv,
       cardType: data.cardType,
-      UserId: data.userId,
+      UserId: user.id,
     })
       .then(function (item) {
         responseData = {
-          message: "Payment Method Created",
+          message: "New Payment Method Created",
           status: 200,
           error: "",
           userObject: item,
@@ -45,7 +44,7 @@ async function addPaymentMethodService(data, emailId) {
       },
       {
         where: {
-          id: paymentId,
+          id: data.paymentId,
         },
       }
     )
