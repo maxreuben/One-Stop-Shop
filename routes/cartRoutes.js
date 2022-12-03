@@ -10,6 +10,7 @@ const {
   getUserCart,
   addToCart,
   removeProductFromCart,
+  updateProductQuantity,
 } = require("../services/cartServices");
 
 app.get("/getUserCart", async function (request, response) {
@@ -66,6 +67,29 @@ app.post(
 
     if (productId != undefined) {
       let res = await removeProductFromCart(emailId, productId);
+    }
+
+    response.send({ status: 200 });
+  }
+);
+
+app.post(
+  "/updateProductQuantity",
+  urlencodedParser,
+  async function (request, response) {
+    let cookies = getCookies(request);
+    let resp;
+
+    if (cookies.emailId == undefined) {
+      resp = { status: 401, message: "User Not Logged In" };
+    }
+
+    let productId = request.body.productId;
+    let emailId = cookies.emailId;
+    let quantity = request.body.quantity;
+
+    if (productId != undefined) {
+      let res = await updateProductQuantity(emailId, productId, quantity);
     }
 
     response.send({ status: 200 });
