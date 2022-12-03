@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 const { User } = require("../models/User");
 const { PaymentMethod } = require("../models/PaymentMethod");
 
-async function get_payment_history(emailId) {
+async function get_payment_method_history(emailId) {
   let user = await User.findOne({
     where: {
       emailId: emailId,
@@ -21,4 +21,4 @@ async function get_payment_history(emailId) {
   return paymentMethod;
 }
 
-module.exports = { get_payment_history };
+module.exports = { get_payment_method_history };

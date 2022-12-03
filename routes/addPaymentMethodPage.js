@@ -6,8 +6,12 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const url = require("url");
 
-app.get("/addAddress", urlencodedParser, async function (request, response) {
-  response.render("addAddress");
-});
+app.get(
+  "/addPaymentMethod",
+  urlencodedParser,
+  async function (request, response) {
+    response.render("addPaymentMethod");
+  }
+);
 
 module.exports = router;

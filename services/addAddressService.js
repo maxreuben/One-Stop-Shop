@@ -26,6 +26,7 @@ async function addAddressService(data, emailId) {
       state: data.state,
       country: data.country,
       zipcode: data.zipcode,
+      phoneNumber: data.phoneNumber,
       UserId: user.id,
     })
       .then(function (item) {
@@ -51,6 +52,7 @@ async function addAddressService(data, emailId) {
         state: data.state,
         country: data.country,
         zipcode: data.zipcode,
+        phoneNumber: data.phoneNumber,
       },
       {
         where: {
