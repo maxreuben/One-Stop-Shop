@@ -25,19 +25,7 @@ if (os.platform() == "win32") {
   process.env.WEBSITE_PASSWORD = process.env.OTHER_APP_PASSWORD;
 }
 
-// # SESSION MANAGEMENT
-// const oneDay = 1000 * 60 * 60 * 24;
-
-//session middleware
-// app.use(
-//   sessions({
-//     secret: process.env.SESSION_SECRET,
-//     saveUninitialized: true,
-//     cookie: { maxAge: oneDay },
-//     resave: false,
-//   })
 // );
-
 // API ROUTES REGISTER
 const signuproute = require("./routes/signUp");
 app.use(signuproute);
