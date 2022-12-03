@@ -92,6 +92,9 @@ app.use(cart);
 const forgotPassword = require("./routes/forgotPassword");
 app.use(forgotPassword);
 
+const cartVar = require("./routes/cart");
+app.use(cartVar);
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
