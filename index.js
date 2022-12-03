@@ -100,6 +100,12 @@ app.use(editPaymentMethod);
 const addPaymentMethod = require("./routes/addPaymentMethodPage");
 app.use(addPaymentMethod);
 
+const vendorHomePage = require("./routes/vendorHome");
+app.use(vendorHomePage);
+
+const manageProductsAdmin = require("./routes/manageProducts");
+app.use(manageProductsAdmin);
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
