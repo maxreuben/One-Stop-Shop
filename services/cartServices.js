@@ -3,7 +3,7 @@ const { get_logged_user_service } = require("./get_current_user_details");
 
 const { get_product_details } = require("./get_product_details");
 
-async function removeProductFromCart(productId) {
+async function removeProductFromCart(emailId, productId) {
   let user = await get_logged_user_service(emailId);
   let cart = await Cart.findOne({
     where: {

@@ -60,9 +60,12 @@ app.post(
     }
 
     let productId = request.body.productId;
+    let emailId = cookies.emailId;
+
+    console.log(productId, emailId);
 
     if (productId != undefined) {
-      let res = await removeProductFromCart(productId);
+      let res = await removeProductFromCart(emailId, productId);
     }
 
     response.send({ status: 200 });
