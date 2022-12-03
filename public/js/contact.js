@@ -40,7 +40,6 @@ inputs.forEach((input) => {
   input.addEventListener("blur", blurFunc);
 });
 
-
 window.onload = function () {
   const Send = document.getElementById("send");
 
@@ -48,7 +47,7 @@ window.onload = function () {
     const p_fname = document.getElementById("user_name").value;
     const sub = "Customer Service";
 
-    const p_Email = process.env.WEBSITE_MAIL;
+    const p_Email = document.getElementById("user_email").value;
     const p_Phone = document.getElementById("user_phone").value;
     const message = document.getElementById("message").value;
 
@@ -82,5 +81,6 @@ window.onload = function () {
       .catch(function (error) {
         console.log(error);
       });
-      // console.log('test')
-    })};
+    // console.log('test')
+  });
+};

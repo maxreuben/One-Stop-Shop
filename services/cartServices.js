@@ -1,6 +1,8 @@
 const { Cart } = require("../models/Cart");
 const { get_logged_user_service } = require("./get_current_user_details");
 
+const { get_product_details } = require("./get_product_details");
+
 async function getUserCart(emailId) {
   console.log("EMAIL ID", emailId);
   let user = await get_logged_user_service(emailId);
@@ -15,7 +17,24 @@ async function getUserCart(emailId) {
     return {};
   }
 
-  return cart.cart;
+  console.log(cart.cart);
+
+  let userCart = cart.cart;
+  console.log("TYPE OF", typeof userCart);
+  let productIDs = Object.keys(userCart);
+
+  let response = [];
+  for (var i = 0; i < productIDs.length; i++) {
+    let productDetails = await get_product_details(productIDs[i]);
+
+    let obj = {
+      productDetails: productDetails,
+      quantity: userCart[productIDs[i]],
+    };
+
+    response.push(obj);
+  }
+  return response;
 }
 
 async function addToCart(emailId, productId, quantity) {
