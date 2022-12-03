@@ -6,7 +6,11 @@ const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const { getCookies } = require("../services/getCookies");
-const { getUserCart, addToCart } = require("../services/cartServices");
+const {
+  getUserCart,
+  addToCart,
+  removeProductFromCart,
+} = require("../services/cartServices");
 
 app.get("/getUserCart", async function (request, response) {
   let cookies = getCookies(request);
@@ -43,5 +47,26 @@ app.post("/addToCart", urlencodedParser, async function (request, response) {
 
   response.send(resp);
 });
+
+app.post(
+  "/removeProduct",
+  urlencodedParser,
+  async function (request, response) {
+    let cookies = getCookies(request);
+    let resp;
+
+    if (cookies.emailId == undefined) {
+      resp = { status: 401, message: "User Not Logged In" };
+    }
+
+    let productId = request.body.productId;
+
+    if (productId != undefined) {
+      let res = await removeProductFromCart(productId);
+    }
+
+    response.send({ status: 200 });
+  }
+);
 
 module.exports = router;
