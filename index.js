@@ -95,6 +95,12 @@ app.use(forgotPassword);
 const addVendor = require("./routes/addVendor");
 app.use(addVendor);
 
+const getCheckout = require("./routes/getCheckout");
+app.use(getCheckout);
+
+const getCheckoutDetails = require("./routes/getCheckoutDetails");
+app.use(getCheckoutDetails);
+
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
