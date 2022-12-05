@@ -157,52 +157,118 @@ window.onload = function () {
   });
 };
 
-let pass = document.getElementById("Signin_Password");
-pass.addEventListener('input', () => {
-  var password_strength = document.getElementById("strength");
+// let pass = document.getElementById("Signin_Password");
+// pass.addEventListener('input', () => {
+//   var password_strength = document.getElementById("strength");
 
-  //TextBox left blank.
-  if (pass.value.length == 0) {
-    password_strength.innerHTML = "";
-    return;
-  }
+//   //TextBox left blank.
+//   if (pass.value.length == 0) {
+//     password_strength.innerHTML = "";
+//     return;
+//   }
 
-  //Regular Expressions.
-  var regex = new Array();
-  regex.push("[A-Z]"); //Uppercase Alphabet.
-  regex.push("[a-z]"); //Lowercase Alphabet.
-  regex.push("[0-9]"); //Digit.
-  regex.push("[$@$!%*#?&]"); //Special Character.
+//   //Regular Expressions.
+//   var regex = new Array();
+//   regex.push("[A-Z]"); //Uppercase Alphabet.
+//   regex.push("[a-z]"); //Lowercase Alphabet.
+//   regex.push("[0-9]"); //Digit.
+//   regex.push("[$@$!%*#?&]"); //Special Character.
 
-  var passed = 0;
+//   var passed = 0;
 
-  //Validate for each Regular Expression.
-  for (var i = 0; i < regex.length; i++) {
-    if (new RegExp(regex[i]).test(pass.value)) {
-      passed++;
-    }
-  }
+//   //Validate for each Regular Expression.
+//   for (var i = 0; i < regex.length; i++) {
+//     if (new RegExp(regex[i]).test(pass.value)) {
+//       passed++;
+//     }
+//   }
 
-  //Display status.
-  var strength = "";
-  switch (passed) {
-    case 0:
-    case 1:
-    case 2:
+//   //Display status.
+//   var strength = "";
+//   switch (passed) {
+//     case 0:
+//     case 1:
+//     case 2:
         
-    // strength = "<small class='progress-bar bg-danger' style='width: 40%'>Weak</small>";
-      password_strength.innerHTML = "hehe"
-      pass.style.borderColor = "#ff5925"
-      break;
-    case 3:
-      // strength = "<small class='progress-bar bg-warning' style='width: 60%'>Medium</small>";
-      break;
-    case 4:
-      // strength = "<small class='progress-bar bg-success' style='width: 100%'>Strong</small>";
-      break;
+//     // strength = "<small class='progress-bar bg-danger' style='width: 40%'>Weak</small>";
+//       password_strength.innerHTML = "hehe"
+//       pass.style.borderColor = "#ff5925"
+//       break;
+//     case 3:
+//       // strength = "<small class='progress-bar bg-warning' style='width: 60%'>Medium</small>";
+//       break;
+//     case 4:
+//       // strength = "<small class='progress-bar bg-success' style='width: 100%'>Strong</small>";
+//       break;
 
-  }
-  password_strength.innerHTML = strength;
+//   }
+//   password_strength.innerHTML = strength;
 
-})
+// })
+( () => {
+  /**
+   * Parse a password string into a numeric value.
+   *
+   * @param {string} password
+   * @return {number}
+   */
+  
+// let pass = document.getElementById("Signin_Password");
+  let evaluatePassword = ( password ) => {
+    let score = 0;
 
+    score = password.length;
+    score = ( password.match( /[!]/gmi ) ) ? score + ( password.match( /[!]/gmi ).length * 3 ) : score;
+    score = ( password.match( /[A-Z]/gm ) ) ? score + 3 : score;
+    score = ( password.match( /[0-9]/gmi ) ) ? score + 3 : score;
+
+    return score;
+  };
+
+  /**
+   * Convert a numeric score into an object of 'DOM update' data.
+   *
+   * @param {number} score
+   * @return {Object}
+   */
+  let scoreToData = ( score ) => {    
+    if ( score >= 30 ) {
+      return {
+        width: '100%',
+        color: '#26de81',
+        label: 'Strong',
+      };
+    } else if ( score >= 20 ) {
+      return {
+        width: '66%',
+        color: '#fd9644',
+        label: 'Medium',
+      };
+    } else {
+      return {
+        width: '33%',
+        color: '#fc5c65',
+        label: 'Weak',
+      };
+    }
+  };
+
+  window.addEventListener( 'DOMContentLoaded', () => {
+    // Get element refs.
+    let p = document.querySelector( '.js--password' );
+    let b = document.querySelector( '.js--password-bar' );
+    let t = document.querySelector( '.js--password-text' );
+    let pass = document.getElementById("Signin_Password");
+
+    // Listen for updates to password field.
+    pass.addEventListener( 'input', () => {
+      // Convert current value to data.
+      let data = scoreToData( evaluatePassword( pass.value ) );
+
+      // Update DOM.
+      b.style.width = data.width;
+      b.style.background = data.color;
+      t.innerText = data.label;
+    } );
+  } );
+} )();
