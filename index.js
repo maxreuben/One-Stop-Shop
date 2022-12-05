@@ -86,25 +86,25 @@ app.use(editAddress);
 
 const addAddress = require("./routes/addAddressPage");
 app.use(addAddress);
+
+const cartPage = require("./routes/cart");
+app.use(cartPage);
+
 const cart = require("./routes/cartRoutes");
 app.use(cart);
 
 const forgotPassword = require("./routes/forgotPassword");
 app.use(forgotPassword);
 
-const cartVar = require("./routes/cart");
-app.use(cartVar);
-const editPaymentMethod = require("./routes/editPaymentMethod");
-app.use(editPaymentMethod);
+const addVendor = require("./routes/addVendor");
+app.use(addVendor);
 
-const addPaymentMethod = require("./routes/addPaymentMethodPage");
-app.use(addPaymentMethod);
+const getCheckout = require("./routes/getCheckout");
+app.use(getCheckout);
 
-const vendorHomePage = require("./routes/vendorHome");
-app.use(vendorHomePage);
+const getCheckoutDetails = require("./routes/getCheckoutDetails");
+app.use(getCheckoutDetails);
 
-const manageProductsAdmin = require("./routes/manageProducts");
-app.use(manageProductsAdmin);
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));

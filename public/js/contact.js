@@ -46,7 +46,6 @@ window.onload = function () {
   Send.addEventListener("click", () => {
     const p_fname = document.getElementById("user_name").value;
     const sub = "Customer Service";
-
     const p_Email = document.getElementById("user_email").value;
     const p_Phone = document.getElementById("user_phone").value;
     const message = document.getElementById("message").value;
@@ -55,7 +54,6 @@ window.onload = function () {
       alert("Name must be filled out");
       return false;
     }
-
     if (message == "") {
       alert("Message cannot be empty");
       return false;
