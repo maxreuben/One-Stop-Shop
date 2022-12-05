@@ -99,6 +99,12 @@ app.use(forgotPassword);
 const addVendor = require("./routes/addVendor");
 app.use(addVendor);
 
+const vendorHomePage = require("./routes/vendorHome");
+app.use(vendorHomePage);
+
+const manageProducts = require("./routes/manageProducts");
+app.use(manageProducts);
+
 const getCheckout = require("./routes/getCheckout");
 app.use(getCheckout);
 
