@@ -7,11 +7,28 @@ input[type=text], select, textarea{
     box-sizing: border-box;
     resize: vertical;
   }
+
+  
   
   /* Style the label to display next to the inputs */
   label {
     padding: 12px 12px 12px 0;
     display: inline-block;
+  }
+
+  /* label.select-files {
+    background: #0d0d0d;
+    padding: 0px 12px;
+    margin: 10px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+    height: max-content;
+  } */
+
+  input.select-files {
+    margin : 10px;
   }
   
   /* Style the submit button */
@@ -24,6 +41,8 @@ input[type=text], select, textarea{
     cursor: pointer;
     float: right;
   }
+
+
   
   /* Style the container */
   .container {
@@ -44,6 +63,7 @@ input[type=text], select, textarea{
     float: left;
     width: 75%;
     margin-top: 6px;
+    display: flex;
   }
   
   /* Clear floats after the columns */
