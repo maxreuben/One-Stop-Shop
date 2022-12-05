@@ -3,6 +3,58 @@ const { get_logged_user_service } = require("./get_current_user_details");
 
 const { get_product_details } = require("./get_product_details");
 
+async function updateProductQuantity(emailId, productId, quantity) {
+  let user = await get_logged_user_service(emailId);
+  let cart = await Cart.findOne({
+    where: {
+      UserId: user.id,
+    },
+  });
+
+  let userCart = cart.cart;
+
+  userCart[productId] = Number(quantity);
+
+  console.log("USER CART", userCart);
+
+  let updatedCart = await Cart.update(
+    {
+      cart: userCart,
+    },
+    {
+      where: {
+        id: cart.id,
+      },
+    }
+  );
+
+  console.log("UPDATED CART", updatedCart);
+}
+
+async function removeProductFromCart(emailId, productId) {
+  let user = await get_logged_user_service(emailId);
+  let cart = await Cart.findOne({
+    where: {
+      UserId: user.id,
+    },
+  });
+
+  let userCart = cart.cart;
+
+  delete userCart[productId];
+
+  let updatedCart = await Cart.update(
+    {
+      cart: userCart,
+    },
+    {
+      where: {
+        id: cart.id,
+      },
+    }
+  );
+}
+
 async function getUserCart(emailId) {
   console.log("EMAIL ID", emailId);
   let user = await get_logged_user_service(emailId);
@@ -82,4 +134,9 @@ async function addToCart(emailId, productId, quantity) {
   }
 }
 
-module.exports = { getUserCart, addToCart };
+module.exports = {
+  getUserCart,
+  addToCart,
+  removeProductFromCart,
+  updateProductQuantity,
+};

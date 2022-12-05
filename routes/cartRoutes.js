@@ -6,7 +6,12 @@ const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const { getCookies } = require("../services/getCookies");
-const { getUserCart, addToCart } = require("../services/cartServices");
+const {
+  getUserCart,
+  addToCart,
+  removeProductFromCart,
+  updateProductQuantity,
+} = require("../services/cartServices");
 
 app.get("/getUserCart", async function (request, response) {
   let cookies = getCookies(request);
@@ -43,5 +48,52 @@ app.post("/addToCart", urlencodedParser, async function (request, response) {
 
   response.send(resp);
 });
+
+app.post(
+  "/removeProduct",
+  urlencodedParser,
+  async function (request, response) {
+    let cookies = getCookies(request);
+    let resp;
+
+    if (cookies.emailId == undefined) {
+      resp = { status: 401, message: "User Not Logged In" };
+    }
+
+    let productId = request.body.productId;
+    let emailId = cookies.emailId;
+
+    console.log(productId, emailId);
+
+    if (productId != undefined) {
+      let res = await removeProductFromCart(emailId, productId);
+    }
+
+    response.send({ status: 200 });
+  }
+);
+
+app.post(
+  "/updateProductQuantity",
+  urlencodedParser,
+  async function (request, response) {
+    let cookies = getCookies(request);
+    let resp;
+
+    if (cookies.emailId == undefined) {
+      resp = { status: 401, message: "User Not Logged In" };
+    }
+
+    let productId = request.body.productId;
+    let emailId = cookies.emailId;
+    let quantity = request.body.quantity;
+
+    if (productId != undefined) {
+      let res = await updateProductQuantity(emailId, productId, quantity);
+    }
+
+    response.send({ status: 200 });
+  }
+);
 
 module.exports = router;

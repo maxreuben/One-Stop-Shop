@@ -56,7 +56,7 @@
             <div id="product-add-to-cart">
                 <div class="quantity-selector">
                     <i class="bx bx-minus-circle" onclick="adjustQuantity(-1)"></i>
-                    <span class="quantity">
+                    <span class="quantity" id ="quantity">
                         1
                     </span>
                     <i class="bx bx-plus-circle" onclick="adjustQuantity(1)"></i>
@@ -80,6 +80,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="form-outline mb-4" hidden>
+    <input type="text" id="a_addressId" class="form-control form-control-lg" value= "<%= productDetails.id %>">
 </div>
 </body>
 <%- include('footer.ejs') %>

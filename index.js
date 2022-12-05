@@ -33,8 +33,8 @@ app.use(signuproute);
 const signinroute = require("./routes/login");
 app.use(signinroute);
 
-const addPaymentMethodroute = require("./routes/addPaymentMethod");
-app.use(addPaymentMethodroute);
+// const addPaymentMethodroute = require("./routes/addPaymentMethod");
+// app.use(addPaymentMethodroute);
 
 const modifyuserroute = require("./routes/modifyUser");
 app.use(modifyuserroute);
@@ -91,9 +91,6 @@ app.use(cart);
 
 const forgotPassword = require("./routes/forgotPassword");
 app.use(forgotPassword);
-
-const addVendor = require("./routes/addVendor");
-app.use(addVendor);
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));

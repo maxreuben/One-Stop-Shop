@@ -45,6 +45,20 @@ window.onload = function () {
           if(value.status != 200)
           {
             alert('failure')
+          }else if (value.userObject.role === "100") {
+            // alert('success')
+            let c_username = document.getElementById("Signin_email");
+            let c_password = document.getElementById("Signin_password");
+  
+            today = new Date();
+            var expire = new Date();
+            expire.setTime(today.getTime() + 3600000 * 24 * 15);
+  
+            // document.cookie = "name="+c_name+";path=/" + ";expires="+expire.toUTCString();
+            document.cookie = "emailId="+c_username.value+";path=/" + ";expires="+expire.toUTCString();
+            document.cookie = "password="+encodeURI(c_password.value)+";path=/" + ";expires="+expire.toUTCString();
+  
+            location.href = "/vendorHome";
           }
           else{
             // alert('success')

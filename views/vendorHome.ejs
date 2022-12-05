@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('vendorHeader.ejs') %>
+  <script src="/js/home.js"></script>
+  <body>
+
+    <!-- ====== Collection ====== -->
+    <section class="section collection">
+      <div class="title">
+        <span>COLLECTION</span>
+        <h2>Our Top Collection</h2>
+      </div>
+      
+
+      
+
+      <div class="products container">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper" id="products">
+            <div class="swiper-slide">
+            </div>
+          </div>
+        </div>
+        <div class="pagination">
+          <div class="custom-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ====== New Arrival ====== -->
+    <section class="section new-arrival">
+      <div class="title">
+        <span>NEW ARRIVAL</span>
+        <h2>Latest Collection</h2>
+      </div>
+
+      <div class="row container">
+        <div class="col col-1">
+          <img src="/images/poster-1.png" alt="" />
+          <h3>
+            2021 Trends <br />
+            Women’s Smart Skirt
+          </h3>
+        </div>
+        <div class="col col-2">
+          <img src="/images/poster-2.png" alt="" />
+          <h3>
+            2021 Trends <br />
+            Women’s Smart Skirt
+          </h3>
+        </div>
+        <div class="col col-3">
+          <img src="/images/poster-3.png" alt="" />
+          <h3>
+            2021 Trends <br />
+            Women’s Smart Shirt <br />
+            <span>Discover More:</span>
+          </h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Categories ====== -->
+    <section class="section categories">
+      <div class="title">
+        <span>CATEGORIES</span>
+        <h2>2021 Latest Collection</h2>
+      </div>
+
+      <div class="products container">
+      </div>
+
+      <div class="button d-flex">
+        <a class="btn loadmore">Load More</a>
+      </div>
+    </section>
+    <!-- ====== Footer ====== -->
+  <%- include('footer.ejs') %>
+
+    <!-- ====== SwiperJs ====== -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- ====== Custom Script ====== -->
+    <!-- <script src="js/product.js"></script> -->
+    <script src="js/main.js"></script>
+
+
+
+  </body>
+</html>
