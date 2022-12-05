@@ -231,3 +231,17 @@ signUpButton1.addEventListener("click", () => {
       console.log(error);
     });
 });
+
+document.getElementById("vendor_reg").onclick = () => {
+  console.log("here");
+  var myCookie = getCookie("emailId");
+  if (myCookie == null || cookies.emailId.length === 0) {
+    // userForm.classList.add("show");
+    // navList.classList.remove("show");
+    location.href = "/signin";
+  } else {
+    location.href = "/addVendor";
+  }
+
+  
+};

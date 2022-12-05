@@ -49,7 +49,7 @@
                 <a href="">Discount</a>
                 <a href="">Returns</a>
                 <a href="">Order History</a>
-                <a href="">Order Tracking</a>
+                <a href="" id="vendor_reg">Vendor Registration</a>
             </div>
             <div>
                 <h4><a href="/contactus" class ="con">Contact Us</a></h4>
@@ -74,5 +74,16 @@
 <!-- ====== SwiperJs ====== -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- ====== Main custom JS ====== -->
-<script src="/js/main.js"></script>
+<script src="/js/main.js">
+    document.getElementById("vendor_reg").onclick = () => {
+  console.log("here");
+  var myCookie = getCookie("emailId");
+  if (myCookie == null || cookies.emailId.length === 0) {
+    // userForm.classList.add("show");
+    // navList.classList.remove("show");
+    location.href = "/signin";
+  } else {
+    location.href = "/addVendor";
+  }}
+</script>
 </html>
