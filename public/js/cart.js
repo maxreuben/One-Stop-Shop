@@ -259,7 +259,7 @@ async function removeProductFromCart(productID) {
 async function updateProductFromCart(ele,productID) {
   console.log(productID);
   console.log(ele.value);
-  
+  if(ele.value >0){
     const options = {
       method: "POST",
       headers: {
@@ -281,7 +281,11 @@ async function updateProductFromCart(ele,productID) {
         });
       });
 
-
+  }
+  else{
+    removeProductFromCart(productID);
+  }
+    
 }
 
 
