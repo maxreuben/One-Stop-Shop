@@ -251,3 +251,32 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+.password-meter {
+	width: 100%;
+  }
+  
+  .password-meter__bar {
+	width: 33.333%;
+	height: 1rem;
+	background: #eee;
+	margin-bottom: 1rem;
+	position: relative;
+  }
+  
+  .password-meter__bar__inner {
+	width: 0;
+	height: 100%;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+  }
+  
+  .password-meter__label {
+	color: #666;
+	font-size: 1.2rem;
+  }
+  
+  .password-meter__label span {
+	font-weight: bold;
+  }

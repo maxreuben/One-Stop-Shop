@@ -256,6 +256,39 @@ async function removeProductFromCart(productID) {
 
 }
 
+async function updateProductFromCart(ele,productID) {
+  console.log(productID);
+  console.log(ele.value);
+  if(ele.value >0){
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        productId: productID,
+        quantity: ele.value
+      }),
+    };
+    fetch("/updateProductQuantity", options)
+      .then(function (response) {
+        console.log(response);
+
+        response.json().then(function (value) {
+          
+          console.log(value);
+          window.location.reload();
+        });
+      });
+
+  }
+  else{
+    removeProductFromCart(productID);
+  }
+    
+}
+
+
 function renderCartItems(cart) {
   div = document.getElementById("cart-items")
         cart.map((product) => {
@@ -295,6 +328,7 @@ function renderCartItems(cart) {
           inputDiv = document.createElement("input");
           inputDiv.className = "quantity-field";
           inputDiv.type = "number";
+          inputDiv.addEventListener("click", function(){updateProductFromCart(this,product.productDetails.id)});
           inputDiv.value = product.quantity;
 
           quantityDiv.appendChild(inputDiv);

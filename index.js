@@ -86,6 +86,10 @@ app.use(editAddress);
 
 const addAddress = require("./routes/addAddressPage");
 app.use(addAddress);
+
+const cartPage = require("./routes/cart");
+app.use(cartPage);
+
 const cart = require("./routes/cartRoutes");
 app.use(cart);
 
