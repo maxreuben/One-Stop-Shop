@@ -153,7 +153,7 @@ function fillPaymentMethods() {
 
             //a_credit.value = "";
             //a_debit.value = "";
-            a_name.value = "";
+            a_name.value = opt.nameOnCard;
             a_number.value = opt.cardNumber;
             a_expiry.value = opt.expiryDate.slice(0, 10);
             a_cvv.value = opt.cvv;
@@ -163,5 +163,56 @@ function fillPaymentMethods() {
 
     }
 
+
+}
+
+function checkout() {
+
+    console.log("inside checkout");
+
+    const a_savecheck = document.getElementById("save-info");
+    const a_fname = document.getElementById("firstName");
+    const a_lname = document.getElementById("lastName");
+    const a_email = document.getElementById("email");
+    const a_address = document.getElementById("address");
+    const a_state = document.getElementById("state");
+    const a_country = document.getElementById("country");
+    const a_zip = document.getElementById("zip");
+    const a_credit = document.getElementById("credit");
+    const a_debit = document.getElementById("debit");
+    const a_name = document.getElementById("cc-name");
+    const a_number = document.getElementById("cc-number");
+    const a_expiry = document.getElementById("cc-expiration");
+    const a_cvv = document.getElementById("cc-cvv");
+
+    cookies = document.cookie
+        .split(";")
+        .map((cookie) => cookie.split("="))
+        .reduce(
+            (accumulator, [key, value]) => ({
+            ...accumulator,
+            [key.trim()]: decodeURIComponent(value),
+            }),
+            {}
+        );
+
+    const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      };
+      fetch("/checkout", options)
+        .then(function (response) {
+          console.log("response----", response);
+  
+          response.json().then(function (value) {
+            
+            console.log(value);
+            window.location = "/";
+          });
+        });
+
+        
 
 }

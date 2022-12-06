@@ -59,6 +59,7 @@
             <small class="text-muted">Quantity : - <%= CartDetails[i].quantity %></small>
           </div>
           <span class="text-muted">$<%= CartDetails[i].productDetails.discountedPrice %></span>
+          
         </li>
         <% } %>
         <!-- <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -82,9 +83,26 @@
           </div>
           <span class="text-success">-$5</span>
         </li> -->
+
+        <% for(let i=0; i < CartDetails.length; i++) { %>
+            <%
+              let totalPrice;
+              totalPrice = totalPrice + CartDetails[i].quantity * CartDetails[i].productDetails.discountedPrice
+            %>
+        <% } %>
         <li class="list-group-item d-flex justify-content-between">
           <span>Total (USD)</span>
-          <strong>$20</strong>
+          <strong>
+
+            <% let totalPrice = 0; %>
+            <% for(let i=0; i < CartDetails.length; i++) { %>
+              <%
+                totalPrice += (CartDetails[i].quantity) * (CartDetails[i].productDetails.discountedPrice);
+              %>
+            <% } %>
+            <%= totalPrice %>
+            
+          </strong>
         </li>
       </ul>
 
@@ -281,7 +299,7 @@
           </div>
         </div>
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" onClick="checkout()">Continue to checkout</button>
       </form>
     </div>
   </div>
