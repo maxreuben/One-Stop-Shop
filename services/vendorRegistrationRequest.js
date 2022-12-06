@@ -4,14 +4,14 @@ const bcrypt = require("bcrypt");
 const { response } = require("express");
 
 
-const { VendorRegistrationRequest } = require("../models/VendorRegistrarionRequest");
+const { VendorRegistrationRequest } = require("../models/VendorRegistrationRequest");
 
 async function vendorRegistrationRequest(data) {
 
   let responseData = {};
 
   //   console.log(data);
-  const vendorRegistrarionRequest = await VendorRegistrationRequest.create({
+  const vendorRegistrationRequest = await VendorRegistrationRequest.create({
     firstName: data.vendor_firstname,
     lastName: data.vendor_lastname,
     emailId: data.company_email,
@@ -41,4 +41,4 @@ async function vendorRegistrationRequest(data) {
   return responseData;
 }
 
-module.exports = { vendorRegistrarionRequest };
+module.exports = { vendorRegistrationRequest };

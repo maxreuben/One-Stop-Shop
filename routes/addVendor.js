@@ -5,7 +5,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const {
   get_logged_user_service,
 } = require("../services/get_current_user_details");
-const { vendorRegistrarionRequest } = require("../services/vendorRegistrationRequest");
+const { vendorRegistrationRequest } = require("../services/vendorRegistrationRequest");
 
 app.get("/addVendor", urlencodedParser, async function (request, response) {
     data = request.body
@@ -20,7 +20,7 @@ app.post("/addVendor", urlencodedParser, function (request, response) {
 
   // let responseData = await signupService(data);
 
-  vendorRegistrarionRequest(data)
+  vendorRegistrationRequest(data)
     .then(function (responseData) {
       // await responseData;
       console.log("RESPONSE DATA", responseData);
