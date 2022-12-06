@@ -1,131 +1,76 @@
-<!DOCTYPE html>
+
+
 <html lang="en">
-  <%- include('vendorHeader.ejs') %>
-  <script src="/js/home.js"></script>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   
-    <!-- ====== Custom CSS ====== -->
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/manageProducts.css" />
-    <title>Fashion Shop</title>
-  </head>
-  <body>
-    <div class="container">
-        <form class="product-form">
-          <div class="row">
-            <div class="col-25">
-              <label >Product Name</label>
-            </div>
-            <div class="col-75">
-              <input type="text"  name="name" placeholder="Product Name">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label >Product Quantity</label>
-            </div>
-            <div class="col-75">
-              <input type="text"  name="qty" placeholder="Product Quantity">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label >Product Brand</label>
-            </div>
-            <div class="col-75">
-              <input type="text"  name="brand" placeholder="Product Brand">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label >Product Ideal For</label>
-            </div>
-            <div class="col-75">
-              <input type="text"  name="gender" placeholder="Product Ideal for Gender">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label >Product Retail Price</label>
-            </div>
-            <div class="col-75">
-              <input type="text"  name="brand" placeholder="Product Price">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label >Product Discounted Price</label>
-            </div>
-            <div class="col-75">
-              <input type="text"  name="brand" placeholder="Product Reduced Price">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label >Product Images</label>
-            </div>
-            <div class="col-75">
-              <input class="select-files" type="file" id="fileInput" multiple accept="image/*" onchange="selectFiles()" placeholder="Select Product Images">
-              <!-- <label class="select-files" for="files" >Select</label> -->
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label >Product Category</label>
-            </div>
-            <div class="col-75">
-              <select  name="category">
-                <option value="jewellery">Jewellery</option>
-                <option value="clothing">Clothing</option>
-                <option value="furniture">Furniture</option>
-                <option value="footwear">Footwear</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label for="country">Product Rating</label>
-            </div>
-            <div class="col-75">
-              <select  name="rating">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label for="subject">Product Description</label>
-            </div>
-            <div class="col-75">
-              <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <input type="submit" value="Submit">
-          </div>
-        </form>
-      </div>
-      
-    
-    <!-- ====== Footer ====== -->
-  <%- include('footer.ejs') %>
 
-    <!-- ====== SwiperJs ====== -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<head>
+	  <meta charset="utf-8">
+	  <meta http-equiv="x-ua-compatible" content="ie=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <title>Basket</title>
+	  <!-- <script src = "/js/manageProduct.js"></script> -->
+	  <link href = "/css/manageProducts.css" rel = "stylesheet">
+	</head>
+	
+	<body>
+	  <main>
 
-    <!-- ====== Custom Script ====== -->
-    <!-- <script src="js/product.js"></script> -->
-    <script src="js/main.js"></script>
-    <script src="js/manageProduct.js"></script>
+		<%- include('vendorHeader.ejs') %>
+		<div class="cart-items">
+		<div class="basket">
+		  
+		  <div class="basket-labels">
+			<ul>
+			  <li class="item item-heading">Name</li>
+			  <li class="price">Price</li>
+			  <li class="quantity">Instock</li>
+			  <!-- <li class="subtotal">Subtotal</li> -->
+			</ul>
+		  </div>
+		  <div id="cart-items">
+		  <div class="basket-product">
+			<div class="item">
+			  
+			  <div class="product-details">
+				<h1> Lace Sleeve Cuff Dress</h1>
+			
+			  </div>
+			</div>
+			<div class="price">26.00</div>
+			<div class="quantity">
+			  <input type="number" value="4" min="1" class="quantity-field">
+			</div>
+			
+			<div class="remove">
+			  <button>Remove</button>
+			</div>
+		  </div>
+		  <div class="basket-product">
+			<div class="item">
+			  
+			  <div class="product-details">
+				<h1> Amella Lace Midi Dress</h1>
 
-
-
-  </body>
-</html>
+			  </div>
+			</div>
+			<div class="price">26.00</div>
+			<div class="quantity">
+			  <input type="number" value="1" min="1" class="quantity-field">
+			</div>
+			
+			<div class="remove">
+			  <button>Remove</button>
+			</div>
+		  </div>
+		</div>
+		</div>
+		<div class="add-product">
+      <a href="\add-product">Add Products</a>
+    </div>
+	</div>
+	  </main>
+	  <%- include('footer.ejs') %>
+	</body>
+	
+	</html>
+	
+	

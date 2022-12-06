@@ -137,7 +137,7 @@ window.onload = function () {
       
         console.log(value);
 
-        var  cart = value;
+        var cart = value;
         renderCartItems(cart);
         // div = document.getElementById("cart-items")
         // cart.map((product) => {
@@ -335,7 +335,7 @@ function renderCartItems(cart) {
 
           subTot = document.createElement("div");
           subTot.className = "subtotal"
-          subTot.innerHTML = "500"
+          subTot.innerHTML = product.quantity*product.productDetails.discountedPrice;
 
           hiddendiv = document.createElement("div");
           hiddendiv.style.visibility = 'hidden';
@@ -366,4 +366,19 @@ function renderCartItems(cart) {
 
           div.appendChild(basketdiv);
         })
+
+        updateTotalOfCart(cart);
+}
+
+function updateTotalOfCart (cart) {
+  var totalPrice = 0;
+  const finalCartValue = document.getElementById("final-value");
+  const TaxValue = document.getElementById("basket-subtotal").innerText;
+  cart.map((product) => {
+    totalPrice = totalPrice + (product.quantity * product.productDetails.discountedPrice);
+  })
+  totalPrice = totalPrice + parseInt(TaxValue);
+  console.log(totalPrice);
+  finalCartValue.innerText = totalPrice;
+
 }

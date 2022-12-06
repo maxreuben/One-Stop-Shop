@@ -101,4 +101,8 @@ body > .container {
   border: 1px solid #cccccc;
 }
 
+#added-to-cart {
+  font-size: 10px;
+  visibility: hidden;
+}
 /*# sourceMappingURL=product.css.map */

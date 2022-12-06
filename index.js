@@ -105,6 +105,10 @@ app.use(vendorHomePage);
 const manageProducts = require("./routes/manageProducts");
 app.use(manageProducts);
 
+const addProd = require("./routes/addProduct");
+app.use(addProd);
+
+
 const getCheckout = require("./routes/getCheckout");
 app.use(getCheckout);
 
