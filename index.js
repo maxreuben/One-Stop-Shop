@@ -114,6 +114,8 @@ app.use(getCheckout);
 
 const getCheckoutDetails = require("./routes/getCheckoutDetails");
 app.use(getCheckoutDetails);
+const resetPassword = require("./routes/resetPassword")
+app.use(resetPassword)
 
 
 // app.use(bodyParser.json());
