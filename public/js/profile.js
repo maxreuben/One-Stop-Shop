@@ -55,6 +55,17 @@ window.onload = function () {
         console.log(error);
       });
   });
+
+  const p_fname = document.getElementById("p_fname");
+    const p_lname = document.getElementById("p_lname");
+    const p_password = document.getElementById("p_password");
+    const p_Email = document.getElementById("p_Email");
+    const p_Phone = document.getElementById("p_phone");
+    
+    p_fname.readOnly = true;
+    p_lname.readOnly = true;
+    p_password.readOnly = true;
+    p_Phone.readOnly = true;
 };
 
 
@@ -63,3 +74,23 @@ function signOut(){
   document.cookie = "emailId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   window.location = "/"
 }
+
+// const edit = document.getElementById("p_edit");
+
+  function edit()
+  {
+    const p_fname = document.getElementById("p_fname");
+    const p_lname = document.getElementById("p_lname");
+    const p_password = document.getElementById("p_password");
+    const p_Email = document.getElementById("p_Email");
+    const p_Phone = document.getElementById("p_phone");
+    
+    p_fname.readOnly = false;
+    p_lname.readOnly = false;
+    p_password.readOnly = false;
+    p_Phone.readOnly = false;
+
+    // const editableFields = document.getElementsByClassName("editable-fields");
+    // editableFields.style.border = "thick solid #000";
+    
+  }
