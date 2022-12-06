@@ -26,6 +26,9 @@ const PaymentMethod = sequelize.define("PaymentMethod", {
   cvv: {
     type: Sequelize.INTEGER,
   },
+  nameOnCard: {
+    type: Sequelize.STRING,
+  },
 });
 
 User.hasOne(PaymentMethod);

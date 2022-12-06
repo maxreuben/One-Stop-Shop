@@ -54,20 +54,6 @@ cookies = document.cookie
 
     const cartResp = await fetch("/getUserCart", options)
 
-    // //var selectCart = document.getElementById("selectPayment");
-    // paymentMethods = await paymentResp.json();
-
-    // console.log("payment methods--", paymentMethods);
-  
-    //   for(var i = 0; i < paymentMethods.length; i++) {
-    //       var opt = paymentMethods[i].cardNumber;
-    //       var el = document.createElement("option");
-    //       el.textContent = opt;
-    //       el.value = opt;
-    //       selectPayment.appendChild(el);
-    //   }
-
-
 }
 
 function fillAddress() {
