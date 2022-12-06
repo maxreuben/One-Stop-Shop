@@ -36,6 +36,9 @@ async function addToCart() {
   // const qty = parseInt(quantityEl.innerHTML);
   // quantityEl.innerHTML = String(1);
 
+  let addedToCart = document.getElementById("added-to-cart");
+  addedToCart.style.visibility = "visible";
+
   console.log("Adding to cart");
   console.log(document.getElementById("quantity").innerText)
   const options = {

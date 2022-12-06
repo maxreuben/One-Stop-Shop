@@ -99,6 +99,22 @@ app.use(forgotPassword);
 const addVendor = require("./routes/addVendor");
 app.use(addVendor);
 
+const vendorHomePage = require("./routes/vendorHome");
+app.use(vendorHomePage);
+
+const manageProducts = require("./routes/manageProducts");
+app.use(manageProducts);
+
+const addProd = require("./routes/addProduct");
+app.use(addProd);
+
+
+const getCheckout = require("./routes/getCheckout");
+app.use(getCheckout);
+
+const getCheckoutDetails = require("./routes/getCheckoutDetails");
+app.use(getCheckoutDetails);
+
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
