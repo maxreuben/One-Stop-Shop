@@ -20,9 +20,8 @@ function resetPassword(){
         };
         fetch("/resetPassword", options)
         .then(function (response) {
-            console.log("Inside fetch");
-        })
-        .catch(function (error) {
+          console.log(response);
+      }).catch(function (error) {
           console.log(error);
         });
     }else{
