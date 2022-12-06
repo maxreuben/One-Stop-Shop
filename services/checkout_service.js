@@ -20,7 +20,7 @@ async function checkout(cart, emailId) {
     UserId: user.id,
     orderAmount: 100,
   })
-    .then(function (item) {
+    .then(async function (item) {
       console.log("ITEM", item);
       responseData = {
         message: "Order Created",
@@ -29,12 +29,24 @@ async function checkout(cart, emailId) {
         userObject: item,
       };
 
-      let cart = Cart.findOne({ where: { UserId: user.id } }).then(function (
-        item
+      let cartId;
+      let cart = Cart.findOne({ where: { UserId: user.id } }).then(async function (
+        res
       ) {
-        let userCart = item.cart;
-        console.log("USER CART", userCart);
+        let userCart = res.cart;
+        cartId = res.id;
+        for( var key in userCart) {
+          await OrderProduct.create({
+            OrderId: item.id,
+            ProductId: key,
+            quantity: userCart[key]
+          })
+        }
+
       });
+
+      await cart;
+      Cart.destroy({where:{id: cartId}})
     })
     .catch(function (error) {
       console.log("ERROR", error);
