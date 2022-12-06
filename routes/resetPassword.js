@@ -11,7 +11,6 @@ app.get("/resetPassword", urlencodedParser, async function (request, response) {
     const emailId = request.query.email
     const hash = request.query.hash
 
-    console.log("INSIDE THE RESET PASSWORD")
     if (request.query && emailId && hash) {
         let user = await User.findOne({
             where: {
@@ -44,12 +43,11 @@ app.get("/resetPassword", urlencodedParser, async function (request, response) {
 });
 
 app.post("/resetPassword", urlencodedParser, async function (request, response) {
-    console.log(request.body.password)
-    let encryptedPassword = bcrypt.hashSync(request.body.password, 10);
+    let encryptedPassword = bcrypt.hashSync(request.body.pass, 10);
     let responseData;
     let user = await User.update(
         {
-          password: password,
+          password: encryptedPassword,
         },
         {
           where: {
@@ -72,7 +70,7 @@ app.post("/resetPassword", urlencodedParser, async function (request, response) 
             error: error,
           };
         });
-        return responseData;
+        return response.render("signin.ejs");
 });
 
 module.exports = router;
