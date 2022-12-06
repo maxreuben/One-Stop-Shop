@@ -26,7 +26,7 @@ async function addPaymentMethodService(data, emailId) {
           message: "New Payment Method Created",
           status: 200,
           error: "",
-          userObject: item,
+          paymentMethodObject: item,
         };
       })
       .catch(function (error) {

@@ -382,3 +382,11 @@ function updateTotalOfCart (cart) {
   finalCartValue.innerText = totalPrice;
 
 }
+
+function proceedtoCheckout() {
+
+  window.location.href = "/checkout";
+
+}
+
+
