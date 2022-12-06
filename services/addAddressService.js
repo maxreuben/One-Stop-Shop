@@ -34,7 +34,7 @@ async function addAddressService(data, emailId) {
           message: "New Address Created",
           status: 200,
           error: "",
-          userObject: item,
+          addressObject: item,
         };
       })
       .catch(function (error) {
