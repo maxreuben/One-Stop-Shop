@@ -10,6 +10,8 @@ const bcrypt = require("bcrypt")
 app.get("/resetPassword", urlencodedParser, async function (request, response) {
     const emailId = request.query.email
     const hash = request.query.hash
+
+    console.log("INSIDE THE RESET PASSWORD")
     if (request.query && emailId && hash) {
         let user = await User.findOne({
             where: {
