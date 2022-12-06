@@ -18,6 +18,7 @@ async function addPaymentMethodService(data, emailId) {
       expiryDate: data.expiryDate,
       cvv: data.cvv,
       cardType: data.cardType,
+      nameOnCard: data.nameOnCard,
       UserId: user.id,
     })
       .then(function (item) {

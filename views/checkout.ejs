@@ -16,7 +16,7 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="../public/css/checkout.css">
+  <link rel="stylesheet" href="./css/checkout.css">
 
   
 
@@ -55,10 +55,10 @@
         <% for(let i=0; i < CartDetails.length; i++) { %>
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0"><%= CartDetails[i] %></h6>
-            <small class="text-muted">Brief description</small>
+            <h6 class="my-0"><%= CartDetails[i].productDetails.name %></h6>
+            <small class="text-muted">Quantity : - <%= CartDetails[i].quantity %></small>
           </div>
-          <span class="text-muted">$12</span>
+          <span class="text-muted">$<%= CartDetails[i].productDetails.discountedPrice %></span>
         </li>
         <% } %>
         <!-- <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -75,13 +75,13 @@
           </div>
           <span class="text-muted">$5</span>
         </li> -->
-        <li class="list-group-item d-flex justify-content-between bg-light">
+        <!-- <li class="list-group-item d-flex justify-content-between bg-light">
           <div class="text-success">
             <h6 class="my-0">Promo code</h6>
             <small>EXAMPLECODE</small>
           </div>
           <span class="text-success">-$5</span>
-        </li>
+        </li> -->
         <li class="list-group-item d-flex justify-content-between">
           <span>Total (USD)</span>
           <strong>$20</strong>
@@ -103,8 +103,9 @@
 
       <h4 class="mb-3">Billing address</h4>
 
-      <select id="selectAddress" onchange="fillAddress()">
-        <option>Choose a Address</option>
+      <select class="btn btn-secondary dropdown-toggle" id="selectAddress" onchange="fillAddress()">
+        <span class="caret"></span></button>
+        <option class="dropdown-menu">Choose a Address</option>
       </select>
 
       <!-- <div class="dropdown">
@@ -228,7 +229,7 @@
 
         <h4 class="mb-3">Payment</h4>
 
-        <select id="selectPayment" onchange="fillPaymentMethods()">
+        <select class="btn btn-secondary dropdown-toggle" id="selectPayment" onchange="fillPaymentMethods()">
           <option>Choose a Payment</option>
         </select>
 
