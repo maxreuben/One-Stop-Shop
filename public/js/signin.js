@@ -32,7 +32,7 @@ window.onload = function () {
         password: password,
       }),
     };
-    fetch("http://localhost:8001/signin", options)
+    fetch("/signin", options)
       .then(function (response) {
         console.log(response);
 
@@ -144,7 +144,7 @@ window.onload = function () {
         password: password,
       }),
     };
-    fetch("http://localhost:8001/signup", options)
+    fetch("/signup", options)
       .then(function (response) {
         
         let json = response.json();
