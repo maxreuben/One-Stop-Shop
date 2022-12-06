@@ -26,6 +26,27 @@ function adjustQuantity(adjustAmount) {
   quantityEl.innerHTML = Math.max(1, currQty + adjustAmount).toString();
 }
 
+function getCookie(name) {
+  var dc = document.cookie;
+  var prefix = name + "=";
+  var begin = dc.indexOf("; " + prefix);
+  if (begin == -1) {
+      begin = dc.indexOf(prefix);
+      if (begin != 0) return null;
+  }
+  else
+  {
+      begin += 2;
+      var end = document.cookie.indexOf(";", begin);
+      if (end == -1) {
+      end = dc.length;
+      }
+  }
+  // because unescape has been deprecated, replaced with decodeURI
+  //return unescape(dc.substring(begin + prefix.length, end));
+  return decodeURI(dc.substring(begin + prefix.length, end));
+} 
+
 /**
  * Adds the product to cart in the specified quantity
  */
@@ -35,6 +56,13 @@ async function addToCart() {
   // );
   // const qty = parseInt(quantityEl.innerHTML);
   // quantityEl.innerHTML = String(1);
+  var myCookie = getCookie("emailId");
+      if (myCookie == null || cookies.emailId.length === 0) {
+      // userForm.classList.add("show");
+      // navList.classList.remove("show");
+      location.href = "/signin?#";
+    } else {
+     
 
   let addedToCart = document.getElementById("added-to-cart");
   addedToCart.style.visibility = "visible";
@@ -63,4 +91,5 @@ async function addToCart() {
     .catch(function (error) {
       console.log(error);
     });
+  }
 }
