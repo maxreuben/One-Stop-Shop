@@ -46,7 +46,6 @@ app.post(
       output[name] = value;
     });
 
-    console.log(output);
     data.emailId = output.emailId;
 
     let res = await addPaymentMethodService(data, output.emailId);
