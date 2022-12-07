@@ -69,7 +69,7 @@ app.use(shop);
 const contactPage = require("./routes/contact");
 app.use(contactPage);
 
-const orderHistory = require("./routes/orderHistory");
+const orderHistory = require("./routes/orderRoutes");
 app.use(orderHistory);
 
 const addressHistory = require("./routes/addAddress");
@@ -86,17 +86,35 @@ app.use(editAddress);
 
 const addAddress = require("./routes/addAddressPage");
 app.use(addAddress);
+
+const cartPage = require("./routes/cart");
+app.use(cartPage);
+
 const cart = require("./routes/cartRoutes");
 app.use(cart);
 
 const forgotPassword = require("./routes/forgotPassword");
 app.use(forgotPassword);
 
-const editPaymentMethod = require("./routes/editPaymentMethod");
-app.use(editPaymentMethod);
+const addVendor = require("./routes/addVendor");
+app.use(addVendor);
 
-const addPaymentMethod = require("./routes/addPaymentMethodPage");
-app.use(addPaymentMethod);
+const vendorHomePage = require("./routes/vendorHome");
+app.use(vendorHomePage);
+
+const manageProducts = require("./routes/manageProducts");
+app.use(manageProducts);
+
+const addProd = require("./routes/addProduct");
+app.use(addProd);
+
+const getCheckout = require("./routes/getCheckout");
+app.use(getCheckout);
+
+const getCheckoutDetails = require("./routes/getCheckoutDetails");
+app.use(getCheckoutDetails);
+const resetPassword = require("./routes/resetPassword");
+app.use(resetPassword);
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));

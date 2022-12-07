@@ -14,12 +14,7 @@ function sendResetEmail(){
       };
       fetch("/forgotPassword", options)
         .then(function (response) {
-          console.log("Inside fetch");
-    
-         response.json().then(function (value) {
-            console.log(value);
-    
-          });
+            console.log("Inside fetch");
         })
         .catch(function (error) {
           console.log(error);

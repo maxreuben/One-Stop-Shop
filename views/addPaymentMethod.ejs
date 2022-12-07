@@ -1,4 +1,4 @@
-<!-- <head>
+<head>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet"
@@ -7,12 +7,12 @@
         href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5"
         type="text/css" media="all">
 
-    <link rel="stylesheet" href="../public/css/editAddress.css">
+    <link rel="stylesheet" href="../public/css/editPaymentMethod.css">
 
-    <script src="/js/address.js"></script>
+    <script src="/js/paymentMethod.js"></script>
 
 
-</head> -->
+</head>
 
 <head>
 
@@ -278,10 +278,44 @@
 
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
+                                      <div class="">
+                                        <label class="" for="form3Example1m">Card Number</label>
+                                        <input type="text" id="a_cardNumber" class="form-control form-control-lg" value= "" style="font-size: 13px;">
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                      <div class="">
+                                        <label class="" for="form3Example1n">Name on Card</label>
+                                        <input type="text" id="a_nameOnCard" class="form-control form-control-lg" value= "" style="font-size: 13px;">
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                      <div class="">
+                                        <label class="" for="form3Example1n">Expiry date</label>
+                                        <input type="text" id="a_expiryDate" class="form-control form-control-lg" value= "" style="font-size: 13px;">
+                                      </div>
+                                    </div>
+                                    <!-- <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input type="text" id="a_expiryDate" class="form-control form-control-lg"
+                                                value="">
+                                            <label class="form-label" for="form3Example1n">Expiry date</label>
+                                        </div>
+                                    </div> -->
+                                  </div>
+
+                                <!-- <div class="row">
+                                    <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <input type="text" id="a_cardNumber" class="form-control form-control-lg"
                                                 value="">
                                             <label class="form-label" for="form3Example1m">Card Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input type="text" id="a_nameOnCard" class="form-control form-control-lg">
+                                            <label class="form-label" for="form3Example1n">Name on Card</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
@@ -291,23 +325,28 @@
                                             <label class="form-label" for="form3Example1n">Expiry date</label>
                                         </div>
                                     </div>
+                                </div> -->
+                                <div class="">
+                                    <label class="" for="form3Example1n">Card Type</label>
+                                    <input type="text" id="a_cardType" class="form-control form-control-lg" value= "" style="font-size: 13px;">
                                 </div>
 
-                                <div class="form-outline mb-4">
+                                <!-- <div class="form-outline mb-4">
                                     <input type="text" class="form-control form-control-lg">
                                     <select class="select" for="form3Example8" id="a_cardType" value="Select Card">
                                         <option value="1">Credit</option>
                                         <option value="2">Debit</option>
                                     </select>
-                                </div>
+                                </div> -->
 
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
 
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="a_cvv" class="form-control form-control-lg"
-                                                value="">
+                                        <div class="">
                                             <label class="form-label" for="form3Example8">CVV</label>
+                                            <input type="text" id="a_cvv" class="form-control form-control-lg"
+                                                value="" style="font-size: 13px;">
+                                            
                                         </div>
                                 </div>
 

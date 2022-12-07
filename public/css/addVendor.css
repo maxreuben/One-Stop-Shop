@@ -1,0 +1,32 @@
+.card {
+    margin-top: 50px;
+    margin-right: 200px;
+    margin-left: 200px;
+    margin-bottom: 50px;
+    background-color: rgb(255, 213, 255);
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 30px;
+    
+
+}
+.button {
+    border-style: hidden;
+    background-color: aliceblue;
+    color : black;
+
+    
+    
+}
+
+
+
+.card-header{
+    font-family: times;
+    font-size: 35px;
+    font-weight: 500;
+}
+body{
+    background-color:aliceblue;
+}

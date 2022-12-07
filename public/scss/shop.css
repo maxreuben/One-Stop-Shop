@@ -1,6 +1,7 @@
 body > .container {
   display: grid;
   grid-template-columns: min-content min-content auto min-content;
+  padding: 0px 15px 0px;
 }
 
 #filter-section {

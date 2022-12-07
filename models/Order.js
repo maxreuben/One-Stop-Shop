@@ -2,6 +2,8 @@ const { sequelize } = require("./Connection");
 const Sequelize = require("sequelize");
 
 const { User } = require("./User");
+const { Address } = require("./Address");
+const { PaymentMethod } = require("./PaymentMethod");
 
 const Order = sequelize.define("Order", {
   id: {
@@ -21,6 +23,10 @@ const Order = sequelize.define("Order", {
 });
 
 User.hasOne(Order);
+
+Address.hasOne(Order);
+
+PaymentMethod.hasOne(Order);
 
 Order.sync();
 
