@@ -34,16 +34,16 @@ async function addPaymentMethodService(data, emailId) {
     }
 
     let type = 0;
-    if (data.cartType == "Debit") {
+    if (data.cardType === "Debit") {
       type = 1;
-    } else if (data.cardType == "Credit") {
+    } else if (data.cardType === "Credit") {
       type = 2;
     }
     const paymentMethod = await PaymentMethod.create({
       cardNumber: data.cardNumber,
       expiryDate: data.expiryDate,
       cvv: data.cvv,
-      cardType: data.cardType,
+      cardType: type,
       nameOnCard: data.nameOnCard,
       UserId: user.id,
     })
