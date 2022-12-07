@@ -127,13 +127,8 @@ signInButton1.addEventListener("click", () => {
       password: password,
     }),
   };
-<<<<<<< Updated upstream
   console.log('Fetching');
   fetch("/signin", options).then(function (response) {
-=======
-  fetch("http://localhost:5001/signin", options)
-    .then(function (response) {
->>>>>>> Stashed changes
       console.log("RESPONSE", response);
 
       response.json().then(function (value) {
@@ -167,12 +162,7 @@ signInButton1.addEventListener("click", () => {
             ";expires=" +
             expire.toUTCString();
 
-<<<<<<< Updated upstream
-          // location.href = "/";
-          location.reload();
-=======
-          location.href = 'http://localhost:5001/';
->>>>>>> Stashed changes
+          location.href = '/';
         }
       });
     })
