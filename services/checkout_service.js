@@ -6,7 +6,7 @@ const { User } = require("../models/User");
 const { OrderProduct } = require("../models/OrderProduct");
 const { Cart } = require("../models/Cart");
 
-async function checkout(cart, emailId, addressId, paymentMethodId) {
+async function checkout(cart, totalPrice, emailId, addressId, paymentMethodId) {
   let user = await User.findOne({
     where: {
       emailId: emailId,
@@ -16,9 +16,11 @@ async function checkout(cart, emailId, addressId, paymentMethodId) {
 
   let responseData;
 
+  console.log("cart567--", cart);
+
   const order = await Order.create({
     UserId: user.id,
-    orderAmount: 100,
+    orderAmount: totalPrice,
     AddressId: addressId,
     PaymentMethodId : paymentMethodId
   })

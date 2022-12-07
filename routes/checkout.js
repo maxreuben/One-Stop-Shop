@@ -8,11 +8,15 @@ const cons = require("consolidate");
 var cookieParser = require("cookie-parser");
 const { addAddressService } = require("../services/addAddressService");
 const { addPaymentMethodService } = require("../services/addPaymentMethodService");
+const {
+  getUserCart,
+  addToCart,
+  removeProductFromCart,
+  updateProductQuantity,
+} = require("../services/cartServices");
 
 app.post("/checkout", urlencodedParser, async function (request, response) {
   let cookie = request.headers.cookie;
-
-  console.log("inside cab--")
 
   var output = {};
   cookie.split(/\s*;\s*/).forEach(function (pair) {
@@ -24,40 +28,37 @@ app.post("/checkout", urlencodedParser, async function (request, response) {
 
   console.log(output);
 
-
   let addressId;
 
   let paymentMethodId;
 
   let data = request.body;
 
-  console.log("body---12--", data);
-
-  console.log("data.address---", JSON.stringify(data.address));
-
-  //console.log("data.address---", data[address]);
-  console.log("data.address---", JSON.stringify(data['address']));
-  //console.log("data.address---", data.get(address));
-
-  console.log("data.paymentMethod---", data.paymentMethod);
-
   if(data.isNewAddress == 'true') {
-    let addressobj = await addAddressService(data.address, output.emailId);
-    addressId = addressobj.addressObject.id;
+    let responseData = await addAddressService(data, output.emailId);
+    addressId = responseData.addressObject.id;
   } else {
-    addressId = data.address.id;
+    addressId = data.addressId;
   }
 
   if(data.isNewPaymentMethod == 'true') {
-    let paymentobj = await addPaymentMethodService(data.paymentMethod, output.emailId);
-    paymentMethodId = paymentobj.paymentMethodObject.id;
+    let responseData = await addPaymentMethodService(data, output.emailId);
+    paymentMethodId = responseData.paymentMethodObject.id;
   } else {
-    paymentMethodId = data.paymentMethod.id;
+    paymentMethodId = data.paymentId;
   }
 
-  let res = await checkout(output.cart, output.emailId, addressId, paymentMethodId);
+  let cart = await getUserCart(output.emailId);
 
-  response.send("");
+  var totalPrice = 0;
+  
+  cart.map((product) => {
+    totalPrice = totalPrice + (product.quantity * product.productDetails.discountedPrice);
+  })
+
+  let res = await checkout(cart, totalPrice, output.emailId, addressId, paymentMethodId);
+
+  response.send(res);
 });
 
 module.exports = router;

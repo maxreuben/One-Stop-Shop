@@ -169,8 +169,6 @@ function fillPaymentMethods() {
 
 function checkout() {
 
-    console.log("inside checkout");
-
     const a_savecheck = document.getElementById("save-address");
     const a_fname = document.getElementById("firstName").value;
     const a_lname = document.getElementById("lastName").value;
@@ -201,6 +199,8 @@ function checkout() {
         card_type = 1;
     }
 
+    window.location = "/shop";
+
     cookies = document.cookie
         .split(";")
         .map((cookie) => cookie.split("="))
@@ -220,8 +220,6 @@ function checkout() {
         },
         body: new URLSearchParams({
 
-            address : [
-                {
                     firstName: a_fname,
                     lastName: a_lname,
                     address: a_address,
@@ -231,18 +229,12 @@ function checkout() {
                     zipcode: a_zip,
                     phoneNumber: a_phoneNumber,
                     type: "Add",
-                }
-            ],
-            paymentMethod : [
-                {
                     cardNumber: a_number,
                     expiryDate: a_expiry,
                     cardType: card_type,
                     cvv: a_cvv,
                     paymentId: a_paymentId,
                     nameOnCard: a_name,
-                }
-            ],
             isNewAddress: a_savecheck.checked,
             addressId: a_addressId,
             paymentMethodId: a_paymentId,
@@ -256,14 +248,19 @@ function checkout() {
       fetch("/checkout", options)
         .then(function (response) {
           console.log("response----", response);
+          window.location.href = "/shop";
   
-          response.json().then(function (value) {
+        //   response.json().then(function (value) {
             
-            console.log(value);
-            window.location = "/";
-          });
+        //     console.log(value);
+        //     //window.location = "/";
+        //   });
         });
 
-        window.location = "/checkout";  
+    console.log("qwer--", window.location);
+
+    window.location.href = "/shop";
+
+    console.log("qwer--", window.location);
 
 }
