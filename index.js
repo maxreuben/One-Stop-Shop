@@ -116,6 +116,9 @@ app.use(getCheckoutDetails);
 const resetPassword = require("./routes/resetPassword");
 app.use(resetPassword);
 
+const productReview = require("./routes/productReview");
+app.use(productReview)
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

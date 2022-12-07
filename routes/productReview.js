@@ -11,8 +11,10 @@ const { getCookies } = require("../services/getCookies");
 app.get("/productReview/:productId", urlencodedParser, async function (request, response) {
     
     const { productId } = request.params;
+
+    console.log(productId)
     
-    const productReviews = await getProductReviews({ productId });
+    const productReviews = await getProductReviews(productId);
    
     return response.send(JSON.stringify({"response": productReviews}));
     //
@@ -29,11 +31,11 @@ app.post("/productReview", urlencodedParser, async function (request, response) 
    const comments = data.productcomments;
    const rating = data.productrating;
    const productId = data.productId; 
-    console.log(data);
+    console.log("DATA", data);
   
   
   
-    productReview(data,cookies.emailId)
+    let respo = productReview(data,cookies.emailId) 
       .then(function (responseData) {
        
         console.log("RESPONSE DATA", responseData);
@@ -41,8 +43,12 @@ app.post("/productReview", urlencodedParser, async function (request, response) 
         response.send(JSON.stringify(responseData));
       })
       .catch(function (error) {
+        console.log("FROM ERROR", error)
         response.status = 404;
         response.send(JSON.stringify({ Response: "Error", error: error }));
       });
   });
+
+
+  module.exports = router
   

@@ -3,21 +3,29 @@ const Sequelize = require("sequelize");
 const bcrypt = require("bcrypt");
 const { response } = require("express");
 // const {  sendMail } = require("./email");
+const {get_logged_user_service} = require("./get_current_user_details")
+
+
+
 
 const { ProductReview } = require("../models/ProductReview");
 
 async function productReview(data,EmailId) {
+  console.log("EMAIL ID", EmailId)
     let user = await get_logged_user_service(EmailId);
+    console.log("INSIDE PRODUT REVIEW FUNCTION")
 
-  let responseData = {};
+  let responseData;
+
+  console.log("USER", user);
 
   //   console.log(data);
   const productReview = await ProductReview.create({
-    UserId:  user.Id,
+    UserId:  user.id,
     ProductId: data.productId,
     OrderId: data.orderId,
     rating: data.rating,
-    review: data.review
+    review: data.comments
    
   })
     .then(function (item) {
@@ -42,6 +50,8 @@ async function productReview(data,EmailId) {
 }
 
 async function getProductReviews(productId){
+
+  console.log("Product Id", productId)
     let reviews = await ProductReview.findAll({
         where: {
             ProductId: productId

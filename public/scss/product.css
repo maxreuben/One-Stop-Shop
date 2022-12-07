@@ -106,3 +106,19 @@ body > .container {
   visibility: hidden;
 }
 /*# sourceMappingURL=product.css.map */
+
+#review {
+  height: 300px;
+  width: 100%;
+  border-radius: 25px;
+  border: 2px solid #ad6221;
+  padding: 20px;
+  overflow:auto
+
+}
+
+.review_item {
+  border-bottom: 1px solid ;
+  padding: 20px;
+}
+
