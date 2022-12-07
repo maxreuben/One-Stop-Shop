@@ -69,7 +69,7 @@ app.use(shop);
 const contactPage = require("./routes/contact");
 app.use(contactPage);
 
-const orderHistory = require("./routes/orderHistory");
+const orderHistory = require("./routes/orderRoutes");
 app.use(orderHistory);
 
 const addressHistory = require("./routes/addAddress");
@@ -108,15 +108,13 @@ app.use(manageProducts);
 const addProd = require("./routes/addProduct");
 app.use(addProd);
 
-
 const getCheckout = require("./routes/getCheckout");
 app.use(getCheckout);
 
 const getCheckoutDetails = require("./routes/getCheckoutDetails");
 app.use(getCheckoutDetails);
-const resetPassword = require("./routes/resetPassword")
-app.use(resetPassword)
-
+const resetPassword = require("./routes/resetPassword");
+app.use(resetPassword);
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));

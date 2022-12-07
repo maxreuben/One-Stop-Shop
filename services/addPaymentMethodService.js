@@ -6,7 +6,6 @@ const { User } = require("../models/User");
 const { PaymentMethod } = require("../models/PaymentMethod");
 
 async function addPaymentMethodService(data, emailId) {
-
   let responseData;
 
   if (data.type == "Add") {
@@ -16,6 +15,30 @@ async function addPaymentMethodService(data, emailId) {
       },
     });
     //let responseData;
+
+    const existingPaymentMethod = await PaymentMethod.findOne({
+      where: {
+        UserId: user.id,
+        cardNumber: data.cardNumber,
+      },
+    });
+
+    if (existingPaymentMethod != null) {
+      responseData = {
+        message: "Error, duplicate payment method exists",
+        status: 501,
+        error: "",
+      };
+
+      return responseData;
+    }
+
+    let type = 0;
+    if (data.cartType == "Debit") {
+      type = 1;
+    } else if (data.cardType == "Credit") {
+      type = 2;
+    }
     const paymentMethod = await PaymentMethod.create({
       cardNumber: data.cardNumber,
       expiryDate: data.expiryDate,
@@ -25,6 +48,7 @@ async function addPaymentMethodService(data, emailId) {
       UserId: user.id,
     })
       .then(function (item) {
+        console.log("NEW PAYMENT METHOD CREATED");
         responseData = {
           message: "New Payment Method Created",
           status: 200,

@@ -54,4 +54,12 @@ app.post(
   }
 );
 
+app.get(
+  "/addPaymentMethod",
+  urlencodedParser,
+  async function (request, response) {
+    response.render("addPaymentMethod");
+  }
+);
+
 module.exports = router;
