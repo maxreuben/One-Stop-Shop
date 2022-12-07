@@ -9,7 +9,7 @@ const {
   getUserCart,
 } = require("../services/cartServices");
 
-app.get("/checkout", urlencodedParser, async function (request, response) {
+app.get("/checkoutPage", urlencodedParser, async function (request, response) {
   let cookie = request.headers.cookie;
 
   var output = {};

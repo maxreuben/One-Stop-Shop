@@ -385,7 +385,7 @@ function updateTotalOfCart (cart) {
 
 function proceedtoCheckout() {
 
-  window.location.href = "/checkout";
+  window.location.href = "/checkoutPage";
 
 }
 

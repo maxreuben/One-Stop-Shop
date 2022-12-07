@@ -12,6 +12,8 @@ const { addPaymentMethodService } = require("../services/addPaymentMethodService
 app.post("/checkout", urlencodedParser, async function (request, response) {
   let cookie = request.headers.cookie;
 
+  console.log("inside cab--")
+
   var output = {};
   cookie.split(/\s*;\s*/).forEach(function (pair) {
     pair = pair.split(/\s*=\s*/);
@@ -29,14 +31,24 @@ app.post("/checkout", urlencodedParser, async function (request, response) {
 
   let data = request.body;
 
-  if(data.isNewAddress == true) {
+  console.log("body---12--", data);
+
+  console.log("data.address---", JSON.stringify(data.address));
+
+  //console.log("data.address---", data[address]);
+  console.log("data.address---", JSON.stringify(data['address']));
+  //console.log("data.address---", data.get(address));
+
+  console.log("data.paymentMethod---", data.paymentMethod);
+
+  if(data.isNewAddress == 'true') {
     let addressobj = await addAddressService(data.address, output.emailId);
     addressId = addressobj.addressObject.id;
   } else {
     addressId = data.address.id;
   }
 
-  if(data.isNewPaymentMethod == true) {
+  if(data.isNewPaymentMethod == 'true') {
     let paymentobj = await addPaymentMethodService(data.paymentMethod, output.emailId);
     paymentMethodId = paymentobj.paymentMethodObject.id;
   } else {
