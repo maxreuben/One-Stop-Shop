@@ -93,3 +93,68 @@ async function addToCart() {
     });
   }
 }
+
+
+
+async function getReviews(reviews) {
+  console.log("Here it is ",reviews)
+  div = document.getElementById("review");
+  reviews.map((review) => {
+    
+    review_itemdiv = document.createElement("div");
+    review_itemdiv.className = "review_item";
+
+    // review_titlediv = document.createElement("div");
+    // review_itemdiv.className = "review_title";
+
+    // headerDiv = document.createElement("h1");
+    // headerDiv.innerHTML = "Title : " ;
+
+    // review_titlediv.appendChild(headerDiv);
+    // review_itemdiv.appendChild(review_titlediv);
+
+
+    review_userdiv = document.createElement("div");
+    review_userdiv.className = "review_user";
+    review_userdiv.innerHTML = review.id;
+    review_itemdiv.appendChild(review_userdiv);
+
+    review_descriptiondiv = document.createElement("div");
+    review_descriptiondiv.className = "review_description";
+    review_descriptiondiv.innerHTML = "Description - " + review.review;
+    review_itemdiv.appendChild(review_descriptiondiv);
+
+    div.appendChild(review_itemdiv);
+  });
+}
+
+
+window.onload = function () {
+
+
+  const options = {
+    method: "GET"
+  
+  };
+  let st = "/productReview/" + document.getElementById("a_addressId").value;
+  console.log(st);
+  fetch(st, options)
+    .then(function (response) {
+      console.log(response);
+
+      response.json().then(function (value) {
+        
+        console.log(value.response);
+
+        var reviews = value.response  ;
+        getReviews(reviews);
+              
+        });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
+
+}
