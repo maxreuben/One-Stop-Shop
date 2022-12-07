@@ -19,7 +19,27 @@ const ProductReview = sequelize.define("ProductReview",{
     rating:{
         type : Sequelize.FLOAT,
     },
-    
+    userFirstName:{
+        type : Sequelize.STRING,
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
 })
 
@@ -27,5 +47,5 @@ User.hasOne(ProductReview);
 Product.hasOne(ProductReview);
 Order.hasOne(ProductReview);
 
-ProductReview.sync();
+ProductReview.sync({alter: true});
 module.exports = { ProductReview };

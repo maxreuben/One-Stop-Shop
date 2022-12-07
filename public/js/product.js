@@ -116,7 +116,7 @@ async function getReviews(reviews) {
 
     review_userdiv = document.createElement("div");
     review_userdiv.className = "review_user";
-    review_userdiv.innerHTML = review.id;
+    review_userdiv.innerHTML = review.userFirstName;
     review_itemdiv.appendChild(review_userdiv);
 
     review_descriptiondiv = document.createElement("div");

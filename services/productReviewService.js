@@ -17,11 +17,13 @@ async function productReview(data,EmailId) {
 
   let responseData;
 
-  console.log("USER", user);
+  //console.log("USER", user);
+  console.log("USER Email",user.firstName);
 
   //   console.log(data);
   const productReview = await ProductReview.create({
     UserId:  user.id,
+    userFirstName : user.firstName,
     ProductId: data.productId,
     OrderId: data.orderId,
     rating: data.rating,
