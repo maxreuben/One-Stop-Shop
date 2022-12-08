@@ -54,8 +54,35 @@
                         <div class="col-xl-6">
                             <div class="card-body p-md-5 text-black">
                                 <h3 class="mb-4 text-uppercase">Payment Method Info</h3>
-
                                 <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                      <div class="">
+                                        <label class="" for="form3Example1m">Card Number</label>
+                                        <input type="text" id="a_cardNumber" class="form-control form-control-lg" value= "<%= PaymentMethod['cardNumber'] %>" style="font-size: 13px;">
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                      <div class="">
+                                        <label class="" for="form3Example1n">Name on Card</label>
+                                        <input type="text" id="a_nameOnCard" class="form-control form-control-lg" value= "<%= PaymentMethod['nameOnCard'] %>" style="font-size: 13px;">
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                      <div class="">
+                                        <label class="" for="form3Example1n">Expiry date</label>
+                                        <input type="text" id="a_expiryDate" class="form-control form-control-lg" value= "<%= PaymentMethod['expiryDate'] %>" style="font-size: 13px;">
+                                      </div>
+                                    </div>
+                                    <!-- <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input type="text" id="a_expiryDate" class="form-control form-control-lg"
+                                                value="">
+                                            <label class="form-label" for="form3Example1n">Expiry date</label>
+                                        </div>
+                                    </div> -->
+                                  </div>
+
+                                <!-- <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <input type="text" id="a_cardNumber" class="form-control form-control-lg"
@@ -77,15 +104,29 @@
                                             <label class="form-label" for="form3Example1n">Expiry date</label>
                                         </div>
                                     </div>
+                                </div> -->
+                                <div class="">
+                                    <label class="" for="form3Example1n">Card Type</label>
+                                    <input type="text" id="a_cardType" class="form-control form-control-lg" value= "<%= PaymentMethod['cardType'] %>" style="font-size: 13px;">
                                 </div>
-
-                                <div class="form-outline mb-4">
+                                <!-- <div class="form-outline mb-4">
                                     <input type="text" id="a_cardType" class="form-control form-control-lg"
                                         value="<%= PaymentMethod['cardType'] %>">
                                     <label class="form-label" for="form3Example8">Card Type</label>
-                                </div>
+                                </div> -->
 
                                 <div class="row">
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="">
+                                            <label class="form-label" for="form3Example8">CVV</label>
+                                            <input type="text" id="a_cvv" class="form-control form-control-lg"
+                                                value="<%= PaymentMethod['cvv'] %>" style="font-size: 13px;">
+                                            
+                                        </div>
+                                </div>
+
+                                <!-- <div class="row">
                                     <div class="col-md-6 mb-4">
 
                                         <div class="form-outline mb-4">
@@ -95,7 +136,7 @@
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="form-outline mb-4" hidden>
                                     <input type="text" id="a_paymentId" class="form-control form-control-lg"

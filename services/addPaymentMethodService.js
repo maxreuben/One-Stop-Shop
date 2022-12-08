@@ -7,7 +7,7 @@ const { PaymentMethod } = require("../models/PaymentMethod");
 
 async function addPaymentMethodService(data, emailId) {
   let responseData;
-
+  console.log("TYPE", data.type)
   if (data.type == "Add") {
     let user = await User.findOne({
       where: {
@@ -48,7 +48,7 @@ async function addPaymentMethodService(data, emailId) {
       UserId: user.id,
     })
       .then(function (item) {
-        console.log("NEW PAYMENT METHOD CREATED");
+        // console.log("NEW PAYMENT METHOD CREATED");
         responseData = {
           message: "New Payment Method Created",
           status: 200,
@@ -61,14 +61,22 @@ async function addPaymentMethodService(data, emailId) {
         responseData = { message: "Error", status: 501, error: error.errors };
       });
   } else if (data.type == "Edit") {
-    console.log("test", data.userId);
+    // console.log("entered the edit payment method");
+    // console.log("test", data.userId);
+    let type = 0;
+    if (data.cardType === "Debit") {
+      type = 1;
+    } else if (data.cardType === "Credit") {
+      type = 2;
+    }
     let responseData;
     const paymentMethod = await PaymentMethod.update(
       {
         cardNumber: data.cardNumber,
         expiryDate: data.expiryDate,
         cvv: data.cvv,
-        cardType: data.cardType,
+        cardType: type,
+        nameOnCard: data.nameOnCard
       },
       {
         where: {
@@ -89,7 +97,7 @@ async function addPaymentMethodService(data, emailId) {
         responseData = { message: "Error", status: 501, error: error.errors };
       });
   }
-
+  console.log("response",responseData);
   return responseData;
 }
 

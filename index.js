@@ -78,6 +78,9 @@ app.use(addressHistory);
 const paymentMethodsHistory = require("./routes/addPaymentMethod");
 app.use(paymentMethodsHistory);
 
+const editpaymentmethod = require("./routes/editPaymentMethod");
+app.use(editpaymentmethod);
+
 const aboutus = require("./routes/aboutus");
 app.use(aboutus);
 
