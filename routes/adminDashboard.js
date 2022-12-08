@@ -2,14 +2,30 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-const {
-  get_logged_user_service,
-} = require("../services/get_current_user_details");
+
 
 app.get("/adminDashboard", urlencodedParser, async function (request, response) {
-    data = request.body
-    response.render("adminDashboard.ejs");
+
+    response.render("adminDashboard.ejs",);
   }
 );
+
+app.post("/adminDashboard", urlencodedParser, function (request, response) {
+  data = request.body;
+  updatethevendor(data)
+    .then(function (responseData) {
+      response.status = responseData.status;
+      response.send(JSON.stringify(responseData));
+     
+    })
+    .catch(function (error) {
+      response.status = 404;
+     
+      response.send(JSON.stringify({ Response: "Error", error: error }));
+    });
+   
+});
+
+
 
 module.exports = router;
