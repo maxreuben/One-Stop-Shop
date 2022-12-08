@@ -111,6 +111,7 @@ app.use(orderRoutes)
 <<<<<<< Updated upstream
 const getCheckout = require("./routes/getCheckout");
 app.use(getCheckout);
+const reviewRoutes = require("./routes/productReview");
 app.use(reviewRoutes)
 =======
 const thankYou = require("./routes/thanks");
