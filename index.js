@@ -95,6 +95,8 @@ app.use(forgotPassword);
 const addVendor = require("./routes/addVendor");
 app.use(addVendor);
 
+const adminDashboard = require("./routes/adminDashboard");
+app.use(adminDashboard);
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
