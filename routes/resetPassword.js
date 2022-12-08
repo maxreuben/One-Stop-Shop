@@ -68,7 +68,7 @@ app.post("/resetPassword", urlencodedParser, async function (request, response) 
           });
           return responseData;
     }
-    response.redirect("/signin");
+    response.redirect("/signin?#");
 });
 
 module.exports = router;

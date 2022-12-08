@@ -99,6 +99,9 @@ app.use(cart);
 const forgotPassword = require("./routes/forgotPassword");
 app.use(forgotPassword);
 
+const resetPassword = require("./routes/resetPassword");
+app.use(resetPassword);
+
 const addVendor = require("./routes/addVendor");
 app.use(addVendor);
 
