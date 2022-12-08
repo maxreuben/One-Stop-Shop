@@ -188,6 +188,27 @@ function checkout() {
     const a_addressId = document.getElementById("address_id").value;
     const a_paymentId = document.getElementById("payment_id").value;
 
+    var cardnumber = a_number;
+
+    if(cardnumber == "") {
+        let addedToCart = document.getElementById("invalid-card-details");
+        addedToCart.style.visibility = "visible";
+    } else {
+        var regex = /(^4[0-9]{12}(?:[0-9]{3})?$)|(^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$)|(3[47][0-9]{13})|(^3(?:0[0-5]|[68][0-9])[0-9]{11}$)|(^6(?:011|5[0-9]{2})[0-9]{12}$)|(^(?:2131|1800|35\d{3})\d{11}$)/;                
+        if(regex.test(cardnumber) === false) {
+            let addedToCart = document.getElementById("invalid-card-details");
+            addedToCart.style.visibility = "visible";
+            
+            return;
+
+        } else {
+            //printError("cardnumberErr", "");
+            //cardnumberErr = false;
+        }
+    }
+
+
+
     let card_type = 2;
 
     if(a_credit.checked == true){
@@ -198,19 +219,6 @@ function checkout() {
 
         card_type = 1;
     }
-
-    window.location = "/shop";
-
-    cookies = document.cookie
-        .split(";")
-        .map((cookie) => cookie.split("="))
-        .reduce(
-            (accumulator, [key, value]) => ({
-            ...accumulator,
-            [key.trim()]: decodeURIComponent(value),
-            }),
-            {}
-        );
 
     const options = {
         method: "POST",
@@ -247,20 +255,19 @@ function checkout() {
 
       fetch("/checkout", options)
         .then(function (response) {
-          console.log("response----", response);
-          window.location.href = "/shop";
+          //console.log("response----", response);
+          //window.location.href = "/shop";
   
-        //   response.json().then(function (value) {
+          response.json().then(function (value) {
             
-        //     console.log(value);
-        //     //window.location = "/";
-        //   });
+            console.log(value);
+            window.location = "/shop";
+          });
         });
 
-    console.log("qwer--", window.location);
 
     window.location.href = "/shop";
 
-    console.log("qwer--", window.location);
+    return;
 
 }

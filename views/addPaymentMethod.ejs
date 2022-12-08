@@ -21,7 +21,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="theme-color" content="#33b5e5">
 
-    <link rel="stylesheet" href="../public/css/editPaymentMethod.css">
+    <link href = "/css/editPaymentMethod.css" rel = "stylesheet">
 
     <script src="/js/paymentMethod.js"></script>
 
@@ -356,6 +356,14 @@
 
                                 <div class="form-outline mb-4" hidden>
                                     <input type="text" id="a_type1" class="form-control form-control-lg" value="Add">
+                                </div>
+
+                                <div class="invalid-card-number" id="invalid-card-number">
+                                    <h1 style="font-size: 19px;">Invalid Card Number</h1>
+                                </div>
+
+                                <div class="card-already-exits" id="card-already-exits">
+                                    <h1 style="font-size: 19px;">Payment Method already exists for the user</h1>
                                 </div>
 
                                 <div class="d-flex justify-content-end pt-3">

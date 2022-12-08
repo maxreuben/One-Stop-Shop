@@ -108,7 +108,11 @@ app.use(addVendor);
 const orderRoutes = require("./routes/orderRoutes");
 app.use(orderRoutes)
 
+const getCheckout = require("./routes/getCheckout");
+app.use(getCheckout);
 
+const getCheckoutDetails = require("./routes/getCheckoutDetails");
+app.use(getCheckoutDetails);
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));

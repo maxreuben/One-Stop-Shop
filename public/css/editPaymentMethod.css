@@ -19,3 +19,13 @@
     width: 50%;
     overflow-y: scroll;
 }
+
+.invalid-card-number {
+    font-size: 19px;
+    visibility: hidden;
+}
+
+.card-already-exits {
+    font-size: 19px;
+    visibility: hidden;
+}

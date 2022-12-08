@@ -1,3 +1,5 @@
+//const e = require("express");
+
 window.onload = function () {
   const Save = document.getElementById("p_save1");
 
@@ -9,6 +11,9 @@ window.onload = function () {
     const a_paymentId = document.getElementById("a_paymentId").value;
     const a_type1 = document.getElementById("a_type1").value;
     const a_nameOnCard = document.getElementById("a_nameOnCard").value;
+
+    //let addedToCart = document.getElementById("invalid-card-number");
+    //addedToCart.style.visibility = "";
 
 
     console.log(a_cardType);
@@ -45,6 +50,23 @@ window.onload = function () {
         {}
       );
 
+      var cardnumber = a_cardNumber;
+
+      if(cardnumber == "") {
+        let addedToCart = document.getElementById("invalid-card-number");
+        addedToCart.style.visibility = "visible";
+      } else {
+        var regex = /(^4[0-9]{12}(?:[0-9]{3})?$)|(^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$)|(3[47][0-9]{13})|(^3(?:0[0-5]|[68][0-9])[0-9]{11}$)|(^6(?:011|5[0-9]{2})[0-9]{12}$)|(^(?:2131|1800|35\d{3})\d{11}$)/;                
+        if(regex.test(cardnumber) === false) {
+            let addedToCart = document.getElementById("invalid-card-number");
+            addedToCart.style.visibility = "visible";
+            
+            return;
+
+        } else {
+        }
+    }
+
     const data = {
       a_cardNumber,
       a_expiryDate,
@@ -71,8 +93,29 @@ window.onload = function () {
     };
     fetch("/add-payment-method", options)
       .then(function (response) {
-        let json = response.json();
-        window.location = "http://localhost:5001/managePaymentMethod";
+
+        if(a_type1 == "Add"){
+
+          response.json().then(function (value) {
+            
+            //console.log("json--", value);
+
+            if(value.status == 501){
+
+              //console.log("json--", value);
+
+              let invalidCard = document.getElementById("card-already-exits");
+              invalidCard.style.visibility = "visible";
+
+            }else{
+              window.location = "/managePaymentMethod";
+            }
+
+          })
+      }else{
+        window.location = "/managePaymentMethod";
+      }
+
       })
       .catch(function (error) {
         console.log(error);
