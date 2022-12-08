@@ -110,6 +110,8 @@ app.use(orderRoutes)
 
 const getCheckout = require("./routes/getCheckout");
 app.use(getCheckout);
+app.use(reviewRoutes)
+
 
 const getCheckoutDetails = require("./routes/getCheckoutDetails");
 app.use(getCheckoutDetails);

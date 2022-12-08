@@ -30,6 +30,41 @@
     if (document.location.search.match(/type=embed/gi)) {
       window.parent.postMessage("resize", "*");
     }
+
+    function SubmitReview(res,id){
+      console.log(window.location.href.split("/")[4])
+      let oid = window.location.href.split("/")[4];
+      console.log(res)
+      console.log(id)
+      ReviewText = res.previousElementSibling;
+      console.log(ReviewText.value)
+      Rating = ReviewText.previousElementSibling.previousElementSibling
+      console.log(Rating.value)
+      
+      const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        orderId: window.location.href.split("/")[4],
+        comments: ReviewText.value,
+        rating: Rating.value,
+        productId: id,
+      }),
+    };
+    fetch("/productReview", options)
+      .then(function (response) {
+        console.log("In resp");
+        let json = response.json();
+        console.log(json);
+      })
+      .catch(function (error) {
+        console.log("In Error");
+        console.log(error);
+      });
+
+    }
   </script>
   
   
@@ -66,11 +101,11 @@
               </div>
               <% for(let i = 0, c = 0; i < ProductDetails.length, c < orderDetails.length; i++, c++) { %>
               
-              <div class="row no-gutters mt-3" style="border: solid;">
+              <div class="row no-gutters mt-3" style="border: solid;width:90%;">
                 <div class="col-3 col-sm-1">
                   <!-- <img class="img-fluid pr-3" src="https://tanga2.imgix.net/https%3A%2F%2Fs3.amazonaws.com%2Ftanga-images%2Ffc79d08c12dc.jpeg?ixlib=rails-2.1.1&fit=crop&w=500&h=500&auto=format%2Ccompress&cs=srgb&s=c9a50d474788f2658d13b21aa62edd6c" alt=""> -->
                 </div>
-                <div class="col-12 col-sm-8 pr-0 pr-md-3">
+                <div class="col-12 col-sm-8 pr-0 pr-md-3" >
                   <li class="">
                     <p><b><a href="../product/<%= ProductDetails[i].id %>" class="text-charcoal" style="color: blue;"><%= ProductDetails[i].name %></a></b></p>
                   </li>
@@ -87,9 +122,16 @@
                   </ul>
                   <h6 class="text-charcoal text-left mb-0 mb-md-2"><b style="font-size: 16px;">Amount :- $ <%= ProductDetails[i].discountedPrice %></b></h6>
                 </div>
+            
                 <div class="col-12 col-sm-3 hidden-sm-down">
                   <!-- <a href="" class="btn btn-secondary w-100 mb-2">Buy It Again</a>
                   <a href="" class="btn btn-secondary w-100">Request a Return</a> -->
+
+                  <h3>Rating :</h3>
+                  <input  type="number" max="5" min="0"  />
+                  <h3>Description :</h3>
+                  <textarea style="height: 90px;width: 200px;" placeholder="Describe Your Experience" ></textarea>
+                  <button type="button" class="btn btn-info" onclick="SubmitReview(this,<%= ProductDetails[i].id%>)" >Submit Review</button>
                 </div>
               </div>
               <% } %>
