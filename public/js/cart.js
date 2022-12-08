@@ -137,90 +137,9 @@ window.onload = function () {
       
         console.log(value);
 
-        var  cart = value;
+        var cart = value;
         renderCartItems(cart);
-        // div = document.getElementById("cart-items")
-        // cart.map((product) => {
-
-        //   basketdiv = document.createElement("div");
-        //   basketdiv.className = "basket-product";
-
-        //   itemDiv = document.createElement("div");
-        //   itemDiv.className = "item"
-
-        //   imageDiv = document.createElement("div");
-        //   imageDiv.className = "product-image";
-
-        //   imageEle = document.createElement("img")
-        //   imageEle.src = product.productDetails.image[0];
-
-        //   imageDiv.appendChild(imageEle);
-          
-
-        //   productDet = document.createElement("div");
-        //   productDet.className = "product-details";
-
-        //   headerDiv = document.createElement("h1");
-        //   headerDiv.innerHTML = product.productDetails.name;
-
-        //   productDet.appendChild(headerDiv);
-        //   itemDiv.appendChild(imageDiv);
-        //   itemDiv.appendChild(productDet);
-
-        //   priceDiv = document.createElement("div");
-        //   priceDiv.className = "price";
-        //   priceDiv.innerHTML = product.productDetails.discountedPrice;
-
-        //   quantityDiv = document.createElement("div");
-        //   quantityDiv.className = "quantity";
-
-        //   inputDiv = document.createElement("input");
-        //   inputDiv.className = "quantity-field";
-        //   inputDiv.type = "number";
-        //   inputDiv.value = product.quantity;
-
-        //   quantityDiv.appendChild(inputDiv);
-
-        //   subTot = document.createElement("div");
-        //   subTot.className = "subtotal"
-        //   subTot.innerHTML = "500"
-
-        //   hiddendiv = document.createElement("div");
-        //   hiddendiv.style.visibility = 'hidden';
-        //   hiddendiv.innerHTML = product.productDetails.id;
-
-
-        //   removeDiv = document.createElement("div");
-        //   removeDiv.className = "remove";
-        //   // removeDiv.value = product.productDetails.id;
-        //   //removeDiv.onclick = `removeProductFromCart(${product.productDetails.id})`;
-
-        //   removeBut = document.createElement("button");
-        //   removeBut.type = "button";
-        //   removeBut.innerHTML = "Remove";
-
-        //   removeBut.addEventListener("click", removeProductFromCart(product.productDetails.id));
-        //   // removeBut.onclick  = `removeProductFromCart(${product.productDetails.id})`;
-
-        //   removeDiv.appendChild(removeBut);
-
-        //   basketdiv.appendChild(itemDiv);
-          
-        //   basketdiv.appendChild(priceDiv);
-        //   basketdiv.appendChild(quantityDiv);
-        //   basketdiv.appendChild(subTot);
-        //   basketdiv.appendChild(hiddendiv);
-        //   basketdiv.appendChild(removeDiv);
-
-        //   div.appendChild(basketdiv);
-
-        // })
-
-        
-
-
-        
-          
+              
         });
     })
     .catch(function (error) {
@@ -255,6 +174,39 @@ async function removeProductFromCart(productID) {
 
 
 }
+
+async function updateProductFromCart(ele,productID) {
+  console.log(productID);
+  console.log(ele.value);
+  if(ele.value >0){
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        productId: productID,
+        quantity: ele.value
+      }),
+    };
+    fetch("/updateProductQuantity", options)
+      .then(function (response) {
+        console.log(response);
+
+        response.json().then(function (value) {
+          
+          console.log(value);
+          window.location.reload();
+        });
+      });
+
+  }
+  else{
+    removeProductFromCart(productID);
+  }
+    
+}
+
 
 function renderCartItems(cart) {
   div = document.getElementById("cart-items")
@@ -295,13 +247,14 @@ function renderCartItems(cart) {
           inputDiv = document.createElement("input");
           inputDiv.className = "quantity-field";
           inputDiv.type = "number";
+          inputDiv.addEventListener("click", function(){updateProductFromCart(this,product.productDetails.id)});
           inputDiv.value = product.quantity;
 
           quantityDiv.appendChild(inputDiv);
 
           subTot = document.createElement("div");
           subTot.className = "subtotal"
-          subTot.innerHTML = "500"
+          subTot.innerHTML = product.quantity*product.productDetails.discountedPrice;
 
           hiddendiv = document.createElement("div");
           hiddendiv.style.visibility = 'hidden';
@@ -332,4 +285,27 @@ function renderCartItems(cart) {
 
           div.appendChild(basketdiv);
         })
+
+        updateTotalOfCart(cart);
 }
+
+function updateTotalOfCart (cart) {
+  var totalPrice = 0;
+  const finalCartValue = document.getElementById("final-value");
+  const TaxValue = document.getElementById("basket-subtotal").innerText;
+  cart.map((product) => {
+    totalPrice = totalPrice + (product.quantity * product.productDetails.discountedPrice);
+  })
+  totalPrice = totalPrice + parseInt(TaxValue);
+  console.log(totalPrice);
+  finalCartValue.innerText = totalPrice;
+
+}
+
+function proceedtoCheckout() {
+
+  window.location.href = "/checkoutPage";
+
+}
+
+

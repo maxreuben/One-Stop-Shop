@@ -1,15 +1,51 @@
 const { sequelize } = require("./Connection");
 const Sequelize = require("sequelize");
+const { User } = require("./User");
+const { Product} = require("./Product");
+const { Order } = require("./Order");
+// const { User } = require("./models/User");
 
 const ProductReview = sequelize.define("ProductReview",{
-    productcomments:{
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        unique: true,
+      },
+    
+    review:{
         type : Sequelize.STRING,
     },
-    productrating:{
-        type : Sequelize.INTEGER,
+    rating:{
+        type : Sequelize.FLOAT,
     },
-    productcustomerImage :{
-        type :Sequelize.BLOB,
-    },
+    userFirstName:{
+        type : Sequelize.STRING,
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
 })
+
+User.hasOne(ProductReview);
+Product.hasOne(ProductReview);
+Order.hasOne(ProductReview);
+
+ProductReview.sync({alter: true});
+module.exports = { ProductReview };

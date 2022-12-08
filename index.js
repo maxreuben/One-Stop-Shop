@@ -69,7 +69,7 @@ app.use(shop);
 const contactPage = require("./routes/contact");
 app.use(contactPage);
 
-const orderHistory = require("./routes/orderHistory");
+const orderHistory = require("./routes/orderRoutes");
 app.use(orderHistory);
 
 const addressHistory = require("./routes/addAddress");
@@ -77,6 +77,9 @@ app.use(addressHistory);
 
 const paymentMethodsHistory = require("./routes/addPaymentMethod");
 app.use(paymentMethodsHistory);
+
+const editpaymentmethod = require("./routes/editPaymentMethod");
+app.use(editpaymentmethod);
 
 const aboutus = require("./routes/aboutus");
 app.use(aboutus);
@@ -86,6 +89,10 @@ app.use(editAddress);
 
 const addAddress = require("./routes/addAddressPage");
 app.use(addAddress);
+
+const cartPage = require("./routes/cart");
+app.use(cartPage);
+
 const cart = require("./routes/cartRoutes");
 app.use(cart);
 
@@ -95,8 +102,6 @@ app.use(forgotPassword);
 const addVendor = require("./routes/addVendor");
 app.use(addVendor);
 
-const adminDashboard = require("./routes/adminDashboard");
-app.use(adminDashboard);
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));

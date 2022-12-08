@@ -8,6 +8,10 @@ window.onload = function () {
     const a_cvv = document.getElementById("a_cvv").value;
     const a_paymentId = document.getElementById("a_paymentId").value;
     const a_type1 = document.getElementById("a_type1").value;
+    const a_nameOnCard = document.getElementById("a_nameOnCard").value;
+
+
+    console.log(a_cardType);
 
     if (a_cardNumber == "") {
       alert("Card Number must be filled out");
@@ -23,6 +27,10 @@ window.onload = function () {
     }
     if (a_cvv == "") {
       alert("CVV must be filled out");
+      return false;
+    }
+    if (a_nameOnCard == "") {
+      alert("Name on Card must be filled out");
       return false;
     }
 
@@ -44,6 +52,7 @@ window.onload = function () {
       a_cvv,
       a_paymentId,
       a_type1,
+      a_nameOnCard,
     };
     const options = {
       method: "POST",
@@ -57,6 +66,7 @@ window.onload = function () {
         cvv: a_cvv,
         type: a_type1,
         paymentId: a_paymentId,
+        nameOnCard: a_nameOnCard,
       }),
     };
     fetch("/add-payment-method", options)

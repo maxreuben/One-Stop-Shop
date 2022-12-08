@@ -10,10 +10,7 @@ const {
 
 const url = require("url");
 
-app.get(
-  "/editPaymentMethod/:paymentId",
-  urlencodedParser,
-  async function (request, response) {
+app.get("/editPaymentMethod/:paymentId",urlencodedParser,async function (request, response) {
     const { paymentId } = request.params;
     data = request.body;
 

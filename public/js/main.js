@@ -162,8 +162,7 @@ signInButton1.addEventListener("click", () => {
             ";expires=" +
             expire.toUTCString();
 
-          // location.href = "/";
-          location.reload();
+          location.href = '/';
         }
       });
     })

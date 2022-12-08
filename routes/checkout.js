@@ -6,6 +6,14 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const { checkout } = require("../services/checkout_service");
 const cons = require("consolidate");
 var cookieParser = require("cookie-parser");
+const { addAddressService } = require("../services/addAddressService");
+const { addPaymentMethodService } = require("../services/addPaymentMethodService");
+const {
+  getUserCart,
+  addToCart,
+  removeProductFromCart,
+  updateProductQuantity,
+} = require("../services/cartServices");
 
 app.post("/checkout", urlencodedParser, async function (request, response) {
   let cookie = request.headers.cookie;
@@ -20,9 +28,37 @@ app.post("/checkout", urlencodedParser, async function (request, response) {
 
   console.log(output);
 
-  let res = await checkout(output.cart, output.emailId);
+  let addressId;
 
-  response.send("");
+  let paymentMethodId;
+
+  let data = request.body;
+
+  if(data.isNewAddress == 'true') {
+    let responseData = await addAddressService(data, output.emailId);
+    addressId = responseData.addressObject.id;
+  } else {
+    addressId = data.addressId;
+  }
+
+  if(data.isNewPaymentMethod == 'true') {
+    let responseData = await addPaymentMethodService(data, output.emailId);
+    paymentMethodId = responseData.paymentMethodObject.id;
+  } else {
+    paymentMethodId = data.paymentId;
+  }
+
+  let cart = await getUserCart(output.emailId);
+
+  var totalPrice = 0;
+  
+  cart.map((product) => {
+    totalPrice = totalPrice + (product.quantity * product.productDetails.discountedPrice);
+  })
+
+  let res = await checkout(cart, totalPrice, output.emailId, addressId, paymentMethodId);
+
+  response.send(res);
 });
 
 module.exports = router;

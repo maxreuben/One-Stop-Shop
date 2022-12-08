@@ -25,15 +25,43 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <title>OneStop Shop</title>
     <!-- <script src="/js/shop.js"></script> -->
-    <link rel="stylesheet" href="/scss/shop.css"/>
+    <!-- <link rel="stylesheet" href="/scss/shop.css"/> -->
     <script>
       
+      function getCookie(name) {
+        var dc = document.cookie;
+        var prefix = name + "=";
+        var begin = dc.indexOf("; " + prefix);
+        if (begin == -1) {
+            begin = dc.indexOf(prefix);
+            if (begin != 0) return null;
+        }
+        else
+        {
+            begin += 2;
+            var end = document.cookie.indexOf(";", begin);
+            if (end == -1) {
+            end = dc.length;
+            }
+        }
+      }
       async function headerSearch() {
 
           const h_searchBar = document.getElementById("header-search-bar").value;
           localStorage.setItem('search',h_searchBar);
           window.location = 'http://localhost:5001/shop';
         }
+
+      async function userCart(){
+        var myCookie = getCookie("emailId");
+      if (myCookie == null || cookies.emailId.length === 0) {
+      // userForm.classList.add("show");
+      // navList.classList.remove("show");
+      location.href = "/signin?#";
+    } else {
+      location.href = "/cart";
+    }
+      }
       
         
     </script>
@@ -76,7 +104,7 @@
           </div>
           <div >
             <!-- <i class="bx bx-cart"></i> -->
-            <i class="fa fa-shopping-cart" style="font-size:24px" onclick="window.location = '/cart'"></i>
+            <i class="fa fa-shopping-cart" style="font-size:24px" onclick="userCart()"></i>
             <span></span>
           </div>
         </div>
@@ -115,10 +143,8 @@
                   <!-- <img src="./images/eye.svg" alt="" /> -->
                 </div>
               </div>
-              <span>
-                <a href="\forgotPassword" style="color:#1a1aff">Forgot Password?</a>
-              </span>
-              <input id='login'  type="Submit" value="Login" />
+              <span>Recovery Password</span>
+              <input id='login'  type="button" value="Login" />
             </div>
             <!-- <div class="form-control">
               <p>Or continue with</p>

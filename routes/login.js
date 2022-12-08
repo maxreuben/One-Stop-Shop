@@ -25,6 +25,8 @@ app.post("/signin", urlencodedParser, async function (request, response) {
   console.log("POST TEST");
   console.log(username, password);
 
+  console.log("USER CHECK", checkUser)
+
   if (checkUser.status === 200) {
     // session = request.session;
     // response.cookie("emailId", checkUser.userObject.emailId);

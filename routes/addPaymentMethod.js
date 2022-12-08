@@ -46,11 +46,18 @@ app.post(
       output[name] = value;
     });
 
-    console.log(output);
     data.emailId = output.emailId;
 
     let res = await addPaymentMethodService(data, output.emailId);
     response.send(res);
+  }
+);
+
+app.get(
+  "/addPaymentMethod",
+  urlencodedParser,
+  async function (request, response) {
+    response.render("addPaymentMethod");
   }
 );
 
