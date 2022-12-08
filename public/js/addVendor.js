@@ -58,6 +58,7 @@ window.onload = function () {
         .catch(function (error) {
           console.log(error);
         });
+        window.location = '/thanks'
       // console.log('test')
     });
   };

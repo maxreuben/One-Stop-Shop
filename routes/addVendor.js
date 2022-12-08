@@ -12,9 +12,11 @@ app.get("/addVendor", urlencodedParser, async function (request, response) {
     response.render("addVendor.ejs");
   }
 );
+
 app.post("/addVendor", urlencodedParser, function (request, response) {
   data = request.body;
   // console.log(request);
+  console.log("enetered to the postmethod");
 
   console.log(data);
 
@@ -23,14 +25,18 @@ app.post("/addVendor", urlencodedParser, function (request, response) {
   vendorRegistrationRequest(data)
     .then(function (responseData) {
       // await responseData;
-      console.log("RESPONSE DATA", responseData);
+      
       response.status = responseData.status;
+     
       response.send(JSON.stringify(responseData));
+      // response.render("thanks");
     })
     .catch(function (error) {
       response.status = 404;
+     
       response.send(JSON.stringify({ Response: "Error", error: error }));
     });
+    //response.render("thanks.ejs")
 });
 
 

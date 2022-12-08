@@ -11,7 +11,7 @@ async function vendorRegistrationRequest(data) {
   let responseData = {};
 
   //   console.log(data);
-  const vendorRegistrationRequest = await VendorRegistrationRequest.create({
+  const vendorRegistrationRequest = VendorRegistrationRequest.create({
     firstName: data.vendor_firstname,
     lastName: data.vendor_lastname,
     emailId: data.company_email,

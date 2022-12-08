@@ -108,9 +108,16 @@ app.use(addVendor);
 const orderRoutes = require("./routes/orderRoutes");
 app.use(orderRoutes)
 
+<<<<<<< Updated upstream
 const getCheckout = require("./routes/getCheckout");
 app.use(getCheckout);
 app.use(reviewRoutes)
+=======
+const thankYou = require("./routes/thanks");
+app.use(thankYou)
+
+
+>>>>>>> Stashed changes
 
 
 const getCheckoutDetails = require("./routes/getCheckoutDetails");
