@@ -7,6 +7,9 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const { get_order_history } = require("../services/get_order_history");
 const url = require("url");
 const { getCookies } = require("../services/getCookies");
+const { get_order_details } = require("../services/get_order_details");
+const { get_product_details } = require("../services/get_product_details");
+
 
 app.get("/orderHistory", urlencodedParser, async function (request, response) {
   let cookie = request.headers.cookie;
@@ -29,7 +32,7 @@ app.get("/orderHistory", urlencodedParser, async function (request, response) {
 });
 
 app.get(
-  "/orderDetails:orderId",
+  "/orderDetails/:orderId",
   urlencodedParser,
   async function (request, response) {
     let cookie = getCookies(request);
@@ -42,6 +45,30 @@ app.get(
         })
       );
     }
+
+    const { orderId } = request.params;
+
+    res = await get_order_details(orderId);
+
+    var products = new Array();
+
+    for(var i = 0; i < res.length; i++){
+
+        var productID = res[i].ProductId;
+
+        let product = await get_product_details(productID);
+
+        products.push(product);
+
+    }
+
+    console.log("products-products-", products);
+
+    console.log("orders-123-", res);
+
+    response.render("orderHistoryDetails", {orderDetails: res, ProductDetails: products});
+
+
   }
 );
 

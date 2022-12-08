@@ -105,6 +105,10 @@ app.use(resetPassword);
 const addVendor = require("./routes/addVendor");
 app.use(addVendor);
 
+const orderRoutes = require("./routes/orderRoutes");
+app.use(orderRoutes)
+
+
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));

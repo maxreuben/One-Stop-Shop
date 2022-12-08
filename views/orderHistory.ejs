@@ -58,7 +58,7 @@
             <div class="row w-100 no-gutters">
               <div class="col-6 col-md">
                 <h6 class="text-charcoal mb-0 w-100">Order Number</h6>
-                <a href="" class="text-pebble mb-0 w-100 mb-2 mb-md-0"><%= orderHistory[i].id %></a>
+                <a href="/orderDetails/<%= orderHistory[i].id %>" class="text-pebble mb-0 w-100 mb-2 mb-md-0"><%= orderHistory[i].id %></a>
               </div>
               <div class="col-6 col-md">
                 <h6 class="text-charcoal mb-0 w-100">Date</h6>
@@ -73,7 +73,7 @@
                 <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">Late M. Night</p> 
               </div> -->
               <div class="col-12 col-md-3">
-                <a onclick="" class="btn btn-primary w-100">View Order</a>
+                <a href="/orderDetails/<%= orderHistory[i].id %>" class="btn btn-primary w-100">View Order</a>
               </div>
             </div>
             
