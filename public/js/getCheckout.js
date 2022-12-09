@@ -266,6 +266,7 @@ function checkout() {
         });
 
 
+    alert("Order Successfully Placed, Check Order in Order History Page")
     window.location.href = "/shop";
 
     return;
