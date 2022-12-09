@@ -96,13 +96,14 @@
             %>
         <% } %>
         <li class="list-group-item d-flex justify-content-between">
-          <span>Total (USD)</span>
+          <span>Total (USD Including Tax)</span>
           <strong>
 
             <% let totalPrice = 0; %>
             <% for(let i=0; i < CartDetails.length; i++) { %>
               <%
                 totalPrice += (CartDetails[i].quantity) * (CartDetails[i].productDetails.discountedPrice);
+                totalPrice += 15;
               %>
             <% } %>
             <%= totalPrice %>
@@ -311,6 +312,7 @@
     </ul>
   </footer>
 
-  <%- include('footer.ejs') %>
+ 
 
 </div>
+<%- include('footer.ejs') %>

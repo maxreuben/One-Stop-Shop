@@ -104,12 +104,13 @@ img {
   
 }
 .header .navbar {
-  padding: 1rem 0;
+  padding: 1rem 4rem;
   position: relative;
   z-index: 1;
 }
 .header .navbar .row {
   justify-content: space-between;
+  max-width: 100%;
 }
 .header .navbar .row .nav-list a {
   display: inline-block;
@@ -758,6 +759,8 @@ img {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 3rem;
+  max-width: 100%;
+
 }
 .footer .row .col .logo {
   margin-bottom: 2.5rem;

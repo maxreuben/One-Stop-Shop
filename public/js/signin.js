@@ -58,7 +58,7 @@ window.onload = function () {
             document.cookie = "emailId="+c_username.value+";path=/" + ";expires="+expire.toUTCString();
             document.cookie = "password="+encodeURI(c_password.value)+";path=/" + ";expires="+expire.toUTCString();
   
-            location.href = "/vendorHome";
+            location.href = "/adminDashboardPage";
           }
           else{
             // alert('success')

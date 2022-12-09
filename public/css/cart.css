@@ -80,7 +80,7 @@ button,
 .subtotal-value:before,
 .total-value:before,
 .promo-value:before {
-  content: '£';
+  content: '$';
 }
 
 .hide {
@@ -253,7 +253,7 @@ aside {
   float: right;
   position: relative;
   width: 40%;
-  margin: 55px 0px 0px 0px;
+  margin: 15px 0px 0px 0px;
 }
 
 .summary {
