@@ -12,22 +12,19 @@
       </div>
       <div class="filters d-flex">
         <% for (const category of categories) { %>
-          <div><%= category %></div>
+          <div id="<%= category %>-filter" class="category-filter" onclick="getProductsInCategory('<%= category %>')"><%= category %></div>
         <% } %>
       </div>
 
       
 
       <div class="products container">
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper" id="products">
-            <div class="swiper-slide">
-            </div>
+        <i class="bx bxs-chevron-left carousel-control" onclick="shiftCategoryCarouselActiveIndex(-1)"></i>
+        <div class="swiper-wrapper" id="products">
+          <div class="swiper-slide">
           </div>
         </div>
-        <div class="pagination">
-          <div class="custom-pagination"></div>
-        </div>
+        <i class="bx bxs-chevron-right carousel-control" onclick="shiftCategoryCarouselActiveIndex(1)"></i>
       </div>
     </section>
 

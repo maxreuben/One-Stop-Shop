@@ -18,7 +18,6 @@ function getStarRating(rating) {
   return html;
 }
 
-
 /**
  * Generates product card html
  * @param {Product} product
@@ -173,7 +172,7 @@ async function updateProducts(updatedFilters) {
   // update products using remaining filters (some may be removed loading dynamic filters)
   const resp = await fetch(`/search?${filters.getQueryString()}`);
   const { products, count } = await resp.json();
-  const productDiv = document.getElementById("products");
+  const productDiv = document.getElementById("shop-products");
   while (productDiv.firstChild) {
     productDiv.removeChild(productDiv.firstChild);
   }
@@ -239,12 +238,9 @@ async function setQuery() {
   await addFilter({ searchQuery: searchBar.value });
 }
 
-
 window.onload = async () => {
-  
-
   const searchBar = document.getElementById("search-bar");
-  searchBar.value = localStorage.getItem('search');
+  searchBar.value = localStorage.getItem("search");
   await setQuery(); // if you reload the page, the search bar still has text in it, this will immediately instantiate the filters with the query string
   searchBar.onkeydown = (e) => {
     if (e.key === "Enter") {
@@ -255,5 +251,4 @@ window.onload = async () => {
   const searchButton = document.querySelector("#search-bar-wrapper > i");
   searchButton.onclick = setQuery;
   // h_searchBar.onclick = headerSearch;
-  
 };
