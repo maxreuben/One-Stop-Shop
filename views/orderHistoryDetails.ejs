@@ -47,7 +47,7 @@
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        orderId: window.location.href.split("/")[4],
+        orderId: oid,
         comments: ReviewText.value,
         rating: Rating.value,
         productId: id,
@@ -131,7 +131,7 @@
                   <input  type="number" max="5" min="0"  />
                   <h3>Description :</h3>
                   <textarea style="height: 90px;width: 200px;" placeholder="Describe Your Experience" ></textarea>
-                  <button type="button" class="btn btn-info" onclick="SubmitReview(this,<%= ProductDetails[i].id%>)" >Submit Review</button>
+                  <button type="button" class="btn btn-info" onclick="SubmitReview(this,'<%= ProductDetails[i].id%>')" >Submit Review</button>
                 </div>
               </div>
               <% } %>
