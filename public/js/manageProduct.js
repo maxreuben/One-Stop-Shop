@@ -320,7 +320,7 @@ window.onload = function () {
   
             priceDiv = document.createElement("div");
             priceDiv.className = "price";
-            priceDiv.innerHTML = product.productDetails.discountedPrice;
+            priceDiv.innerHTML = product.productDetails.retailPrice;
   
             quantityDiv = document.createElement("div");
             quantityDiv.className = "quantity";

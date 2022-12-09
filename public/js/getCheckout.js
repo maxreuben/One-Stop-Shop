@@ -19,6 +19,10 @@ cookies = document.cookie
     {}
   );
 
+  console.log("abcd--", cookies.email);
+
+  let mail
+
   const resp = await fetch(`/getCheckoutDetails?emailID=${cookies.email}`);
 
   var select = document.getElementById("selectAddress");

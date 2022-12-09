@@ -119,7 +119,7 @@
                       <img src="<%= ProductDetails[i].image[0] %>" style="max-width: 23%;">
                     </div>
                   </ul>
-                  <h6 class="text-charcoal text-left mb-0 mb-md-2"><b style="font-size: 16px;">Amount :- $ <%= ProductDetails[i].discountedPrice %></b></h6>
+                  <h6 class="text-charcoal text-left mb-0 mb-md-2"><b style="font-size: 16px;">Amount :- $ <%= ProductDetails[i].retailPrice %></b></h6>
                 </div>
             
                 <div class="col-12 col-sm-3 hidden-sm-down">
@@ -127,9 +127,9 @@
                   <a href="" class="btn btn-secondary w-100">Request a Return</a> -->
 
                   <h3>Rating :</h3>
-                  <input  type="number" max="5" min="0"  />
+                  <input  type="number" max="5" min="0" style="border: 1px solid black;" />
                   <h3>Description :</h3>
-                  <textarea style="height: 90px;width: 200px;" placeholder="Describe Your Experience" ></textarea>
+                  <textarea style="height: 90px;width: 200px;border: 1px solid black;" placeholder="Describe Your Experience" ></textarea>
                   <button type="button" class="btn btn-info" onclick="SubmitReview(this,'<%= ProductDetails[i].id%>')" >Submit Review</button>
                 </div>
               </div>
@@ -149,7 +149,7 @@
           <% let totalPrice = 0; %>
           <% for(let i = 0, c = 0; i < ProductDetails.length, c < orderDetails.length; i++, c++) { %>
             <%
-              totalPrice += (orderDetails[c].quantity) * (ProductDetails[i].discountedPrice);
+              totalPrice += (orderDetails[c].quantity) * (ProductDetails[i].retailPrice);
             %>
           <% } %>
           <%= totalPrice %>

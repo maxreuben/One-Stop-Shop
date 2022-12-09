@@ -123,6 +123,8 @@ app.use(adminDashboard);
 const getCheckoutDetails = require("./routes/getCheckoutDetails");
 app.use(getCheckoutDetails);
 
+
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

@@ -222,7 +222,7 @@ function renderCartItems(cart) {
 
     priceDiv = document.createElement("div");
     priceDiv.className = "price";
-    priceDiv.innerHTML = product.productDetails.discountedPrice;
+    priceDiv.innerHTML = product.productDetails.retailPrice;
 
     quantityDiv = document.createElement("div");
     quantityDiv.className = "quantity";
@@ -230,6 +230,8 @@ function renderCartItems(cart) {
     inputDiv = document.createElement("input");
     inputDiv.className = "quantity-field";
     inputDiv.type = "number";
+    inputDiv.min = "0";
+    inputDiv.max = "5";
     inputDiv.addEventListener("click", function () {
       updateProductFromCart(this, product.productDetails.id);
     });
@@ -240,7 +242,7 @@ function renderCartItems(cart) {
     subTot = document.createElement("div");
     subTot.className = "subtotal";
     subTot.innerHTML =
-      product.quantity * product.productDetails.discountedPrice;
+      product.quantity * product.productDetails.retailPrice;
 
     hiddendiv = document.createElement("div");
     hiddendiv.style.visibility = "hidden";
@@ -282,7 +284,7 @@ function updateTotalOfCart(cart) {
   const TaxValue = document.getElementById("basket-subtotal").innerText;
   cart.map((product) => {
     totalPrice =
-      totalPrice + product.quantity * product.productDetails.discountedPrice;
+      totalPrice + product.quantity * product.productDetails.retailPrice;
   });
   totalPrice = totalPrice + parseInt(TaxValue);
   console.log(totalPrice);

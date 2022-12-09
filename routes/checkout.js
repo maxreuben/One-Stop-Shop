@@ -53,7 +53,7 @@ app.post("/checkout", urlencodedParser, async function (request, response) {
   var totalPrice = 0;
   
   cart.map((product) => {
-    totalPrice = totalPrice + (product.quantity * product.productDetails.discountedPrice);
+    totalPrice = totalPrice + (product.quantity * product.productDetails.retailPrice);
   })
 
   let res = await checkout(cart, totalPrice, output.emailId, addressId, paymentMethodId);

@@ -63,7 +63,7 @@
           <div class="product-image">
             <img src="<%= CartDetails[i].productDetails.image[0] %>" style="max-width: 44%;">
           </div>
-          <span class="text-muted">$<%= CartDetails[i].productDetails.discountedPrice %></span>
+          <span class="text-muted">$<%= CartDetails[i].productDetails.retailPrice %></span>
           
         </li>
         <% } %>
@@ -92,7 +92,7 @@
         <% for(let i=0; i < CartDetails.length; i++) { %>
             <%
               let totalPrice;
-              totalPrice = totalPrice + CartDetails[i].quantity * CartDetails[i].productDetails.discountedPrice
+              totalPrice = totalPrice + CartDetails[i].quantity * CartDetails[i].productDetails.retailPrice
             %>
         <% } %>
         <li class="list-group-item d-flex justify-content-between">
@@ -102,7 +102,7 @@
             <% let totalPrice = 0; %>
             <% for(let i=0; i < CartDetails.length; i++) { %>
               <%
-                totalPrice += (CartDetails[i].quantity) * (CartDetails[i].productDetails.discountedPrice);
+                totalPrice += (CartDetails[i].quantity) * (CartDetails[i].productDetails.retailPrice);
                 totalPrice += 15;
               %>
             <% } %>
