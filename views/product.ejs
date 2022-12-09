@@ -72,7 +72,9 @@
         <div id="product-specifications">
             <h2 class="title">Specifications</h2>
             <div class="specifications">
-                <% for(const {key, value} of productDetails.specification.product_specification) { %>
+                <% const productSpecificationObj = productDetails.specification.product_specification %>
+                <% const specifications = Array.isArray(productSpecificationObj) ? productSpecificationObj : [productSpecificationObj] %>
+                <% for(const {key, value} of specifications) { %>
                     <div>
                         <% if(key){ %>
                             <span><%= key %></span>
