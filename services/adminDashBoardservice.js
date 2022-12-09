@@ -13,7 +13,17 @@ async function search_Pending_Request(query) {
 } 
 
 async function Search_All_Venders(){
-    let allusers = await Vendor.findAll({});
+    let allusers = await VendorRegistrationRequest.findAll({
+      where: {
+        [Op.or]: [
+          { status: '0' },
+          { status: '1' },
+          { status: '2' },
+        ]
+    },
+    raw:true
+    });
+    
     return allusers
     
 }
@@ -50,7 +60,7 @@ async function updatethevendor(data) {
           console.log("ERROR", error);
           responseData = { message: "Error", status: 501, error: error.errors };
         });
-    }
+
     console.log("response",responseData);
     return responseData;
   }

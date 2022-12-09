@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  <%- include('header.ejs') %>
 <head>
 <title>Page</title>
  
@@ -15,93 +16,66 @@
 </head>
 <body>
 
-
+<div style="margin:6rem 10rem">
 
 <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a href="#" class="navbar-brand">Brand</a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
         <div class="navbar-nav">
             <a href="#" class="nav-item nav-link active">Home</a>
-            <a href="#" class="nav-item nav-link">Profile</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Messages</a>
-                <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item">Inbox</a>
-                    <a href="#" class="dropdown-item">Sent</a>
-                    <a href="#" class="dropdown-item">Drafts</a>
-                </div>
-            </div>
+            
         </div>
-        <form class="form-inline">
+        <!-- <form class="form-inline">
             <div class="input-group">                    
                 <input type="text" class="form-control" placeholder="Search">
                 <div class="input-group-append">
                     <button type="button" class="btn btn-secondary"><i class="fa fa-search"></i></button>
                 </div>
             </div>
-        </form>
-        <div class="navbar-nav">
-            <a href="#" class="nav-item nav-link">Login</a>
-        </div>
+        </form> -->
+        <td class="py-2">
+         
+          <button type="button" class="btn btn-sm btn-success"><i class="fa fa-edit"></i>Edit</button>
+          <button type="button" class="btn btn-sm btn-info">View All</button>
+        </td>
+        
     </div>
 </nav>
 
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">Day</th>
-      <th scope="col">Article Name</th>
-      <th scope="col">Author</th>
-      <th scope="col">Words</th>
-      <th scope="col">Shares</th>
-      <th scope="col">Actions</th>
+      <th scope="col">Userid</th>
+      <th scope="col">User First Name</th>
+      <th scope="col">User Last Name</th>
+      <th scope="col">Status</th>
+      <th scope="col">Company</th>
+      
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Bootstrap 4 CDN and Starter Template</td>
-      <td>Cristina</td>
-      <td>913</td>
-      <td>2.846</td>
-      <td class="py-2">
-        <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></button>
-        <button type="button" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>
-        <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Bootstrap Grid 4 Tutorial and Examples</td>
-      <td>Cristina</td>
-      <td>1.434</td>
-      <td>3.417</td>
-      <td class="py-2">
-        <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></button>
-        <button type="button" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>
-        <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Bootstrap Flexbox Tutorial and Examples</td>
-      <td>Cristina</td>
-      <td>1.877</td>
-      <td>1.234</td>
-      <td class="py-2">
-        <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></button>
-        <button type="button" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>
-        <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-      </td>
-    </tr>
+    <% for(let i = 0; i < Vendors.length; i++) { %>
+      <tr>
+        <th scope="row"><%= Vendors[i].id %></th>
+        <td><%= Vendors[i].lastName %></td>
+        <td><%= Vendors[i].emailId %></td>
+        <td><%= Vendors[i].status %></td>
+        <td><%= Vendors[i].company %></td>
+        
+        
+        <!-- <td class="py-2">
+          <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></button>
+          <button type="button" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>
+          <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+        </td> -->
+      </tr>
+    <% } %>
+    
   </tbody>
 </table>
 
-
+</div>
 
 </body>
+<%- include('footer.ejs') %>
 </html>
