@@ -12,6 +12,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+<script src="/js/adminDashboard.js"></script>
+
+
 
 </head>
 <body>
@@ -62,12 +65,24 @@
         <td><%= Vendors[i].status %></td>
         <td><%= Vendors[i].company %></td>
         
-        
-        <!-- <td class="py-2">
-          <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></button>
-          <button type="button" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>
-          <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-        </td> -->
+        <% if( Vendors[i].status == 0 ) { %>
+          <td class="py-2">            
+            <button type="button" onClick="AcceptVendor('Accept', '<%= Vendors[i].id %>')" class="btn btn-sm btn-success"><i class="fa fa-edit"></i>Accept</button>
+            <button type="button" onClick="DeclineVendor('Decline', '<%= Vendors[i].id %>')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Decline</button>
+          </td>
+        <% } %>
+        <% if( Vendors[i].status == 1 ) { %>
+          <td class="py-2">  
+            <h4>Accepted</h4>         
+          </td>
+        <% } %>
+        <% if( Vendors[i].status == 2 ) { %>
+          <td class="py-2">            
+            <td class="py-2">  
+              <h4>Declined</h4>         
+            </td>
+          </td>
+        <% } %>
       </tr>
     <% } %>
     
