@@ -126,59 +126,50 @@
 
 window.onload = function () {
   const options = {
-    method: "GET"
-  
+    method: "GET",
   };
-  fetch("http://localhost:5001/getUserCart", options)
+  fetch("/getUserCart", options)
     .then(function (response) {
       console.log(response);
 
       response.json().then(function (value) {
-      
         console.log(value);
 
         var cart = value;
         renderCartItems(cart);
-              
-        });
+      });
     })
     .catch(function (error) {
       console.log(error);
     });
-
 };
 
 async function removeProductFromCart(productID) {
   console.log(productID);
 
-  
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({
-        productId: productID,
-      }),
-    };
-    fetch("/removeProduct", options)
-      .then(function (response) {
-        console.log(response);
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      productId: productID,
+    }),
+  };
+  fetch("/removeProduct", options).then(function (response) {
+    console.log(response);
 
-        response.json().then(function (value) {
-          
-          console.log(value);
-          window.location.reload();
-        });
-      });
-
-
+    response.json().then(function (value) {
+      console.log(value);
+      window.location.reload();
+    });
+  });
 }
 
-async function updateProductFromCart(ele,productID) {
+async function updateProductFromCart(ele, productID) {
   console.log(productID);
   console.log(ele.value);
-  if(ele.value >0){
+  if (ele.value > 0) {
     const options = {
       method: "POST",
       headers: {
@@ -186,126 +177,118 @@ async function updateProductFromCart(ele,productID) {
       },
       body: new URLSearchParams({
         productId: productID,
-        quantity: ele.value
+        quantity: ele.value,
       }),
     };
-    fetch("/updateProductQuantity", options)
-      .then(function (response) {
-        console.log(response);
+    fetch("/updateProductQuantity", options).then(function (response) {
+      console.log(response);
 
-        response.json().then(function (value) {
-          
-          console.log(value);
-          window.location.reload();
-        });
+      response.json().then(function (value) {
+        console.log(value);
+        window.location.reload();
       });
-
-  }
-  else{
+    });
+  } else {
     removeProductFromCart(productID);
   }
-    
 }
-
 
 function renderCartItems(cart) {
-  div = document.getElementById("cart-items")
-        cart.map((product) => {
+  div = document.getElementById("cart-items");
+  cart.map((product) => {
+    basketdiv = document.createElement("div");
+    basketdiv.className = "basket-product";
 
-          basketdiv = document.createElement("div");
-          basketdiv.className = "basket-product";
+    itemDiv = document.createElement("div");
+    itemDiv.className = "item";
 
-          itemDiv = document.createElement("div");
-          itemDiv.className = "item"
+    imageDiv = document.createElement("div");
+    imageDiv.className = "product-image";
 
-          imageDiv = document.createElement("div");
-          imageDiv.className = "product-image";
+    imageEle = document.createElement("img");
+    imageEle.src = product.productDetails.image[0];
 
-          imageEle = document.createElement("img")
-          imageEle.src = product.productDetails.image[0];
+    imageDiv.appendChild(imageEle);
 
-          imageDiv.appendChild(imageEle);
-          
+    productDet = document.createElement("div");
+    productDet.className = "product-details";
 
-          productDet = document.createElement("div");
-          productDet.className = "product-details";
+    headerDiv = document.createElement("h1");
+    headerDiv.innerHTML = product.productDetails.name;
 
-          headerDiv = document.createElement("h1");
-          headerDiv.innerHTML = product.productDetails.name;
+    productDet.appendChild(headerDiv);
+    itemDiv.appendChild(imageDiv);
+    itemDiv.appendChild(productDet);
 
-          productDet.appendChild(headerDiv);
-          itemDiv.appendChild(imageDiv);
-          itemDiv.appendChild(productDet);
+    priceDiv = document.createElement("div");
+    priceDiv.className = "price";
+    priceDiv.innerHTML = product.productDetails.discountedPrice;
 
-          priceDiv = document.createElement("div");
-          priceDiv.className = "price";
-          priceDiv.innerHTML = product.productDetails.discountedPrice;
+    quantityDiv = document.createElement("div");
+    quantityDiv.className = "quantity";
 
-          quantityDiv = document.createElement("div");
-          quantityDiv.className = "quantity";
+    inputDiv = document.createElement("input");
+    inputDiv.className = "quantity-field";
+    inputDiv.type = "number";
+    inputDiv.addEventListener("click", function () {
+      updateProductFromCart(this, product.productDetails.id);
+    });
+    inputDiv.value = product.quantity;
 
-          inputDiv = document.createElement("input");
-          inputDiv.className = "quantity-field";
-          inputDiv.type = "number";
-          inputDiv.addEventListener("click", function(){updateProductFromCart(this,product.productDetails.id)});
-          inputDiv.value = product.quantity;
+    quantityDiv.appendChild(inputDiv);
 
-          quantityDiv.appendChild(inputDiv);
+    subTot = document.createElement("div");
+    subTot.className = "subtotal";
+    subTot.innerHTML =
+      product.quantity * product.productDetails.discountedPrice;
 
-          subTot = document.createElement("div");
-          subTot.className = "subtotal"
-          subTot.innerHTML = product.quantity*product.productDetails.discountedPrice;
+    hiddendiv = document.createElement("div");
+    hiddendiv.style.visibility = "hidden";
+    hiddendiv.innerHTML = product.productDetails.id;
 
-          hiddendiv = document.createElement("div");
-          hiddendiv.style.visibility = 'hidden';
-          hiddendiv.innerHTML = product.productDetails.id;
+    removeDiv = document.createElement("div");
+    removeDiv.className = "remove";
+    // removeDiv.value = product.productDetails.id;
+    //removeDiv.onclick = `removeProductFromCart(${product.productDetails.id})`;
 
+    removeBut = document.createElement("button");
+    removeBut.type = "button";
+    removeBut.innerHTML = "Remove";
 
-          removeDiv = document.createElement("div");
-          removeDiv.className = "remove";
-          // removeDiv.value = product.productDetails.id;
-          //removeDiv.onclick = `removeProductFromCart(${product.productDetails.id})`;
+    removeBut.addEventListener("click", function () {
+      removeProductFromCart(product.productDetails.id);
+    });
+    // removeBut.onclick  = `removeProductFromCart(${product.productDetails.id})`;
 
-          removeBut = document.createElement("button");
-          removeBut.type = "button";
-          removeBut.innerHTML = "Remove";
+    removeDiv.appendChild(removeBut);
 
-          removeBut.addEventListener("click", function(){removeProductFromCart(product.productDetails.id)});
-          // removeBut.onclick  = `removeProductFromCart(${product.productDetails.id})`;
+    basketdiv.appendChild(itemDiv);
 
-          removeDiv.appendChild(removeBut);
+    basketdiv.appendChild(priceDiv);
+    basketdiv.appendChild(quantityDiv);
+    basketdiv.appendChild(subTot);
+    basketdiv.appendChild(hiddendiv);
+    basketdiv.appendChild(removeDiv);
 
-          basketdiv.appendChild(itemDiv);
-          
-          basketdiv.appendChild(priceDiv);
-          basketdiv.appendChild(quantityDiv);
-          basketdiv.appendChild(subTot);
-          basketdiv.appendChild(hiddendiv);
-          basketdiv.appendChild(removeDiv);
+    div.appendChild(basketdiv);
+  });
 
-          div.appendChild(basketdiv);
-        })
-
-        updateTotalOfCart(cart);
+  updateTotalOfCart(cart);
 }
 
-function updateTotalOfCart (cart) {
+function updateTotalOfCart(cart) {
   var totalPrice = 0;
   const finalCartValue = document.getElementById("final-value");
   const TaxValue = document.getElementById("basket-subtotal").innerText;
   cart.map((product) => {
-    totalPrice = totalPrice + (product.quantity * product.productDetails.discountedPrice);
-  })
+    totalPrice =
+      totalPrice + product.quantity * product.productDetails.discountedPrice;
+  });
   totalPrice = totalPrice + parseInt(TaxValue);
   console.log(totalPrice);
   finalCartValue.innerText = totalPrice;
-
 }
 
 function proceedtoCheckout() {
-
   window.location.href = "/checkoutPage";
-
 }
-
-

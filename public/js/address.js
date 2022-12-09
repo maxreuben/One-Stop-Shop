@@ -91,7 +91,7 @@ window.onload = function () {
       .then(function (response) {
         let json = response.json();
 
-        window.location = "http://localhost:5001/manageAddress";
+        window.location = "/manageAddress";
       })
       .catch(function (error) {
         console.log(error);

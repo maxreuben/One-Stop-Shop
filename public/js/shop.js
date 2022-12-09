@@ -234,7 +234,6 @@ async function setOrderBy(self, orderBy) {
 
 async function setQuery() {
   const searchBar = document.getElementById("search-bar");
-  // window.location = 'http://localhost:5001/shop';
   await addFilter({ searchQuery: searchBar.value });
 }
 

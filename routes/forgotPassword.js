@@ -21,7 +21,7 @@ app.post("/forgotPassword", urlencodedParser, async function (request, response)
   if(user){
       console.log("Verified user")
       const hash = crypto.createHash('sha512').update(emailId).digest('hex');
-      const resetLink = `http://localhost:5001/resetPassword?email=${emailId}&hash=${hash}`
+      const resetLink = `/resetPassword?email=${emailId}&hash=${hash}`
       const body = `Dear ${emailId},\n Please use the following link to reset your password. \n ${resetLink}`
       console.log(resetLink);
       let res = sendMail(emailId, "Password Reset Link", body);
