@@ -45,7 +45,7 @@ function getCookie(name) {
   // because unescape has been deprecated, replaced with decodeURI
   //return unescape(dc.substring(begin + prefix.length, end));
   return decodeURI(dc.substring(begin + prefix.length, end));
-} 
+}
 
 /**
  * Adds the product to cart in the specified quantity
@@ -62,7 +62,7 @@ async function addToCart() {
       // navList.classList.remove("show");
       location.href = "/signin?#";
     } else {
-     
+
 
   let addedToCart = document.getElementById("added-to-cart");
   addedToCart.style.visibility = "visible";
@@ -79,12 +79,12 @@ async function addToCart() {
       quantity: document.getElementById("quantity").innerText,
     }),
   };
-  fetch("http://localhost:5001/addToCart", options)
+  fetch("/addToCart", options)
     .then(function (response) {
       console.log(response);
 
       response.json().then(function (value) {
-        
+
         console.log(value);
       });
     })
@@ -100,7 +100,7 @@ async function getReviews(reviews) {
   console.log("Here it is ",reviews)
   div = document.getElementById("review");
   reviews.map((review) => {
-    
+
     review_itemdiv = document.createElement("div");
     review_itemdiv.className = "review_item";
 
@@ -134,7 +134,7 @@ window.onload = function () {
 
   const options = {
     method: "GET"
-  
+
   };
   let st = "/productReview/" + document.getElementById("a_addressId").value;
   console.log(st);
@@ -143,12 +143,12 @@ window.onload = function () {
       console.log(response);
 
       response.json().then(function (value) {
-        
+
         console.log(value.response);
 
         var reviews = value.response  ;
         getReviews(reviews);
-              
+
         });
     })
     .catch(function (error) {
