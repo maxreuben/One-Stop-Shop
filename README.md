@@ -7,7 +7,7 @@
 3. Log into [CockroachDB](https://cockroachlabs.cloud/login) (I used GitHub to log in)
 4. Create a free database and add the CA certificate as per their instructions
 5. Once you get to the connect stage, copy the "General Connection String" and save it
-6. Choose a directory in command prompt or Powershell
+6. Choose a directory in command prompt or Powershell or any Terminal app
 7. Run the following commands
    ```bash
    git clone https://github.com/maxreuben/One-Stop-Shop
