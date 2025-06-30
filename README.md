@@ -11,7 +11,7 @@
 7. Run the following commands
    ```bash
    git clone https://github.com/srikrishnakaashyap/E-Commerce-Website
-   cd E-Commerce-Website
+   cd One-Stop-Shop
    git branch working
    npm install
    ```
