@@ -10,7 +10,7 @@
 6. Choose a directory in command prompt or Powershell
 7. Run the following commands
    ```bash
-   git clone https://github.com/srikrishnakaashyap/E-Commerce-Website
+   git clone https://github.com/maxreuben/One-Stop-Shop
    cd One-Stop-Shop
    git branch working
    npm install
